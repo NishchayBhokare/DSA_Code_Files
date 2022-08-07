@@ -1,4 +1,4 @@
-// Example for finding Largest Sum of Contiguous Subarray
+// Example for counting total number of 1 bits in binary representation.
 // link-
     // https://practice.geeksforgeeks.org/problems/set-bits0143/1
 
