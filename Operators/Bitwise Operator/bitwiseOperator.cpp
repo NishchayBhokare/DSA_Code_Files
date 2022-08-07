@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
     int a=2; int b=3;
-    cout<<"(a & b) "<<(a & b)<<endl; // bitwise and operator when both bit 1 then 1 otherwise 0.  here ans is 2 
+    cout<<"(a & b) "<<(a & b)<<endl; // bitwise and operator when both bit 1 then 1 otherwise 0.  here ans is 2 i.e 1 1 in binary. 
     cout<<"(a | b) "<<(a | b)<<endl; // bitwise or operator when any of the bit is 1 then 1 otherwise 0.  here ans is  3
     cout<<"(a ^ b) "<<(a ^ b)<<endl; // bitwise xor operator when one of the bit is 1 then 1 otherwise 0.  here ans is 1 
     cout<<"a~ "<<(~a)<<endl<<endl;         // bitwise not operator it will make 1 to 0 and 0 to 1. here ans is -3 

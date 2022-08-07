@@ -1,6 +1,10 @@
-
-
-void toBinary(int n)
+// Example for conversion of decimal number to binary.
+// link-
+// https://practice.geeksforgeeks.org/problems/decimal-to-binary-1587115620/1
+#include<iostream>
+#include<math.h>
+using namespace std;
+void toBinary(int n) //TC- O(n) and no space
 {
     int ans = 0;
     int i = 0;
