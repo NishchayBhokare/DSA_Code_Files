@@ -17,7 +17,7 @@ int binary_to_decimal(string str)
 }
 
 
-// below code for if given binary representation is integer number.
+// below code for if given binary representation is in int data type.
 #include <iostream>
 #include <math.h>
 using namespace std;

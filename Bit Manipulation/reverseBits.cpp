@@ -2,6 +2,8 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+
+
 //Solution for problem on gfg. no leading zero's are considering in this example at gfg platform.
  unsigned int reverseBits(unsigned int n)
     {
@@ -24,6 +26,7 @@ using namespace std;
 
 
 //Solution for problem on leetcode.leading zero's are considering in this example at leetcode platform.
+//Approach 1:- looping from 31 to 0 and storing it's power in ans.
     uint32_t reverseBits(uint32_t n) {
         uint32_t ans=0; 
        for(int i=31; i>=0; i--){ //looping from 31 to 0 i.e 32 times.
@@ -35,6 +38,7 @@ using namespace std;
     }
     
 
+//Approach 2:- By doing left shift 31-i times.
      uint32_t reverseBits(uint32_t n) {
      uint32_t ans=0,i=0;
          while(n!=0){

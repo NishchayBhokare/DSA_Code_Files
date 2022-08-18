@@ -21,7 +21,7 @@ bool isPowerofTwo(long long n)
     if (n == 0)
         return false; // handling initial case when n==0.then simply return false.
     while (n != 1)
-    { // looping till "n" not equal to 1.
+    { // looping till "n" not equal to 1. cause if we reach to n=1 after keep dividing it,  that means n is in power of 2. cause we will only get remainder as 1, iff n is in power of 2.
         if (n % 2 != 0)
             return false; // if by any point if remainder is not equal to zero after dividing it n. then simply return false. cause number which is in power of 2 will always have remainder as 0 by taking n % 2.
         n = n / 2;        // dividing n to n/2 so that we can reach to last condition where n==1. i.e number is in power of 2.
