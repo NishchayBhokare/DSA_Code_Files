@@ -15,4 +15,11 @@ int main(){
     cout<<(21 << 2)<<endl; //left shift operator so two time multiplication 21 * 2=42, 42*2=84. so ans is 84.
 
     //The left shift shortcut technique won't work when 2nd bit from start is 1 and if we do left shif for 1 time then most significant bit will be 1. so while printing no. cause of most significant bit is 1 so printed no. will be in negative.
+    // if('a'+'b' > 'b') cout<<"ab";
+    // else cout<<"b";
+    string v="a";
+    string k="b";
+    // string m;
+    // m=v[0].append(k[0]);
+    cout<<(v+k);
 }
