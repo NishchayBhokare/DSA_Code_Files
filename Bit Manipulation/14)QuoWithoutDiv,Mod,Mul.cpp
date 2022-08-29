@@ -11,7 +11,7 @@
         long long quotient=0,a=abs(dividend),b=abs(divisor); //taking absolute value cause may be dividend or divisor is in negative.so abs will remove negative sign.
 
         for(int i=31; i>=0; i--){ //looping from 31 to 0. cause we want max. value of 2 raise to i. so that we can reduce iteration. 
-            if((b<<i) <= a){ // if 2 pow i * b <= a . i.e by shifting b to ith times, and if resultant value is less than a that means we can substract it from dividend. 
+            if((b<<i) <= a){ // if (2 pow i) * b <= a . i.e by shifting b to ith times, and if resultant value is less than a that means we can substract it from dividend. 
              a = a - (b<<i); //shifting divisor ith times so that we can substract dividend from it.
              quotient = quotient | (1<<i); // shifting ith time 1, which will work as quotient.  taking or with quotinet cause we have to also add previous quotient.
             // above statement we can write like this. quotient+= (1<<i);

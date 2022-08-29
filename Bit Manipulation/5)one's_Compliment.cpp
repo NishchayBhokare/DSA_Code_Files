@@ -19,7 +19,21 @@ int onesComplement(int n)
     return ans;
 }
 
-//Approach 2 - by doing bitwise "&" and right shift operator.TC - O(log n) and SC is constant.
+
+//Approach 2 - by creating mask in different variation. TC:- O(logn) SC is constant.
+    int onesComplement(int n){
+        //code here
+        int temp=n,i=0,mask=0;
+        while(temp){ //looping till temp not equal to 0.
+            mask = pow(2,i) + mask; //taking power, for eg. if n=6 i.e 110 then our mask will be 7 i.e 111.
+            i++;
+            temp>>=1;
+        } 
+        return (mask ^ n); //taking xor(^) between mask and n. so that 110 ^ 111 = 001.
+    }
+
+
+//Approach 3 - by doing bitwise "&" and right shift operator.TC - O(log n) and SC is constant.
 int onesComplement(int n)
 {
     int ans = 0, i = 0;
@@ -37,7 +51,7 @@ int onesComplement(int n)
 }
 
 
-// Approach 3 - Using Reminder-divident method. TC- O(logn) SC is constant.
+// Approach 4 - Using Reminder-divident method. TC- O(logn) SC is constant.
 int onesComplement(int n)
 {
     int ans = 0, i = 0;
@@ -55,7 +69,7 @@ int onesComplement(int n)
 }
 
 
-  // Approach 4 - Using Bit manipulation and divident method. TC:- O(logn) SC is constant.
+  // Approach 5 - Using Bit manipulation and divident method. TC:- O(logn) SC is constant.
     int onesComplement(int num) {
         int p=num,cnt=0; //storing num in p.
         while(num!=0){ 

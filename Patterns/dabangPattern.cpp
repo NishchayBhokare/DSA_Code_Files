@@ -26,10 +26,14 @@ int main(){
         }
 
         //second traingle of numbers.
-        for (int j = 1; j<= (n-i+1); j++)
-        {
-            cout<<(n-i-j+2);
-        }
+         for(int j=(n-i+1); j>=1; j--){
+        cout<<j;
+       }
+        //or
+        // for (int j = 1; j<= (n-i+1); j++)
+        // {
+        //     cout<<(n-i-j+2);
+        // }
 
         cout<<endl;
     }

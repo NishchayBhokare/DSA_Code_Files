@@ -4,8 +4,8 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-
-int reverse(int x)
+//TC- O(k) where k is the no. of digit in given x variable, SC- O(1)
+int reverse(int x) 
 {
     int ans = 0;
     while (x != 0)

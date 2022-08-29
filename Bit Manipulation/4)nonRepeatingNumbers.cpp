@@ -41,24 +41,36 @@ using namespace std;
         return ans; //returning ans vector.
     }
 
+//iterative way to get right most set bit pos. 
+// int j=0;
+//  while(XOR){
+//             if(XOR & 1) {
+//                 comp = pow(2,j); 
+//                 break;
+//             }
+//             j++;
+//             XOR>>=1;
+//         }
+
+
 
     //Approach 2: By sorting given array. and checking current with next element.
     //TC- O(Nlogn) SC is constant.
-    // vector<int> singleNumber(vector<int> nums) 
-    // {
-    //     vector<int> ans;
-    //     sort(nums.begin(), nums.end());
-    //     for(int i=0; i<nums.size();i++){
-    //         if(i+1 == nums.size()){ //To handle case when i+1 will go beyound index of array element. i.e it will equal to size.
-    //           ans.push_back(nums[i]); //at this time we will return ith index element and will exit from loop with the help of break statement.
-    //           break;
-    //         } 
-    //         if(nums[i]!=nums[i+1]) ans.push_back(nums[i]);
-    //         else i++;
-    //     }
-    //     // cout<<nums[6]<<" ";
-    //     return ans;
-    // }
+    vector<int> singleNumber(vector<int> nums) 
+    {
+        vector<int> ans;
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size();i++){
+            if(i+1 == nums.size()){ //To handle case when i+1 will go beyound index of array element. i.e it will equal to size.
+              ans.push_back(nums[i]); //at this time we will return ith index element and will exit from loop with the help of break statement.
+              break;
+            } 
+            if(nums[i]!=nums[i+1]) ans.push_back(nums[i]);
+            else i++;
+        }
+        // cout<<nums[6]<<" ";
+        return ans;
+    }
 
 
     //Approach 3: by incrementing count i.e 0 to 1 and 1 to 2. and using extra space. 

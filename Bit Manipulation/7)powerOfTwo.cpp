@@ -14,8 +14,21 @@ bool isPowerofTwo(long long n)
     return false;    // if not equal to zero.
 }
 
+// Approach 2 - counting no. of set bits. TC- O(logn) SC is constant.
+ bool isPowerofTwo(long long n){
+        // Your code here  
+        if(n == 0) return false;
+        int count=0;
+        while(n){
+            if(n & 1) count++; //if n & 1 is 1 then increment in count.
+            if(count > 1) return false; //if no. of count is greater than 1. return false cause any no. which is in power of 2, does not contain more than one set bit.
+            n=n>>1;
+        }
+        return true; //if we reach till the out of loop that mean no. is in power of two.
+    }
 
-// Approach 2 - Using Reminder-divident method. TC- O(logn) SC is constant.
+
+// Approach 3 - Using Reminder-divident method. TC- O(logn) SC is constant.
 bool isPowerofTwo(long long n)
 {
     if (n == 0)
@@ -30,7 +43,7 @@ bool isPowerofTwo(long long n)
 }
 
 
-// Approach 3 - By keeping track of ans variable. TC- O(logn) SC is constant.
+// Approach 4 - By keeping track of ans variable. TC- O(logn) SC is constant.
 bool isPowerofTwo(long long n)
 {
     if (n == 1)

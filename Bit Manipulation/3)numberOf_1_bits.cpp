@@ -31,7 +31,7 @@ int setBits(int n) // TC is O(logn) and space is also constant.
     }
 
 
-//Approach 3:- Most Efficient approach. (Brian_kerninghan algo.) TC: O(n * no. of setbits) SC is constant.
+//Approach 3:- Most Efficient approach. (Brian_kerninghan algo.) TC: O(no. of setbits) SC is constant.
     //In this example. n = n & n-1 . with this statment we will reduce set bits from right of n. i.e if n contains set bit 4 then after 1 iteration it will contain 3. that's why its TC is no. of set bits.
     //for eg. if n=10 i.e 1010 then 1010 & n-1 i.e 1010 & 1001 = 1000 (reduced right most one set bit) 
     //again enter in loop, 1000 & n-1 i.e 1000 & 0111 = 0000. so n=0. and we will stop and count is 2. cause we enter in loop 2 times.
@@ -40,7 +40,7 @@ int setBits(int n) // TC is O(logn) and space is also constant.
             int count = 0;
             while (n > 0) { //looping till n not equal to 0.
                 count++;
-                n &= (n - 1);
+                n = n & (n - 1);
             }
             return count;
         }

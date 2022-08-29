@@ -5,6 +5,7 @@ using namespace std;
 
 
 //Solution for problem on gfg. no leading zero's are considering in this example at gfg platform.
+//Approach 1: 
  unsigned int reverseBits(unsigned int n)
     {
         unsigned int ans=0; //creating ans variable.
@@ -21,6 +22,23 @@ using namespace std;
                               
         }
         return ans; //and yaa that's it returning ans.
+    }
+
+//Apporach 2:
+ unsigned int reverseBits(unsigned int n){ //TC- O(logn) SC is constant.
+        unsigned int m=n,ans=0;
+        int count=-1; //initially count is zero.
+        while(n){ //looping till n not zero.
+            count++; //checking how many bits are there in n and return count of bits.
+            n=n>>1;
+        }
+        while(m){
+            if(m & 1) ans += pow(2,count); //now if m & 1 is 1. then pow(2,count) i.e for n=13. count=3. so pow(2,3) + pow(2,1) + pow(2,0) = 11. i.e reverse of 13 in bits.
+            m=m>>1;
+            count--;
+        }
+        return ans;
+        
     }
 
 

@@ -24,7 +24,7 @@ using namespace std;
      int countSetBits(int n){
          int TotalBits=0;
          while(n !=0){
-             int x = floor(log2(n)); //(This is shortcut instead of writing funciton for nearest 2 pow x)we will get max power of 2. just before n. in this case max power of 2 is 8. cause n=11 and next pow is 16 which is greater than n.
+             int x = floor(log2(n)); //(This is shortcut instead of writing funciton for nearest 2 pow x we will get max power of 2. just before n. in this case max power of 2 is 8. cause n=11 and next pow is 16 which is greater than n.
              int bits1to2x_1 = pow(2,x-1) * x; //total set bits from 1 to pow of x-1. i.e for x=3 and n=11 it will be 1 to 7.
              int msb2xton= n - (1 << x) + 1; // ""i.e n - pow(2,x) +1""; //This is total count of most signifcant bits from x to n. i.e in this example, from 8 to 11. total 4 most significant bits.          
              TotalBits += msb2xton + bits1to2x_1; //adding 1 to 2x-1 bits and x to n bits in totalBits.

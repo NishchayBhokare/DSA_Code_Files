@@ -16,7 +16,7 @@ using namespace std;
     }
     
     
-    // //Approach 2:- comparing every bit of a with b. TC- O(logn) SC is constant.
+    //Approach 2:- comparing every bit of a with b. TC- O(logn) SC is constant.
     int countBitsFlip(int a, int b){
       int bitA, bitB, count=0;
       while(a !=0 || b !=0){ //looping till any of the varible not equal to zero.
