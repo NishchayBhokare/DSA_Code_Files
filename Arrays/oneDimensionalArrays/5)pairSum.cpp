@@ -7,7 +7,7 @@
 #include<vector>
 using namespace std;
 
-//Using two pointer Approach. TC- O() and SC is constant.
+//Using two pointer Approach. TC- O(n2) and SC is constant.
 vector<vector<int>> pairSum(vector<int> &arr, int s){
     vector<vector<int>> ans; //creating vector of vector ans.
 

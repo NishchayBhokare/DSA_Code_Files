@@ -14,7 +14,7 @@ void swapAlternate(int *arr, int size){
 }
 
 
-////Approach 1: By usign two pointer approch. TC- O(n) SC-O(1).
+////Approach 2: By usign two pointer approch. TC- O(n) SC-O(1).
 void swapAlternate(int *arr, int size)
 {
     for(int i=0,j=1;j<size;){ //initializing i=0 and j=1.

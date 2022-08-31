@@ -10,6 +10,7 @@ using namespace std;
 
 
 //Approach1:- most efficient. TC- O(n) SC-O(1).
+//array having elements from 1 to n-1.
 //Take xor of all array elements with number 1 to n-1.
 int findDuplicate(vector<int> &arr) 
 {
@@ -18,7 +19,7 @@ int findDuplicate(vector<int> &arr)
        ans = ans ^ arr[i];
    }
 
-   for(int i=1; i<arr.size();i++){// take xor of ans with 1 to n-1 no. so that twice elements gets cancelled and thrice element i.e remaining will be our ans.
+   for(int i=1; i<arr.size();i++){// take xor of ans with 1 to n-1 no. so that twice elements gets cancelled and thrice element i.e duplicate element will be our ans.
        ans = ans ^ i;
    }
    return ans;
@@ -39,11 +40,11 @@ int findDuplicate(vector<int> &arr)
 }
 
 
-//using sorting nlogn. (TLE- Time Limit Exceeded)
+//Approach 3:- Using sorting. TC- O(nlogn) SC-O(1). (TLE- Time Limit Exceeded)
 int findDuplicate(vector<int> &arr) 
 {
-   sort(arr.begin(),arr.end());
+   sort(arr.begin(),arr.end()); //sorting array to get arrya in increasing order.
     for(int i=0; i<(arr.size()-1); i++){
-        if(arr[i] == arr[i+1]) return arr[i];
+        if(arr[i] == arr[i+1]) return arr[i]; //if current element is equal to next element that means element is duplicate so return ith element.
     }
 }
