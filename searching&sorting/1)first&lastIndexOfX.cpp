@@ -5,7 +5,7 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-//Approach 1 using manula binary search algorithm : TC- O(logN) SC-O(1)
+//Approach 1 using manual binary search algorithm : TC- O(logN) SC-O(1)
   int binarySearch(vector<int> &arr,int n,int x,int low,int high,int tog){
   int ans=-1; //Initially ans equal to -1. so that if we don't get any element we will return -1.
   while( low <= high){ //looping till low is less than or equla to high.
@@ -40,16 +40,17 @@ using namespace std;
      return v;// return vector. 
     }
 
+
 //Approach 2 using lower bound & upper bound stl : TC- O(logN) SC-O(1)
 // In this example we are using lower_bound and upper_bound which is used in case of search an element in logn. Internally it works as binary search.
 //lower_bound will give iterator of first occurence of particular element and if element is not found then it will give iterator pointing to next element. 
-//In bothe present and absent cases upper_bound will give iterator pointing to next element.\
+//In both present and absent cases upper_bound will give iterator pointing to next element.
 //to get index of that element we need to minus arr.begin() i.e starting iterator so that we can get index.
-//In the case of upper_bound we also need to do -1 so that we can index of that particular element. cause, it always gives index of next element so do -1 
+//In the case of upper_bound we also need to do -1 so that we can get index of that particular element. cause, it always gives index of next element so do -1 
 
         vector<int> firstAndLast(vector<int> &arr, int n, int x) {
             vector<int> v; //creating one vector to store answer
-              auto start=lower_bound(arr.begin(),arr.end(),x) - arr.begin(); //calling lower_bound
+             auto start=lower_bound(arr.begin(),arr.end(),x) - arr.begin(); //calling lower_bound
              auto end=upper_bound(arr.begin(),arr.end(),x) - arr.begin() -1; //calling upper_bound
              if(start==n || arr[start]!=x) v.push_back(-1); // push -1 in vector, when element is not found then in some case it will reach to end + 1 pos. so we're checking start==size of vector or not and 2nd condition may occur is element is'nt found but start not reach to end + 1. cause, next elem. of that X is present.
              else { //otherwise we got index of element. so add it in vector and return it.
