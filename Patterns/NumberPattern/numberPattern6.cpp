@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+// 9 8 7 
+// 6 5 4
+// 3 2 1
+
 int main()
 {
     int n;

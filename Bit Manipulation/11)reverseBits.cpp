@@ -5,11 +5,11 @@ using namespace std;
 
 
 //Solution for problem on gfg. no leading zero's are considering in this example at gfg platform.
-//Approach 1: 
+//Approach 1: TC - O(number of bits in the binary representation of N) SC is constant.
  unsigned int reverseBits(unsigned int n)
     {
         unsigned int ans=0; //creating ans variable.
-        while(n != 0){  //TC - O(number of bits in the binary representation of N) SC is constant.
+        while(n != 0){  
             // ans = (ans << 1) | (n & 1); // This is shortcut for below 2 lines.
             int bit= n & 1; //taking one by one right most bit from n unsigned integer.
             ans= ans << 1  | bit; //first doing left shift for 1 time then doing or with bit so that if bit is 1 then added bit in ans will be 1, otherwise 0.
@@ -24,7 +24,20 @@ using namespace std;
         return ans; //and yaa that's it returning ans.
     }
 
-//Apporach 2:
+//Apporach 2: By calculating total bits by log2n TC - O(number of bits in the binary representation of N) SC is constant.
+    unsigned int reverseBits(unsigned int n)
+    {
+        //code here
+        unsigned int ans =0,i=0;
+        int totalBits = floor(log2(n)); //calculating bits, means if n=8 then it will give 3, so in binRep indexing is from 0. so 0,1,2,3 total 4 bits.
+        for(int i=totalBits; i>=0; i--){ //looping from totalbits to 0. (to get value in reverse)
+            if(n & 1) ans += pow(2,i); //if n & 1 is 1 then take power of 2 with i and then add it to ans.
+            n=n>>1;
+        }
+        return ans;
+    }
+
+//Apporach 3:
  unsigned int reverseBits(unsigned int n){ //TC- O(logn) SC is constant.
         unsigned int m=n,ans=0;
         int count=-1; //initially count is zero.

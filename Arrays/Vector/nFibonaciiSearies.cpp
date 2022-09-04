@@ -5,6 +5,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Approach 1- Using a & b variable.
 vector<long long> printFibb(int n) // TC- O(n) SC- O(n).
 {
     // sample fibonacci series is 0 1 1 2 5 7 12 19 31
@@ -27,3 +28,20 @@ vector<long long> printFibb(int n) // TC- O(n) SC- O(n).
     }
     return v; // and finally returning the vector.
 }
+
+
+//Approach 2: Using only elements from vector.
+vector<long long> printFibb(int n) 
+    {
+        //code here
+        vector<long long> v;
+        v.push_back(1);
+        if(n==1) return v;
+        v.push_back(1);
+        if(n==2) return v;
+        for(int i=2; i<n; i++) { //looping from 2 to n-1 cause we already inserted 2 elements in vector.
+            long long sum = v[i-1] + v[i-2]; //taking sum of previous element and previous of previous element.
+            v.push_back(sum); //and adding those sum in vector.
+        }
+        return v;
+    }

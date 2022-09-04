@@ -20,3 +20,15 @@ int reverse(int x)
     }
     return ans;
 }
+
+//Just variation by using ans as long.
+ int reverse(int x) {
+        long ans=0;
+        while(x){
+            int digit = x % 10;
+            ans = ans * 10 + digit;
+            if( (ans <= INT_MIN) || (ans >= INT_MAX) ) return 0; // checking condition after storing answer in the ans.
+            x = x/10;
+        }
+        return (int) ans;
+    }

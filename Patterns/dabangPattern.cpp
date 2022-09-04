@@ -24,6 +24,10 @@ int main(){
         for(int star=i-1; star>0; star--){
             cout<<"**";
         }
+//         or
+//         //for start pattern.
+//    for(int k=1; k<i; k++) cout<<"**";
+
 
         //second traingle of numbers.
          for(int j=(n-i+1); j>=1; j--){

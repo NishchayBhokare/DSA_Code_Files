@@ -3,7 +3,7 @@
  //Approach 1: using left shift r+1 time. TC: O(1) and SC O(1)
      int setSetBit(int x, int y, int l, int r){
          long mask=1; // creating mask which is initially 1. cause when we left shift mask, then set bit 1 should prsent r+1 position i.e if r is 4 then pos. of set bit should be 5.
-         mask=mask<<(r-l+1) ; //left shifting shifting mask r-l+1 times. 
+         mask=mask<<(r-l+1) ; //left shifting shifting mask r-l+1 times. or mask = pow(2,(r-l+1)).
          mask--; //decrement mask so that  for eg. 10000 convert into 1111.
          mask=(mask<<(l-1));  //after creating mask, we need to add zeros from right of its, iff l is greater than 1. cause if l is in somewhere between then to reach there we need to add 0's from right side of mask so that mask will reach there.
                               //we will do left shift l-1 times times. i.e we will add 0's.

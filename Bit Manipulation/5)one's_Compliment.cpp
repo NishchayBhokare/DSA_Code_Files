@@ -4,7 +4,19 @@
 using namespace std;
 // Example for taking 1's compliment for all bits and return the number which come after taking one's compliment.
 
-//Approach 1 - by creating mask variable. TC:- O(logn) SC is constant.
+//Approach 1 - Most Efficient approach. TC- O(logn) SC- O(1).
+//Analogy:- We will create mask and will take xor.
+//first take floor of n and + 1. cause if n=8, then floor will be 3 and + 1 equal to 4, 
+//So if we take pow(2,4) is 16 so Bin Rep of 8 is 1000 and 16 is 10000.
+//then take -1 from 16 so num will be 15 and bin.Rep is 1111 
+//and finally if we take xor of 1111 ^ 1000 it will be 111. which is one's compliment.
+ int onesComplement(int n){
+       int totalBits = floor(log2(n)) + 1; 
+       int mask = pow(2,totalBits) - 1;
+       return mask ^ n;  
+    }
+
+//Approach 2 - by creating mask variable. TC:- O(logn) SC is constant.
 int onesComplement(int n)
 { 
     // 101 i.e n=5
@@ -20,7 +32,7 @@ int onesComplement(int n)
 }
 
 
-//Approach 2 - by creating mask in different variation. TC:- O(logn) SC is constant.
+//Approach 3 - by creating mask in different variation. TC:- O(logn) SC is constant.
     int onesComplement(int n){
         //code here
         int temp=n,i=0,mask=0;
@@ -33,7 +45,7 @@ int onesComplement(int n)
     }
 
 
-//Approach 3 - by doing bitwise "&" and right shift operator.TC - O(log n) and SC is constant.
+//Approach 4 - by doing bitwise "&" and right shift operator.TC - O(log n) and SC is constant.
 int onesComplement(int n)
 {
     int ans = 0, i = 0;
@@ -51,7 +63,7 @@ int onesComplement(int n)
 }
 
 
-// Approach 4 - Using Reminder-divident method. TC- O(logn) SC is constant.
+// Approach 5 - Using Reminder-divident method. TC- O(logn) SC is constant.
 int onesComplement(int n)
 {
     int ans = 0, i = 0;
@@ -69,12 +81,13 @@ int onesComplement(int n)
 }
 
 
-  // Approach 5 - Using Bit manipulation and divident method. TC:- O(logn) SC is constant.
+  // Approach 6 - Using Bit manipulation and divident method. TC:- O(logn) SC is constant.
     int onesComplement(int num) {
         int p=num,cnt=0; //storing num in p.
         while(num!=0){ 
             cnt++; //incrementing count.
             num/=2; //dividing num.
+            // n = n >>1;
         }
         
         int k=pow(2,cnt)-1; //taking pow of 2 rest to cnt. i.e if cnt=3 then pow=2 rest to 3 is 8. and doing -1 from it i.e we will get 7 for above problem. if we do -1 from any number (except 0) binary representation is right most set bit will 0 and it followed by one. for eg. if n=8 then its binary Rep. is 1000. if we do -1 i.e n=7 then its binary Rep will be 111.

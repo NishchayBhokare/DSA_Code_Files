@@ -75,18 +75,18 @@ using namespace std;
 
     //Approach 3: by incrementing count i.e 0 to 1 and 1 to 2. and using extra space. 
     //TC- O(N) SC- O(maxElem).
-    // vector<int> singleNumber(vector<int> nums) 
-    // {
-    //     // Code here.
-    //     vector <int> ans;
-    //     int maxElem=0;
-    //     for(auto k: nums) maxElem=max(maxElem,k);
+    vector<int> singleNumber(vector<int> nums) 
+    {
+        // Code here.
+        vector <int> ans;
+        int maxElem=0;
+        for(auto k: nums) maxElem=max(maxElem,k);
         
-    //     vector <int> v(maxElem+1);
+        vector <int> v(maxElem+1);
         
-    //     for(auto i: nums) v[i]++;
+        for(auto i: nums) v[i]++;
         
-    //     for(int j=0; j<v.size(); j++) if(v[j] == 1) ans.push_back(j); 
+        for(int j=0; j<v.size(); j++) if(v[j] == 1) ans.push_back(j); 
         
-    //     return ans;
-    // }
+        return ans;
+    }

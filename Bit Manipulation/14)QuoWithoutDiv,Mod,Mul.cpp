@@ -12,8 +12,8 @@
 
         for(int i=31; i>=0; i--){ //looping from 31 to 0. cause we want max. value of 2 raise to i. so that we can reduce iteration. 
             if((b<<i) <= a){ // if (2 pow i) * b <= a . i.e by shifting b to ith times, and if resultant value is less than a that means we can substract it from dividend. 
-             a = a - (b<<i); //shifting divisor ith times so that we can substract dividend from it.
-             quotient = quotient | (1<<i); // shifting ith time 1, which will work as quotient.  taking or with quotinet cause we have to also add previous quotient.
+             a = a - (b<<i); //shifting divisor ith times so that we can substract dividend from it. //dividend -= divisor * pow(2,i);
+             quotient = quotient | (1<<i); // shifting ith time 1, which will work as quotient.  taking or with quotinet cause we have to also add previous quotient. quotient+=pow(2,i);
             // above statement we can write like this. quotient+= (1<<i);
             //for eg. a=15, b=3. if i=2 then we can say at 2 pow(i) i.e at i=2 least 4 times we can substract b from a on first iteration when condition ((b<<i) <= a) gets satisfied.
             }
