@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Approach 1 - Most Efficient Approach, using binary search.TC-O(Nlogn) SC-O(1).
 //We have to return minimum value out of all Maximum partition value. 
 bool isPossible(vector<int> arr, int n, int m, int mid)
 {
@@ -42,6 +43,40 @@ int allocateBooks(vector<int> arr, int n, int m)
         }
         else //if is possible function returns false that means we have to update low to mid+ 1 to get higher value of mid so that we can allocate book for every student.
             low = mid + 1;
+    }
+    return ans;
+}
+
+
+
+//Approach 2 - Using Linear search.TC-O(N*Sum) SC-O(1).
+//Checking for every value from 1 to total sum of pages.
+bool isPossible(vector<int> arr, int n, int m,int mid ){
+    int student = 1;
+    int pageSum = 0;
+    for(int i=0; i<n; i++){
+        
+        if(pageSum + arr[i] <= mid){
+            pageSum += arr[i];
+        }
+        else{
+            student++;
+            pageSum = arr[i];
+            if(student > m || arr[i] > mid ) return false;
+        }
+  
+    }
+  return true;  
+}
+
+int allocateBooks(vector<int> arr, int n, int m) {
+    int sum = 0, ans=-1;
+    for(auto i: arr) sum += i;
+
+ for (int i = 1; i < sum + 1; i++) { //just few change instead of binary search we're using linear approach from 1 to sum.
+        if (isPossible(arr, n, m, i)) {
+            return i;
+        }
     }
     return ans;
 }
