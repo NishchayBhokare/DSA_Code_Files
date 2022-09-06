@@ -1,4 +1,5 @@
 // Book Allocation problem using binary search.
+// On coding ninjas and gfg
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -31,7 +32,7 @@ int allocateBooks(vector<int> arr, int n, int m)
 {
     int sum = 0, ans = -1; //creating sum and ans two varibles.
     for (auto i : arr) sum += i; //first calculating total sum of pages present in array,
-    int low = 0;
+    int low = 0; //also we can keep our low to maximum pages present in array. for eg. in 10, 20, 30, 40, low can be 40 cause, answer will be in range between 40 to 100(total sum).
     int high = sum;
     while (low <= high)
     {
@@ -73,7 +74,7 @@ int allocateBooks(vector<int> arr, int n, int m) {
     int sum = 0, ans=-1;
     for(auto i: arr) sum += i;
 
- for (int i = 1; i < sum + 1; i++) { //just few change instead of binary search we're using linear approach from 1 to sum.
+ for (int i = 1; i <= sum; i++) { //just few change instead of binary search we're using linear approach from 1 to sum.
         if (isPossible(arr, n, m, i)) {
             return i;
         }
