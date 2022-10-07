@@ -11,6 +11,11 @@ void swapAlternate(int *arr, int size){
        if((i+1) < size) swap(arr[i],arr[i+1]); //special if condition for array is of odd length. 
     }
 
+    //or
+    for(int i=0; (i+1)<size; i=i+2){ //or write that i+1 condition at entry point.
+        swap(arr[i],arr[i+1]);
+    }
+
 }
 
 

@@ -19,7 +19,7 @@ int findDuplicate(vector<int> &arr)
        ans = ans ^ arr[i];
    }
 
-   for(int i=1; i<arr.size();i++){// take xor of ans with 1 to n-1 no. so that twice elements gets cancelled and thrice element i.e duplicate element will be our ans.
+   for(int i=1; i<(arr.size()-1);i++){// take xor of ans with 1 to less than n-1 no. so that twice elements gets cancelled and thrice element i.e duplicate element will be our ans.
        ans = ans ^ i;
    }
    return ans;
