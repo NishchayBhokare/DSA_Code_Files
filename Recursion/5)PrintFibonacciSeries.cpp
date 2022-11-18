@@ -4,17 +4,18 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
+//Fibonacii Series for this example:- 1 1 2 3 5 8 13 21 34.
 // Approach 1- Using a & b variable.
 vector<long long> printFibb(int n) // TC- O(n) SC- O(n).
 {
-    // sample fibonacci series is 0 1 1 2 5 7 12 19 31
+    // sample fibonacci series is 1 1 2 3 5 8 13 21 34
     // i.e addition of previous two numbers.
     vector<long long> v;
-    if (n == 1)
+    if (n == 1){
         v.push_back(1); // if given n is 1 then just simply return 1.
-    else
-    {                                       // otherwise enter in else part.
+        return v;                                
+    }
+        
         long long a = 1, b = 1, nextNumber; // first initialize a and b with 1. in this example we are not considering 0.
         v.push_back(a);                     // push first element in vector.
         v.push_back(b);                     // push second element in vector.
@@ -25,7 +26,7 @@ vector<long long> printFibb(int n) // TC- O(n) SC- O(n).
             a = b;                   // now updating a to b.
             b = nextNumber;          // and b to nextNumber i.e updating to sum of a & b
         }
-    }
+    
     return v; // and finally returning the vector.
 }
 
@@ -45,3 +46,25 @@ vector<long long> printFibb(int n)
         }
         return v;
     }
+
+
+//Approach 3: using recursion. 
+int fibonacci(int n)
+{
+     if(n==1 || n==2){
+        return 1;
+    }
+    else{
+        int ans =  (fibonacci(n-1)+fibonacci(n-2));  //taking addition of previous two by calling it.
+        return ans;
+    }
+
+}
+
+int main(){
+    int n=6;
+
+    for(int i=0;i<n;i++){
+        cout<<" "<<fibonacci(i); //calling for every number from 0 to n-1, so that we can get fibonacii series rather than nth fibonacii number.
+    }    
+}

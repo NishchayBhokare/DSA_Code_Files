@@ -1,5 +1,6 @@
 //Example for find the smallest element(pivot) in an  rotated sorted array.
 //On pepcoding.
+// https://www.pepcoding.com/resources/online-java-foundation/time-and-space-complexity/pivot-sorted-rotated-array-official/ojquestion
 
 
 #include<bits/stdc++.h>

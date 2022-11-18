@@ -5,7 +5,7 @@ using namespace std;
 //Best TC- O(n2), Worst Tc- O(n2)
 //Not stable, Not Adaptive, Not recursive
 //Use Case- Useful When list is small,as the TC is O(n2) which makes it inefficient for a large list.
-//When memeory space is limited becaise it makes the minimum number of swaps during sorting.
+//When memeory space is limited because it makes the minimum number of swaps during sorting.
  void selectionSort(int arr[],int n){
     
     for(int i=0; i<n-1; i++){ //looping from 0 to n-1 cause last element will automatically sorted.
