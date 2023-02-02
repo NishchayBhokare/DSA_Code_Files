@@ -33,9 +33,10 @@ using namespace std;
     //slight change for example at leetcode.
     //Using stack Tc-O(n) SC-O(n). (on leetcode)
       string reverseWords(string s) {
-      stack <string> st;
+       stack <string> st;
        string temp = "";
        string ans="";
+         if(s =="" || s==" ") return "";
        for(int i=0; i<s.length(); i++){
           if(s[i] == ' ' && temp.length()>0){ //if we encounter space then check whether temp length greater than 0 or not.
              st.push(temp); 
@@ -43,9 +44,11 @@ using namespace std;
            }
            else if(s[i] != ' ') temp += s[i]; //if s[i] is not space then only add in temp.
        }
-       ans += temp; //remaining things are same as above explanaiton.
+       if(temp.length()>0) st.push(temp); //instead adding temp to ans directly for last element, push that temp in stack, beacuse to deal with ending extra space in given string.
+       ans+=st.top();
+       st.pop();
        while(!st.empty()){
-           ans += ' ' + st.top();
+           ans+=' '+st.top();
            st.pop();
        }
        return ans;

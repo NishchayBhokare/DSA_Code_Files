@@ -1,7 +1,7 @@
 // Example for Find quotient after division, without using multiplication, division and mod operator
-
+//Gfg
 #include<bits/stdc++.h>
-
+    //Logice - suppose if a=16,b=3, 3*5=3*(2^2 + 2^0)=3*(4+1)=3*(5)=15
   // Apporach 1: Using left shifting so that iteration gets reduced. TC- O(1) SC- O(1)
      long long divide(long long dividend, long long divisor) 
     {
@@ -9,7 +9,6 @@
         if((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0)) sign=-1; //if any of the condition gets  true sign will be -1.
 
         long long quotient=0,a=abs(dividend),b=abs(divisor); //taking absolute value cause may be dividend or divisor is in negative.so abs will remove negative sign.
-
         for(int i=31; i>=0; i--){ //looping from 31 to 0. cause we want max. value of 2 raise to i. so that we can reduce iteration. 
             if((b<<i) <= a){ // if (2 pow i) * b <= a . i.e by shifting b to ith times, and if resultant value is less than a that means we can substract it from dividend. 
              a = a - (b<<i); //shifting divisor ith times so that we can substract dividend from it. //dividend -= divisor * pow(2,i);

@@ -1,4 +1,5 @@
 // Example for checking given number is in power of 2 or not.
+//GfG
 #include <iostream>
 using namespace std;
 

@@ -1,3 +1,5 @@
+//Take one's compliment for all bits.
+//GfG
 #include<bits/stdc++.h>
 #include<iostream>
 // #include<bits/stdc++.h>

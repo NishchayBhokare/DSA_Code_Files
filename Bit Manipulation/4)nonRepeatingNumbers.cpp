@@ -1,5 +1,5 @@
 //Example for returning non repeating elements.
-
+//GFG
 #include <iostream>
 #include<algorithm>
 #include<vector>

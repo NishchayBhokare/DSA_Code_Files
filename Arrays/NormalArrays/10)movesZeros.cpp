@@ -29,3 +29,16 @@ void pushZerosToEnd(int arr[], int n) { // Time complexity is O(n)
 	      }
 	   }
 	}
+
+
+//Approach 3- Simple approach and better understanding TC-O(n) SC-O(1)
+void pushZerosToEnd(int arr[], int n) {
+
+    int i=0,j=0;
+    while(j < n){ //looping till j < length of array
+       if(arr[i] != 0)i++; //incrementing i when i stands on non-zero element
+       
+       else if(arr[i] == 0 && arr[j] != 0) swap(arr[i++],arr[j]); //when ith element is zero and jth element is non zero then swap it.
+       
+       j++; //and on every iteration increment j, this j will also increment when case like j standing on zero element and i is also standing on zero element.
+      } 

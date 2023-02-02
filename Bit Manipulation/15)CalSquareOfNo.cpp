@@ -10,7 +10,7 @@ int calculateSquare(int num)
     int square=0,i=0,n=abs(num);  
     while(n!=0){ //looping till no. of digits in given no.
         if(n & 1){ //if lsb of given no. is 1 then enter in if block.
-           square+=abs(num)<<i; //shifting num to left side i times. for eg. num=5 so BinRep is 101. then if n& 1 is 1, we will shift 101 to i times to left. i.e 5*2^0 + 5*2^2 = 5+20=25.
+           square+=abs(num)<<i; //shifting num to left side i times. for eg. num=5 so BinRep is 101. then if n& 1 is 1, we will shift 101 to i times to left. i.e 5*2^0 + 5*2^2 = 5+20=25. i.e 5<<0 + 5<<2 = 25.
         }
         n=n>>1; //removing one by one digit from n.
         i++; //incrementing value of i.

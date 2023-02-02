@@ -1,5 +1,5 @@
 // Example for Print first n Fibonacci Numbers.
-// link-
+// link- gfg
 // https://practice.geeksforgeeks.org/problems/print-first-n-fibonacci-numbers1002/1
 
 #include <bits/stdc++.h>
@@ -48,7 +48,21 @@ vector<long long> printFibb(int n)
     }
 
 
-//Approach 3: using recursion. 
+//Approach 3: without using extra space printing fibonacci series.
+void fibonaciiPrint(int n){ 
+    int a=0;
+    int b=1;
+    if(n >= 1) cout<<a<<" ";
+    if(n >=2) cout<<b<<" ";
+    for(int i=3; i<=n; i++){
+        int c = a+b;
+        cout<<c<<" ";
+        a=b;
+        b=c;
+    }
+}
+
+//Approach 4: using recursion. 
 int fibonacci(int n)
 {
      if(n==1 || n==2){

@@ -28,6 +28,8 @@ void insertionSortRecursion(int arr[],int n){
 
     insertionSortRecursion(arr,n-1); //solve first n-1 elements
 
+
+    //after returning back, initially n will be 2.
     int i=n-1; //i will be the second element initially n-1 i.e 2-1 = 1
     int j=n-2; //j will be the first element initially n-2 i.e 2-2=0
     int key = arr[i];
