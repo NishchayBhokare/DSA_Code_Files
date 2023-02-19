@@ -2,6 +2,9 @@
 // link-
     // https://practice.geeksforgeeks.org/problems/find-minimum-and-maximum-element-in-an-array4428/1/#
 
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
 
 pair<long long, long long> getMinMax(long long a[], int n)
 { //Time complexity is O(n);
