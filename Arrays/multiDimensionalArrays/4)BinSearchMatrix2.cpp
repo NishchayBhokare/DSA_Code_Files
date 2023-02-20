@@ -1,4 +1,6 @@
 //Example to find element in matrix by binary search. (row wise and column wise sorted elements)
+//Leetcode https://leetcode.com/problems/search-a-2d-matrix-ii/description/
+//gfg version also solve https://practice.geeksforgeeks.org/problems/search-in-a-matrix-1587115621/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -22,4 +24,21 @@ using namespace std;
         }
         
         return false; //return false.
+    }
+
+
+//GFG Version same as leetcode example
+
+ bool search(vector<vector<int> > matrix, int row, int col, int target) 
+    {
+        // code here 
+        int rowIndex=0;
+        int colIndex=col-1;
+        while(rowIndex < row and colIndex >=0 ){
+            int element = matrix[rowIndex][colIndex];
+            if(element < target) rowIndex++;
+            else if(element > target) colIndex--;
+            else return true;
+        }
+        return false;
     }

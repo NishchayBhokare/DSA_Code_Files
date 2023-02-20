@@ -1,5 +1,5 @@
 //Example to find Greatest Common Divisor(GCD) or Highest Common Factor(HCF).
-
+//GFG
 
 //Approach 1:Most Efficient algo. using Euclidean algo. by modulus operation. TC - O(log(min(a,b))) SC - O(1)
  
@@ -16,6 +16,16 @@
     int gcd(int a, int b) 
 	{ 
 	    return solve(a,b); 
+	} 
+
+
+//Approach 2: Using recursion. TC-O(log(min(a,b))) SC-O(log(min(a,b)));
+ int gcd(int a, int b) 
+	{ 
+        if(b == 0) return a;
+        gcd(b,a%b);
+
+       // return b == 0 ? a : gcd(b, a % b); single line answer.
 	} 
 
 
