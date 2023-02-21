@@ -7,7 +7,7 @@ class animal{
     public:
     int age;
     animal(){}
-    animal(int age, string name){
+    animal(int age, string name){ 
         this->age=age;
         this->name=name;
     }

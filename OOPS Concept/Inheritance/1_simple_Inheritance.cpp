@@ -7,7 +7,7 @@ class animal{
     string name="";
     public:
     animal(){cout<<"I am in parent class"<<endl;}
-    animal(int age, string name){
+    animal(int age, string name){ //this is nothing but constructor overloading. overloading with number of parameters.
         this->age=age;
         this->name=name;
     }
