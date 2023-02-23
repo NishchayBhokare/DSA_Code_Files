@@ -59,7 +59,7 @@ Node *sortedMerge(Node *head1, Node *head2)
 
 
 
-// this is one kind of soln which is not (in-place) cause this used space i.e SC- O(n+m) TC-O(n+m).
+//This is one kind of soln which is not (in-place) cause this used space i.e SC- O(n+m) TC-O(n+m).
  Node* sortedMerge(Node* head1, Node* head2)
  {
    Node *dummy=new Node(0); //creating dummy named pointer object of node class and initialzing it with one node which contain data 0.
