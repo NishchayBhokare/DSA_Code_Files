@@ -1,4 +1,5 @@
 // Example to find middle element of linked list.
+//GFG
 struct Node
 {
     Node *next;

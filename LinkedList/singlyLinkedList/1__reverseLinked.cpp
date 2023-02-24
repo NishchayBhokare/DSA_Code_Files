@@ -1,4 +1,5 @@
 // Example for Reverse a single linked list.
+//GFG
 // link-
     // https://practice.geeksforgeeks.org/problems/reverse-a-linked-list/1
 #include<stack>
