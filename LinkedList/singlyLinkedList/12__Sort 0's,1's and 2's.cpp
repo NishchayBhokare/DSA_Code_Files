@@ -1,4 +1,4 @@
-//Split a Circular Linked List into two halves
+//Sort 0's, 1s and 2's in given linked list.
 //GFG
 #include<unordered_map>
 using namespace std;
