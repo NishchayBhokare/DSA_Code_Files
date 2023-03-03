@@ -18,25 +18,26 @@ void mergeBothArrays(int *arr2,int start,int mid, int end){
         firstArr[i] = arr2[mainArrIndex++]; //adding elements in first subarray
     }
     
-    mainArrIndex = mid+1;
+    mainArrIndex = mid+1; //Optional because already mainIndex points to mid+1th element after first loop.
+    
     for(int i=0; i<len2; i++){
         secondArr[i] = arr2[mainArrIndex++]; // adding elements in second subarray
     }
 
     //Now Merging two sorted array i.e firstArr and secondArr
-    int index1=0, index2=0;
+    int i=0, j=0;
     mainArrIndex=start;
-    while(index1 < len1 && index2 < len2){ //looping till both indexes are less than its array length
+    while(i < len1 && j < len2){ //looping till both indexes are less than its array length
         
-        if(firstArr[index1] <= secondArr[index2]) arr2[mainArrIndex++] = firstArr[index1++];
-        else arr2[mainArrIndex++] = secondArr[index2++];
+        if(firstArr[i] <= secondArr[j]) arr2[mainArrIndex++] = firstArr[i++];
+        else arr2[mainArrIndex++] = secondArr[j++];
 
     }
 
     //If any of the sub array contains elements then add those elements to main array
-    while(index1 < len1) arr2[mainArrIndex++] = firstArr[index1++];
+    while(i < len1) arr2[mainArrIndex++] = firstArr[i++];
 
-    while(index2 < len2) arr2[mainArrIndex++] = secondArr[index2++];
+    while(j < len2) arr2[mainArrIndex++] = secondArr[j++];
 
     delete []firstArr; //at the end delete those temporaray first and second subarray.
     delete []secondArr;
