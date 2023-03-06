@@ -39,5 +39,10 @@ vector<string> find_permutation(string str)
     solve(str, ans, index);
     sort(ans.begin(), ans.end()); //sorting ans to get answer in lexiograhical order
     ans.erase(unique(ans.begin(), ans.end()), ans.end()); //to remove duplicate strings from string vector.
+    // // or for(int i=0; i<ans.size()-1; i++){
+	// 	        if(ans[i] == ans[i+1]){
+	// 	            ans.erase(ans.begin()+i); //to erase.
+	// 	        }
+	// 	    }
     return ans;
 }

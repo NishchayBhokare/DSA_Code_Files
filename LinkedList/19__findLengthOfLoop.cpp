@@ -9,6 +9,7 @@ public:
     int data;
 };
 
+//TC-O(N) SC-O(1)
 int countNodesinLoop(struct Node *head)
 {
     // Code here

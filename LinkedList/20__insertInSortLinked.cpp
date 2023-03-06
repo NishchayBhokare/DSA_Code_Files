@@ -1,4 +1,5 @@
-// Example for detect loop in linked list.
+//Insert node in sorted linked list.
+//GFG.
 // link-
 // https://practice.geeksforgeeks.org/problems/insert-in-a-sorted-list/1
 
@@ -14,6 +15,8 @@ struct Node
     }
 };
 
+
+//TC-O(N) SC-O(1)
 Node *sortedInsert(struct Node *head, int data)
 {
     // Code here
