@@ -31,10 +31,10 @@ void levelOrderTraversal(node *root) // levelOrderTraversal with cout statement 
         q.pop();                // popping out that particular node.
 
         if (temp == NULL)
-        {                 // if temp is null that means particular level is finished and by line seperator we will move next level.
+        {                 // if temp is null that means previous level is finished and by line seperator we will move next level.
             cout << endl; // line seperating.
             if (!q.empty())
-            { // if there are elements in queue then pushing null in queue.
+            { // if there are elements in queue then pushing null in queue i.e next level is also completed in queue.
                 q.push(NULL);
             }
         }
@@ -53,9 +53,46 @@ void levelOrderTraversal(node *root) // levelOrderTraversal with cout statement 
     }
 }
 
+void reverseLevelOrderTraversal(node *root){ //same as level order traversal just we need extra stack
+    stack<node *> st;
+    queue<node *>q;
+    st.push(root);
+    st.push(NULL);
+    q.push(root);
+    q.push(NULL); //pushing root element along with null in stack and queue
+    while(!q.empty()){
+        node *temp = q.front();
+        q.pop();
+
+        if(temp == NULL){ //if temp is null 
+            if(!q.empty()){ //and q is not empty
+            st.push(NULL); //then push null in both 
+            q.push(NULL);
+            }
+        }
+        else{ //if not null then push its right and lest child in stack and queue
+            if(temp->right){
+                q.push(temp->right);
+                st.push(temp->right);
+            }
+            if(temp->left){
+                q.push(temp->left);
+                st.push(temp->left);
+            }
+        }
+
+    }
+
+    while(!st.empty()){ //looping till stack not gets empty
+        if(st.top() == NULL) cout<<endl; //if top is null then move to next line
+        else cout<<st.top()->data<<" "; //else print node's data.
+        st.pop(); //pop out node.
+    }
+}
+
+
 void NormalLevelOrTr(node *root){ //This is one kind of level order Traversal out of 4.
     queue<node *> q;
-    vector <int > v;
     q.push(root);
     while (!q.empty())
     {
@@ -71,14 +108,14 @@ void NormalLevelOrTr(node *root){ //This is one kind of level order Traversal ou
     }  
 }
 
-void reverseLevelOrTr(node *root){ //it is reverse of normal level order taversal.
+void reverseNormalLevelOrTr(node *root){ //it is reverse of normal level order taversal.
     queue<node *> q;
-    vector <int > v;
+    stack<int> st;
     q.push(root);
     while (!q.empty())
     {
         node *temp=q.front();
-        v.push_back(temp->data); //pushing front data of queue in vector.
+        st.push(temp->data); //pushing front data of queue in stack
         q.pop();//after pushed in vector, pop out from queue.
         if(temp->right){ //at this time travelling from right to left.
             q.push(temp->right);
@@ -87,18 +124,18 @@ void reverseLevelOrTr(node *root){ //it is reverse of normal level order taversa
             q.push(temp->left);
         }
     }
-    reverse(v.begin(),v.end()); //reversing the vector.
-    for(auto i:v){
-        cout<<i<<" ";
+
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
     }
-    
 }
 
 void buildFromLevelOrder(node *&root) // building tree from level order
 {
     queue<node *> q; // creating queue.
     int data;
-    cout << "Enter data " << endl;
+    cout << "Enter data for root " << endl;
     cin >> data;
     root = new node(data);
     q.push(root); // creating and pushing node in queue.
@@ -133,6 +170,8 @@ int main()
     buildFromLevelOrder(root); // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
     // Traversing
     levelOrderTraversal(root);
-    NormalLevelOrTr(root);
-    // reverseLevelOrTr(root);
+    reverseLevelOrderTraversal(root);
+    reverseNormalLevelOrTr(root);
+    cout<<endl;
+    reverseNormalLevelOrTr(root);
 }

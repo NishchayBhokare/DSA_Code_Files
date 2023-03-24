@@ -1,6 +1,6 @@
 // Book Allocation problem using binary search.
 // On coding ninjas and gfg
-
+// Aggressive Cows
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -26,6 +26,26 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
         }
     }
     return true; //if we reach till this condition that means, we allocate books with the help of given mid, so return true.
+}
+
+
+//Little optimised isPossible function
+ int isPossible(int arr[],int N, int students,int mid){
+        int pages = 0;
+        int st = 1;
+        for(int i=0; i<N; i){
+            if(pages + arr[i] <= mid){
+                pages += arr[i];
+                i++; //updating i only when we allocate book
+            }
+            else{
+                st++;
+                pages = 0;
+                if(st > students) return 0; //if student gets greater than number of given student then current mid can't be possible answer. that is mid should be more
+            }
+        }
+        
+    return 1;
 }
 
 int allocateBooks(vector<int> arr, int n, int m)

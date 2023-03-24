@@ -25,12 +25,13 @@ node *buildTree(node *root)
     int data;
     cout << "Enter the data" << endl;
     cin >> data;           // getting data for the node.
-    root = new node(data); // calling constructor and creating node.
 
     if (data == -1)
     {
         return NULL; // if -1 is enter then return to the caller function i.e either root->left or root->right.
     }
+
+    root = new node(data); // calling constructor and creating node.
 
     cout << "Enter data for inserting in left of " << data << endl;
     root->left = buildTree(root->left); // recursion for setting left child.
@@ -83,7 +84,6 @@ void inOrder(node *root)
 
 void iterativeInOrder(node *root){
     stack <node *> s;
-    vector<int > v;
     node *temp=root;
     while (true)
     {
@@ -94,14 +94,11 @@ void iterativeInOrder(node *root){
         else{
             if(s.empty()==true) break; //checking here stack is empty or not.
             temp=s.top(); //taking top element from stack
-            v.push_back(temp->data); //pushing it into the vector.
+            cout<<temp->data<<" ";
             s.pop(); //and popping out from the stack
             temp=temp->right; //moving towards the right 
         }
-    }
-    for(auto i:v){ //printing values from the vector.
-        cout<<i<<" ";
-    }    
+    }  
 }
 
 void postOrder(node *root)
@@ -149,10 +146,10 @@ int main()
     // iterativePreOrder(root);
 
     cout<<endl<<"inOrder Traversal is "<<endl;
-    // inOrder(root);
-    // iterativeInOrder(root);
+    inOrder(root); cout<<endl;
+    iterativeInOrder(root);
 
     // cout<<endl<<"postOrder Traversal is "<<endl;
     // postOrder(root);
-    iterativePostOrder(root);
+    // iterativePostOrder(root);
 }
