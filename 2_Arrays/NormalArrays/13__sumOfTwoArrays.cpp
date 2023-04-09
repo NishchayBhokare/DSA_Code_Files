@@ -77,7 +77,9 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
         sum = a[i] + b[j] + carry; //adding ith and jth element also carry in sum.
         carry = sum / 10; //to calculate carry if present, then do sum divide by 10 cause if sum is 18 then 18/10 will be 1, which is our carry.
         digit = sum  % 10; //no need to write if block like sum > 9 or not, because modulus always gives remainder..e right most digit do sum mod with 10.
-        ans.push_back(digit); //push that digit in ans.
+
+        char ch = digit + '0'; //convert integer num to character.
+        ans.push_back(ch); //push that digit in ans.
         i--; j--; //decrementing i and j.
     }
     
@@ -85,7 +87,8 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
         sum = a[i] + carry; //adding ith element with carry in sum.
         carry = sum / 10; //calculating carry similarly in above while loop.
         digit  = sum % 10; //getting digit.
-        ans.push_back(digit); //pushing in ans.
+        char ch = digit + '0'; //convert integer num to character.
+        ans.push_back(ch); //pushing in ans.
         i--; //decrement i
     }
     
@@ -93,12 +96,13 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
         sum = b[j] + carry;
         carry = sum / 10;
         digit  = sum % 10;
-        ans.push_back(digit);
+        char ch = digit + '0'; //convert integer num to character.
+        ans.push_back(ch);
         j--;
     }
     
     if(carry){ //at the end if any carry is present then push it in ans vector.
-        ans.push_back(carry);
+        ans.push_back(carry+'0');
     }
     reverse(ans.begin(),ans.end()); //reverse vector. becuase we loop from back of a,b array and pushed in front of ans.
 
@@ -107,6 +111,7 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
     ans.erase(0,i); //now, erase elements from 0 to i. so that we can eleminate leading zeros.
     return ans; //finally return ans.
     //or instead erasing we can return string except leading zeros by substr function.
-     //return ans.substr(i); //like this, returning from ith index till last.
+
+    return ans.substr(i); //like this, returning from ith index till last.
   }
 

@@ -24,7 +24,8 @@ using namespace std;
         return ans; //else, return ans with duplicate element.
     }
 
-//Approach2: Using extra vector. TC-O(n) SC -O(n) <--Extra space for temporary vector.
+
+//Approach 2: Using extra vector. TC-O(n) SC -O(n) <--Extra space for temporary vector.
   vector<int> duplicates(int arr[], int n) {
         // code here
         vector<int>temp(n,0); //creating temporary vector.
@@ -33,36 +34,6 @@ using namespace std;
         for(int i=0; i<temp.size(); i++) if(temp[i] > 1) ans.push_back(i); //if value at ith is greater than 1 that means that ith index is duplicate element in given array so push it into ans vector.
         if(ans.size() > 0 ) return ans; //if duplicate element is present then return ans vector with duplicate elements.
         else return {-1}; //If not present return vector with -1.
-    }
-
-
-
-//Approach 2: Using set and vector. TC-O(n) SC -O(No. of duplicate element)
- vector<int> removeDuplicate(int A[], int N) {
-       unordered_set<int> s; //we are using hashing here.
-       vector<int> v;
-       for(int i=0;i<N;i++){ //Iterating over the array.
-          if(s.find(A[i])==s.end()){ 
-        // checking whether current element is already present in hash table or not. if not then put it in
-        // hashtable and also in vector.
-              s.insert(A[i]);
-              v.push_back(A[i]);
-          }
-       }
-       return v;
-   }
-
-//Using map
- vector<int> removeDuplicate(int arr[], int N) {
-        unordered_map<int,int> mp;
-        vector<int> ans;
-        for(int i=0; i<N; i++){
-           if(mp.find(arr[i]) == mp.end()){
-               ans.push_back(arr[i]);
-              mp[arr[i]]++;
-           }
-        }   
-       return ans;
     }
     
 

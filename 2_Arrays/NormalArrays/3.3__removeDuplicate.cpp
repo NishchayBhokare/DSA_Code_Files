@@ -16,7 +16,7 @@
        return v;
    }
 
-//Approach 2: Using map
+//Approach 2: Using map. TC-O(n) SC -O(No. of duplicate element)
  vector<int> removeDuplicate(int arr[], int N) {
         unordered_map<int,int> mp;
         vector<int> ans;
@@ -29,7 +29,7 @@
        return ans;
 }
 
-//map
+//Approach 3: Using map  TC-O(n) SC -O(No. of duplicate element)
  vector<int> removeDuplicate(int arr[], int N) {
        unordered_map <int,int> mp;
        vector<int> ans;

@@ -48,7 +48,7 @@ vector<vector<int>> findTriplets(vector<int> arr, int n, int s)
             }
         }
 
-        //         while(i<(n-1) && arr[i]==arr[i+1]) i++; // to handle case for arr[i] is equal to its next element to get override on same triplet. to handle this case we can write seperate while loop like this or you can write if statement like this "if(i==0 || (arr[i] != arr[i-1]))"  after for loop of i. so that if it is equal to its previous element, then won't enter in if block and increment i. here i==0, which is for first case when i ==0 and do'nt have any triplet in ans.
+        //         while(i<(n-1) && arr[i]==arr[i+1]) i++; // to handle case for arr[i] is equal to its next element to get override on same triplet. to handle this case we can write seperate while loop like this or you can write if statement like this "if(i==0 || (arr[i] != arr[i-1]))"  after for loop of i. so that if it is equal to its previous element, then won't enter in if block and increment i. here i==0, which is for first case when i == 0 and do'nt have any triplet in ans.
     }
     return ans;
 }
@@ -88,19 +88,18 @@ bool find3Numbers(int arr[], int n, int k)
     sort(arr, arr + n);
     for (int i = 0; i < (n - 2); i++)
     {
-        if (i == 0 || arr[i] != arr[i - 1])
+        int low = i + 1, high = n - 1;
+        while (low < high)
         {
-            int low = i + 1, high = n - 1;
-            while (low < high)
+            if (arr[i] + arr[low] + arr[high] < k)
+                low++;
+
+            else if (arr[i] + arr[low] + arr[high] > k)
+                high--;
+                
+            else
             {
-                if (arr[i] + arr[low] + arr[high] < k)
-                    low++;
-                else if (arr[i] + arr[low] + arr[high] > k)
-                    high--;
-                else
-                {
-                    return true;
-                }
+                return true;
             }
         }
     }

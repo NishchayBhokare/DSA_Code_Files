@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//Approach 1:- Efficient approahch using two pointer strategy. TC- O(n) Sc-O(1).
+//Approach 1:- Efficient approach using two pointer strategy. TC- O(n) Sc-O(1).
 void segregate0and1(int arr[], int n)
 {
     // code here
@@ -49,3 +49,15 @@ void segregate0and1(int arr[], int n)
             arr[i] = 1; //for remaining space we will add 1's.
     }
 }
+
+
+//Approach 3: More optimised 
+void segregate0and1(int arr[], int n) {
+        for(int i=0,j=0; j<n; j++){
+            if(arr[j] == 0){  //if jth element is 0, then swap with ith element because our ith element either will be 0 or 1. 0 swap with 0 becomes 0,0 and if 1 swap with 0 then 0,1 which is required. 
+                swap(arr[i++],arr[j]); //once swap update i and j will automatic update in every iteration
+            }
+
+            //if jth element not equals to 0 then only increment j not i. 
+        }
+    }

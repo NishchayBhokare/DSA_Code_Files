@@ -2,9 +2,8 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-
+//Here x->row and y->col.
 //TC - O((3N^2)),  SC- O(L * X), L = length of the path, X = number of paths.
-
 int isSafe(int x, int y, vector<vector<int>> &maze, int n, vector<vector<int>> &visited) //function for checking current index is safe to move or not.
 {   
     //Checking main three conditions, 
@@ -93,6 +92,5 @@ vector<string> findPath(vector<vector<int>> &maze, int n) //first function
     string path = ""; //to store current path.
     int srcX = 0, srcY = 0; //source x and y.
     solve(maze, n, srcX, srcY, visited, ans, path); //calling solve function.
-    sort(ans.begin(), ans.end()); //sorting answer to get in lexicographically order.
     return ans; //returning ans 2d vector.
 }

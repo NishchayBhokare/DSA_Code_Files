@@ -21,7 +21,6 @@ using namespace std;
 
 
 //GFG Version - Check array is sorted or not.
-
 //Approach 1 : Linear approach TC-O(n) SC-O(1)
   bool arraySortedOrNot(int arr[], int n) {
         // code here
