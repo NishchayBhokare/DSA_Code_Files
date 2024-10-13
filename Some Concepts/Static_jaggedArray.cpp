@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Static Jagged array.
+//Static Jagged array. -> A jagged array is an array of arrays such that member arrays can be of different sizes, in 2D array terms for each row we can have a variable number of columns. These types of arrays are also known as Jagged arrays. 
 int main()
 {
     int row0[] = {1, 2, 3, 4}; //first declaring number of rows and their elemenets.

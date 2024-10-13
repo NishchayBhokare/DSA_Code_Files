@@ -35,9 +35,33 @@ void wavy(int arr[][3], int row, int col){
     }
     
 }
+void findRowWiseSum(int matrix[][4],int row,int col){
+    for(int i=0; i<row; i++){
+        int rowWiseSum = 0;
+        for(int j=0; j<col; j++){
+            rowWiseSum+=matrix[i][j];
+        }
+        cout<<rowWiseSum<<endl;
+    }
+}
+
+void findColumnWiseSum(int matrix[][4],int row,int col){
+    for(int i=0; i<col; i++){
+        int columnWiseSum = 0;
+        for(int j=0; j<row; j++){
+            // cout<<matrix[j][i];
+            columnWiseSum+=matrix[j][i];
+        }cout<<endl;
+        cout<<columnWiseSum<<endl;
+    }
+}
+
 int main(){
-    int row=3,col=3;
-    int a[3][3]={{3,9,2},{5,8,7},{6,4,8}};
+    int matrix[3][4]={{3,9,2,1},{5,8,7,6},{6,4,8,2}};
+    // findRowWiseSum(matrix,3,4);
+    findColumnWiseSum(matrix,3,4);
+    // int row=3,col=3;
+    // int a[3][3]={{3,9,2},{5,8,7},{6,4,8}};
     // traverse(a,row,col);
     // wavy(a,row,col);
 }

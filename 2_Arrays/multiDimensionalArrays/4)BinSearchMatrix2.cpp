@@ -14,10 +14,10 @@ using namespace std;
         int colIndex = (col-1); //starting from last element of first row. i.e last column of first row.
         while(rowIndex < row && colIndex >=0){ //looping till rowindex is less than row and column index greater than or equal to 0.
             int element = matrix[rowIndex][colIndex]; //storing current element in element.
-            if(element < target) //if element is less than target, then search in next row. cause there is no chance of target element in current row.
+            if(target > element) //if element is less than target, then search in next row. cause there is no chance of target element in current row.
                 rowIndex++; //increment rowindex.
             
-            else if(element > target) //if element is greater than target, then decrement column, cause either target element will present in current row or target element won't present in matrix.
+            else if(target < element) //if element is greater than target, then decrement column, cause either target element will present in current row or target element won't present in matrix.
                 colIndex--;
             
             else return true; //condition when element is found so return true.

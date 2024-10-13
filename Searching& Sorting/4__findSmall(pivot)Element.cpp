@@ -20,6 +20,18 @@ int findpivot(vector<int>& arr)
   return arr[high]; //both low and high pointing to the same element.
 }
 
+//similar way only condition is different
+int findMin(vector<int>& nums) {
+    int low = 0, high = nums.size()-1;
+    while(low < high){
+        int mid = low+(high-low)/2;
+        if(nums[mid] < nums[high]) high = mid;
+        else low = mid+1;
+      
+    }
+    return nums[low];
+  }
+
 
 //Approach 2: Linear Approach TC-O(N) SC-(1).
 int findpivot(vector<int>& arr) 
@@ -31,3 +43,19 @@ int findpivot(vector<int>& arr)
     // i.e 9, 14, 16, 1, 2, 3 so, here element 1 is a pivot and smallest element.
  }
 }
+
+
+//This solution is for if pivot elemnet need to find is maxmimum
+ int low = 0, high = nums.size()-1;
+    int maxi = -1;
+  while(low <= high){
+      int mid = low+(high-low)/2;
+      if(nums[mid] >= nums[low]) {
+          low = mid+1;
+          maxi = max(maxi,nums[mid]);
+      }
+      else high = mid-1;
+    
+  }
+
+  return maxi;

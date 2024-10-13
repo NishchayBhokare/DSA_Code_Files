@@ -36,3 +36,23 @@ void toBinary(int n) //TC- O(n) and no space
     printf("%d", ans); // printing our ans.
     //   cout<<ans;
 }
+
+
+//converting -ve number into binary format.
+    int n = -6; //suppose number is -6 which has representation 1111111010
+    n = -1 * n; //converting into +ve number
+    
+    long long int ans = 0;
+    
+    long long int mask = (pow(2,10) - 1); //suppose we want to represent binary 
+    //by 10 digit format. so before getting xor..create masked 1111111111 
+    long long int onesComp =  n ^ mask; //take xor so bits can fliped.
+    long long int twosComp = onesComp + 1; //now add 1 to onesCompliment..
+    
+    for(int i = 0; i<=10; i++){ //traverse
+        int bit = twosComp & 1; //take bit.
+        ans = bit * pow(10,i) + ans; //use this formulat to take bit and create answer.
+        twosComp >>= 1; //shift one time.
+    }
+    
+    cout<<ans; 

@@ -40,5 +40,13 @@ void rotateArr(int arr[], int d, int n){
         for(int i=0; i<n; i++) arr[i] = ans[i];
     }
  
-    
+  //Approach 4: using temp vector.
+    void rotate(vector<int>& nums, int k) {
+        vector<int> temp(nums.size());
+        k = k % nums.size();
+        for(int i = 0; i<nums.size(); i++){
+            temp[(i+k)%nums.size()] = nums[i];
+        }
+        nums = temp;
+    }
     

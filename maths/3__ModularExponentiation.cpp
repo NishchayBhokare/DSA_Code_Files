@@ -9,7 +9,7 @@ int modularExponentiation(int x, int n, int m) {
 	int ans=1;
 	while( n > 0){
 		if(n & 1){ //when n is odd.
-			ans= (1LL*ans*x)%m;	
+			ans= (1LL*ans*x)%m;	 //using 1LL the current data type will chnged to long long.
 		}
 		x=(1LL*x*x)%m;
 		n>>=1; //dividing n by 2.

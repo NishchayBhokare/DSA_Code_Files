@@ -1,3 +1,4 @@
+//left shift means multiplying by 2. and right shift means dividing by 2.
 //And -> & , OR-> | , xor ->  ^.
 // Example for conversion of binary number to decimal.
 // link-
@@ -17,6 +18,35 @@ int binary_to_decimal(string str)
     return ans; // returning our ans. which contain all addition i.e our decimal number.
 }
 
+//by using range based loop.
+ int binary_to_decimal(string str) {
+        int ans = 0;
+        int i = str.length() - 1;
+        for(auto ch:str){
+            if(ch == '1'){
+                ans += pow(2,i);
+            }
+            i--;
+        }
+        return ans;
+}
+
+//Another solution by first calculating maximum value of first set bit and then divide it..
+ int binary_to_decimal(string str) {
+        int ans = 0;
+        int i = str.length() - 1;
+        int max = pow(2,i); //calculating bit set bit value.
+        
+        for(auto ch:str){
+            if(ch == '1'){
+                ans += max; //and add that value in ans..if ch is 1.
+            }
+            max = max / 2;
+             //on every iteration divide max by two..because we're traversing from left to right.
+             //we can write like this also max = max >> 1; meaning is same.
+        }
+        return ans;
+    }
 
 // below code for if given binary representation is in int data type.
 #include <iostream>

@@ -61,7 +61,10 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
     }
     reverse(ans.begin(),ans.end()); //reverse vector. becuase we loop from back of a,b array and pushed in front of ans.
     return ans;
+    
 }
+
+
 
 
 

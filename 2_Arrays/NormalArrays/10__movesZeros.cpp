@@ -44,3 +44,14 @@ void pushZerosToEnd(int arr[], int n) {
        
        j++; //and on every iteration increment j, this j will also increment when case like j standing on zero element and i is also standing on zero element.
       } 
+
+
+//Another solution
+	  void moveZeroes(vector<int>& nums) {
+        int i = 0;
+        while(i<nums.size() && nums[i] != 0) i++; //move till non zero element.
+        for(int j = i+1; j<nums.size(); j++){
+            if(nums[j] != 0) nums[i++] = nums[j]; //if jth element is nonzero then add it in ith element.
+        }
+        for(i; i<nums.size(); i++) nums[i]=0; //at last...as we added element by replacing zeroth element...so insert zero's again.
+    }

@@ -45,3 +45,21 @@ using namespace std;
         
         return count;
     }
+
+//Coding ninja question solution
+vector<int> findArrayIntersection(vector<int> &arr1, int n, vector<int> &arr2, int m)
+{
+	int i=0,j=0;
+	vector<int> ans;
+	while(i<n && j<m){
+		if(arr1[i] != arr2[j]){
+			if(arr1[i] < arr2[j]) i++;
+			else j++;
+		}
+		else{
+			ans.push_back(arr1[i]);
+			i++; j++;
+		}
+	}
+	return ans;
+}

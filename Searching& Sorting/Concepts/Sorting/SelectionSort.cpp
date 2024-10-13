@@ -1,6 +1,16 @@
 #include<iostream>
 using namespace std;
 
+//Also just simple way to sort.
+void selectionSort(int arr[],int n){
+    
+    for(int i=0; i<n; i++){        
+        for(int j = i+1; j<n; j++){ 
+            if(arr[i] < arr[j]) swap(arr[i],arr[j]); //if we found element less than minIndex then just change minIndex to j.
+        }
+    }
+ }
+
 //After every pass we will get (i+1)th smallest element.
 //Best TC- O(n2), Worst Tc- O(n2)
 //Not stable, Not Adaptive, Not recursive

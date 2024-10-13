@@ -22,7 +22,7 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
             student++;
             if (student > m || arr[i] > mid) //if at any point, student becomes greater than m(given no. of student) return false, student becomes greater than m when, mid will be small and we unable to allocate all books to student i.e (we still remain some books in array to allocate). and also if current ith element greater than mid, that means our mid is small so return false. and search for larg mid.
                 return false;
-            pageSum = arr[i]; //if above condition is false, then add ith element in pagesum for next student.
+            else pageSum = arr[i]; //if above condition is false, then add ith element in pagesum for next student.
         }
     }
     return true; //if we reach till this condition that means, we allocate books with the help of given mid, so return true.
@@ -42,6 +42,7 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
                 st++;
                 pages = 0;
                 if(st > students) return 0; //if student gets greater than number of given student then current mid can't be possible answer. that is mid should be more
+                //second condition is not required because we're incrementing i, only when mid is greater. so no need to check.
             }
         }
         

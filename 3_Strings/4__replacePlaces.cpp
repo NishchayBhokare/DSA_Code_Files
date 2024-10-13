@@ -27,6 +27,28 @@ string replaceSpaces(string &s){
     return s; //return s.
 }
 
+//More simple than above approach
+string replaceSpaces(string &str){	
+	int space = 0;
+	for(int i = 0; i<str.length(); i++) if(str[i] == ' ') space++;
+	
+	int newLength = (space*2)  + str.length();
+	int i = str.length()-1;
+	str.resize(newLength);
+	int j = str.length()-1;
+
+	while(i>=0){
+		if(str[i] != ' ') str[j--] = str[i--];
+		else{
+			str[j--] = '0';
+			str[j--] = '4';
+			str[j--] = '@';
+			i--;
+		}
+	}
+	return str;
+}
+
 
 // Approach 2 - Using extra string. TC-O(n) SC-O(n).
 string replaceSpaces(string &s){

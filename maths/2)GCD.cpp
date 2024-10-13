@@ -30,7 +30,7 @@
 
 
 
-//Approach 3: Euclidean algorithm by subtraction. TC - O(min(a,b)) SC - O(1)
+//Approach 3: Euclidean algorithm by subtraction. TC - O(log(min(a,b))) SC - O(1)
 int solve(int a, int b){
 	    
 	    if(a == 0) return b; //if a is zero then return b. cause that will be common factor. for eg, if a = 0 and b=6 then common factor is 6.
