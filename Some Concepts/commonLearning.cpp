@@ -812,16 +812,36 @@ int main()
     //how to retrive this number..take 2's complement...
     //Do 1st compliment..by changing bits. from 0 to 1 or 1 to 0.
     //then add 0001 in bits.
+
+
+    fun(int a , int b ,int c=0){} //default argument is started from right to left.
+    fun(int a , int b=0 ,int c){}  //this is not valid
+    fun(int a , int b=0 ,int c=0){} //this is valid.
     
 
     
     
     
+    //Recursion -> just base chy adhiche condition bagh and then fucntion banav.
+    //like for factorial of 6 he jast hote..like 6*5*4*3*2*1.
+    //so yacha peksha asa vichar kar...apan factorial of 2 kadhat ahe..
+    //so kase honar... 2*1.
+    //that means n*fun(n-1).
+
+    //Example.
+    int findFactoril(int n){
+        if(n == 1) return 1; //base case bagh..
+        
+        int ans = n * findFactoril(n-1); //then decided condition write kara...store it's value.
+
+        return ans; //return ans.
+
+    }
     
     
     
     
-    
+
     
     
     
