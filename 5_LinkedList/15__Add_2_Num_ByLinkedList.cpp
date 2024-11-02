@@ -44,12 +44,14 @@ public:
             if(head2) value+=head2->data;//similarly for head2.
             
             carry=value/10; //now, calculating carry by dividing value by 10
-            value=value%10; //by taking modulus then we will eliminate carry from value.
+            int digit=value%10; //by taking modulus then we will eliminate carry from value.
             
-            Node *temp=new Node(value); //creting new node with value data.
-            temp->next=head; //then, connecting temp's next to head.
-            head=temp; //and then poiting head to temp.
-            
+            if(value > 0){ //condition because of leading zero.
+                Node *temp=new Node(digit); //creting new node with value data.
+                temp->next=head; //then, connecting temp's next to head.
+                head=temp; //and then poiting head to temp.
+            }
+
             if(head1) head1=head1->next; //if head1 not null, then head1 will shift to its next
             if(head2) head2=head2->next; //similarly for head2.
         }
@@ -135,3 +137,47 @@ public:
         
         return head; //returning head.
     }
+
+
+//Approach 3: using vector arrya TC-O(N+M) SC-O(N+M) additional space of vector.
+Node* addTwoLists(Node* num1, Node* num2) {
+     Node *head = NULL;
+        vector<int> vec1;
+        vector<int> vec2;
+        
+        Node *temp = num1;
+        while(temp){
+            vec1.push_back(temp->data);
+            temp = temp->next;
+        }
+        
+        temp = num2;
+        while(temp){
+            vec2.push_back(temp->data);
+            temp = temp->next;
+        }
+        
+        int i = vec1.size()-1, j = vec2.size()-1, carry = 0, digit=0;
+        
+        while(carry || i >=0 || j>=0){
+            
+            int val = carry;
+            if(i>=0) val += vec1[i];
+            if(j>=0) val += vec2[j];
+            
+            carry = val/10;
+            digit = val%10;
+            
+            if(val > 0){
+                temp = new Node(digit);
+                temp->next = head;
+                head = temp;
+            }
+            
+            if(i>=0) i--;
+            if(j>=0) j--;
+        }
+        
+        return head;
+    }
+    

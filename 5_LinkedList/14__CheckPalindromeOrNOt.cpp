@@ -13,7 +13,7 @@ public:
  
 
 //Approach 1: Most Optimised approach. TC-O(N) SC-O(1).
-//reversing next half of linked list and simply check.
+//reversing second half of linked list and simply check.
  Node* reverseLinkedList(Node *head){
         Node *curr=head;
         Node *prev=NULL;
@@ -57,6 +57,61 @@ public:
         return 0; //if we exit from the loop because of break statement then linked list is not palindrome.
     }
 
+
+//same like above approach but looks simple
+void reverseList(Node *&prev, Node*&curr, Node*&forward){
+        while(curr != NULL){
+         forward = curr->next;
+         curr->next = prev;
+         prev = curr;
+         curr = forward;
+        }
+    }
+    
+    bool isPalindrome(Node *head) {
+     
+     //if list size is 1 then return.
+     if(head->next == NULL) return true;
+     
+     //first calculate mid node.
+     Node *slow = head;
+     Node *fast = head->next;
+     
+     while(fast != NULL && fast->next != NULL){
+         slow = slow->next;
+         fast = fast->next->next;
+     }
+     
+     Node *firstHead = head;
+     Node *secondHead = NULL;
+     
+     secondHead = slow->next;
+     
+     //reverse second half.
+     Node *curr = secondHead;
+     Node *prev = NULL;
+     Node *forward = NULL;
+     
+     //reverse second half
+     reverseList(prev,curr,forward);
+     
+     //new second head is prev.
+     secondHead = prev;
+     while(firstHead && secondHead){
+         if(firstHead->data != secondHead->data) return false;
+         
+         firstHead = firstHead->next;
+         secondHead = secondHead->next;
+     }
+     
+     //now again reverse linked list to maintain input list as it is.
+     curr = prev; //now curr is equals to prev..which is start point of reverse linked list of second half.
+     prev = NULL;
+     forward = NULL;
+     reverseList(prev,curr,forward);
+     
+     return true;
+    }
 
 //Approach 2: Optimised approach. TC-O(N) SC-O(1).
 //We are using long int variable to store data of linked list.

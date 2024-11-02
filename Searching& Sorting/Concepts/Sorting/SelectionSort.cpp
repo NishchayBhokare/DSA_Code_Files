@@ -1,16 +1,6 @@
 #include<iostream>
 using namespace std;
 
-//Also just simple way to sort.
-void selectionSort(int arr[],int n){
-    
-    for(int i=0; i<n; i++){        
-        for(int j = i+1; j<n; j++){ 
-            if(arr[i] < arr[j]) swap(arr[i],arr[j]); //if we found element less than minIndex then just change minIndex to j.
-        }
-    }
- }
-
 //After every pass we will get (i+1)th smallest element.
 //Best TC- O(n2), Worst Tc- O(n2)
 //Not stable, Not Adaptive, Not recursive
@@ -35,9 +25,23 @@ void selectionSort(int arr[],int n){
     cout<<endl;
  }
 
+ void selectionSortUsingRecursion(int arr[], int size){
+    if(size == 1 or size == 0) return;
+    
+    int minIndex = 0,j=1;
+    for(j=0; j<size; j++){
+        if(arr[j] < arr[minIndex]) minIndex = j;
+    }
+    
+    swap(arr[0],arr[minIndex]);
+    
+    return selectionSortUsingRecursion(arr+1,size-1);
+}
+
 int main(){
     int arr[] = {5,4,2,8,3};
     int size = sizeof(arr)/sizeof(int);
     selectionSort(arr,size); //calling selection sort.
+    selectionSortUsingRecursion(arr,size);
     print(arr,size); //printing array.
 }

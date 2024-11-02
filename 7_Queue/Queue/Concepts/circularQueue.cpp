@@ -85,3 +85,45 @@ int main(){
     // q1.print();
 
 }
+
+
+//code studio circular question.
+class CircularQueue{
+    public:
+    // Initialize your data structure.
+    int *arr;
+    int front;
+    int rear;
+    int size;
+    CircularQueue(int n){
+        // Write your code here.
+        size = n;
+        arr = new int[n];
+        // memset(arr, -1, size);
+        for(int i =0; i<size; i++) arr[i]=-1;
+        front = 0;
+        rear = 0;
+    }
+
+    // Enqueues 'X' into the queue. Returns true if it gets pushed into the stack, and false otherwise.
+    bool enqueue(int value){
+        // Write your code here.
+        if(arr[rear] != -1 && front == rear) 
+            return false;
+
+        arr[rear] = value;
+        rear = (rear+1)%size;
+        return true;
+    }
+
+    // Dequeues top element from queue. Returns -1 if the stack is empty, otherwise returns the popped element.
+    int dequeue(){
+        if(arr[front] == -1 && front == rear) 
+            return -1;
+
+        int val = arr[front];
+        arr[front] = -1;
+        front = (front+1)%size;
+        return val;
+    }
+};

@@ -9,6 +9,57 @@ struct Node
 };
 
 
+//Another approach while merging
+ Node* segregate(Node* head) {
+
+        Node* segregate(Node* head) {
+
+        Node *headZero= new Node(-1);
+        Node *headOne = new Node(-1);
+        Node *headTwo = new Node(-1);
+        Node *tailZero=headZero, *tailOne=headOne, *tailTwo=headTwo;
+    
+    
+        Node *temp = head;
+        while(temp != NULL){
+            if(temp->data == 0){
+                tailZero->next = temp;
+                tailZero = temp;
+            }
+            else if(temp->data == 1){
+                tailOne->next = temp;
+                tailOne = temp;
+            }
+            else{
+                tailTwo->next = temp;
+                tailTwo = temp;
+            }
+            temp = temp->next;
+        }
+    
+
+        if(headOne ->next != NULL){ //this solution is different in if condition as compare to below solution.
+            tailZero->next = headOne->next;
+        }
+        else{
+            tailZero->next = headTwo->next;
+        }
+       
+        tailOne->next = headTwo->next;
+        tailTwo->next = NULL;
+       
+          //connecting head to zerohead's next because now zeroHead's next will be the starting node of sorted linked list.
+        head=headZero->next;
+        
+        // delete dummy nodes;
+        delete headZero;
+        delete headOne;
+        delete headTwo;
+        
+        return head; //returning answer.
+    }
+};
+
 //Approach 1: Without replacing data.  TC-(N) SC-O(1) 
 Node* segregate(Node *head) {
         

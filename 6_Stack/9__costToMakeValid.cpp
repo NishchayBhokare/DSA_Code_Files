@@ -53,7 +53,8 @@ if(str.length() & 1) return -1; //string length is odd then brackets are not pos
 
       else{ //if stack is empty means we need to change this closing bracket with opening bracket. so increment count.
         st.push('{'); //then push closing bracket as opening bracket in stack
-        count++; //and increment count.
+          //and increment count.
+          count++;
       }
     }
   }

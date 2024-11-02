@@ -41,7 +41,7 @@ class Solution{
        void push(int x){
           if(st.empty()){
               minElem = x;
-              st.push(x);s
+              st.push(x);
           }
           else{
               if(x < minElem){
@@ -54,4 +54,93 @@ class Solution{
               }
           }
        }
+};
+
+//similar to above only but straightforward..looks simple.
+class SpecialStack {
+    public:
+    stack<int> st;
+    int minElement; 
+    void push(int data) {
+        if(st.empty()){
+            st.push(data);
+            minElement = data;
+        }
+        else{
+            if(data < minElement){
+                int val = 2*data - minElement;
+                st.push(val);
+                minElement = data;
+            }
+            else st.push(data);
+        }
+        
+    }
+
+    void pop() {
+        if(!st.empty()){
+            if(st.top() >= minElement) st.pop();
+            else{
+                minElement = 2*minElement - st.top();
+                st.pop();
+            }
+        }
+    }
+
+    int top() {
+        if(!st.empty()){
+            if(st.top() > minElement) return st.top();
+            else{
+                return minElement;
+            }
+        }
+    }
+
+    int getMin() {
+       return minElement;
+    }  
+};
+
+
+
+
+//Approach 2: using space. TC-O(1) SC-O(N);class SpecialStack {
+class SpecialStack {
+    public:
+        stack<int>st;
+        stack<int>mini; //using mini stack..to track minimum element.
+        int minElement = INT_MAX;
+    void push(int data) {
+        // Implement the push() function.
+        st.push(data);
+        minElement = min(data,minElement);
+        mini.push(minElement);
+    }
+
+    void pop() {
+        // Implement the pop() function.
+        if(st.size() >0){
+            st.pop();
+            int val = mini.top();
+            mini.pop();
+            
+            if(minElement == val){
+                if(mini.empty()) minElement = INT_MAX;
+                else minElement = mini.top();
+            }
+        }
+        
+    }
+
+    int top() {
+        // Implement the top() function.
+        if(st.size() > 0) return st.top();
+        return -1;
+    }
+
+    int getMin() {
+        // Implement the getMin() function.
+       if(mini.size()>0) return mini.top();
+       return -1;
+    }  
 };

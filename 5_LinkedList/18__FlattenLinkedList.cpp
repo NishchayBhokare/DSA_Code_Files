@@ -40,16 +40,51 @@ Node *merge(Node *first,Node *second){ //Merging linked list.
      return ans;
 }
 
-Node *flatten(Node *root)
-{
+ Node *flatten(Node *&root) {
     if(root == NULL and root->next == NULL) return root;
     Node *first=root;
     Node *second=root->next; //pointing first to root node and second to next of root.
     while(second){ //looping till second not becomes to null.
-        merge(first,second); //merging first and second
+        first = merge(first,second); //merging first and second
         Node *temp=second; //pointing temp to second.
         second=second->next; //shifting second.
         temp->next=NULL; //pointing temp's next to null because temp's next i.e original second's next points to next of it. so to remove that link point temp's next to null.
     }
-   return root; //return root. i.e first;
+    return first; //return root.
 }
+    
+
+
+//Approach 2: Using recursion
+Node *mergeTwoLinkedList(Node *first, Node *second){
+        Node *ans = new Node(-1); 
+        Node *tail = ans;
+        
+        while(first && second){
+            if(first->data <= second->data){
+                tail->bottom = first;
+                tail = tail->bottom;
+                first = first->bottom;
+            }
+            else{
+                tail->bottom = second;
+                tail = tail->bottom;
+                second = second->bottom;
+            }
+        }
+        
+        if(first) tail->bottom = first;
+        if(second) tail->bottom = second;
+        
+        return ans->bottom;
+    }
+
+    Node *flatten(Node *root) {
+        
+      if(root == NULL or root->next == NULL) return root;
+      
+      Node *first = root;
+      Node *second = flatten(first->next); //flatten right part.
+      
+      return mergeTwoLinkedList(first,second); //then just do merge two sorted linked list.
+    }

@@ -30,9 +30,25 @@ using namespace std;
     cout<<endl;
  }
 
+ void insertionSortUsingRecursion(int arr[], int size, int i){
+    if(i == size) return;
+    
+    int j = i-1; //ek case solve karlo..baki recursion apne aap sambhal lega.
+    int key = arr[i];
+    while(j>=0 && arr[j] > key){
+        arr[j+1]=arr[j];
+        j--;
+    }
+    arr[j+1] = key;
+    
+    return insertionSortUsingRecursion(arr,size,i+1);
+}
+
+
 int main(){
     int arr[] = {2,7,4,1};
     int size = sizeof(arr)/sizeof(int);
     insertionSort(arr,size); //calling selection sort.
+        insertionSortUsingRecursion(arr,size,1);
     print(arr,size); //printing array.
 }

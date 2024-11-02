@@ -46,3 +46,42 @@ vector<string> find_permutation(string str)
 	// 	    }
     return ans;
 }
+
+
+//Apporach 2: TC-O(!N*N) SC-O(N)
+//We are using data stucutre to check current element is already taken or not.
+//and pushing that element in ds data structure.
+//on every recursive call..checking from 0th index to last index...can we add current
+//element or not. if we can add..then add that element and marked it as true.
+//and call recursive function..so that..and while coming back from function..
+//just retrive the original position by doing back track.
+///we are mapping index with mapping data structure instead of their values..
+//because values are unique.
+//and storing values in ds data structure.
+ void findPermutation(vector<int>& nums, vector<vector<int>>&ans, vector<bool>mapping, vector<int>ds){
+        if(ds.size() == nums.size()){
+            ans.push_back(ds);
+            return;
+        }
+
+        for(int i = 0; i<nums.size(); i++){
+            if(!mapping[i]){
+                mapping[i] = true;
+                ds.push_back(nums[i]);
+
+                //recursive call
+                findPermutation(nums,ans,mapping,ds);
+
+                mapping[i] = false;
+                ds.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<bool>mapping(nums.size(),false);
+        vector<int>ds;
+
+        findPermutation(nums,ans,mapping,ds);
+        return ans;
+    }

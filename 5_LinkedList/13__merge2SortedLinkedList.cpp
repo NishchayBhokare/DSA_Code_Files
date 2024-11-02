@@ -86,3 +86,83 @@ Node *sortedMerge(Node *head1, Node *head2)
   return ans->next; //returning ans which points to dummy so we will return ans->next.
   //to escape from 0 data node.
 }
+
+
+//Approach 3: using extra space but without sorting. Tc-O(N) SC-O(N)
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+
+    vector<int> vec;
+    Node<int>* firstTemp = first;
+    Node<int>* secondTemp = second;
+    Node<int>* firstTail = NULL;
+
+    while(firstTemp && secondTemp){ //as first and second is sorted..so use that benefit.
+        if(firstTemp->data <= secondTemp->data) {
+            vec.push_back(firstTemp->data);
+            firstTail = firstTemp;
+            firstTemp = firstTemp->next;
+        }
+        else {
+            vec.push_back(secondTemp->data);
+            secondTemp = secondTemp->next;
+        }
+    }
+
+    while(firstTemp){
+        vec.push_back(firstTemp->data);
+        firstTail = firstTemp;
+        firstTemp = firstTemp->next;
+    }
+
+    while(secondTemp){
+        vec.push_back(secondTemp->data);
+        secondTemp = secondTemp->next;
+    }
+
+
+    firstTail->next = second;
+  
+
+    firstTemp = first;
+    for(int i = 0; i<vec.size(); i++){
+        firstTemp->data = vec[i];
+        firstTemp = firstTemp->next;
+    }
+
+    
+    return first;
+}
+
+//Approach 4: Using extra space TC-O(NLogn) SC-O(N);
+//by storing values in array and then sorting array and replacing values by list.
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+
+    vector<int> vec;
+    Node<int>* temp = first;
+    Node<int>* firstTail = NULL;
+    while(temp){
+        vec.push_back(temp->data);
+        firstTail = temp;
+        temp = temp->next;
+    }
+
+    temp = second;
+    while(temp){
+        vec.push_back(temp->data);
+        temp = temp->next;
+    }
+
+    firstTail->next = second;
+    sort(vec.begin(),vec.end());
+
+    temp = first;
+    for(int i = 0; i<vec.size(); i++){ //just replacing values.
+        temp->data = vec[i];
+        temp = temp->next;
+    }
+
+    
+    return first;
+}

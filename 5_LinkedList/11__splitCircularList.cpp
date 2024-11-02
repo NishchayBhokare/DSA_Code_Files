@@ -8,8 +8,67 @@ struct Node
     int data;
 };
 
+//Apporach 1: using slow fast apporach
+pair<Node *, Node *> splitList(struct Node *head) {
+        
+        
+        struct Node *slow = head, *fast = head;
+        while(fast->next != head and fast->next->next != head){
+            slow = slow->next;
+            fast = fast->next->next;
+        } //we pointed slow to middle element of list.
+        
+        Node *secondHead = slow->next; //from slow's next..second heaad started
+        slow->next = head; //now slow's next should be it's head.
+        
+        Node *ptr = secondHead; //creating ptr pointer which points to secondhalf.
+        while(ptr->next != head){
+            ptr = ptr->next; //move to next. 
+        }
+         ptr->next = secondHead; //now last point next equals to start of second half.
+         
+        return {head,secondHead}; //return ans;
+    }
 
-//Approach 1: Most optimised approach. Using map. TC-(N) SC-O(N)
+//Approach 2: question is updated: first calculate length.
+//then point tell of first half to head and traverse for second half and point second half tail to second half head.
+ pair<Node *, Node *> splitList(struct Node *head) {
+        pair <Node *,Node *> ans;
+        
+        int len = 0;
+        struct Node *temp = head;
+        do{ //calculating length of linked list.
+            len++;
+            temp = temp->next;
+        }while(temp != head);
+        
+        
+        int mid;
+        if(len%2 == 0) mid = (len/2) - 1; //doing -1 because while traversing...mid need to reduce by 1.
+        else mid = (len/2);
+        
+        temp = head;
+        while(mid--){ //moving for first half.
+            temp = temp->next;
+        }
+        
+        struct Node *headSecondHalf = temp->next; //point second half head to first half tail's next.
+        temp->next = head; //now point first half tail to head.
+         
+        struct Node *ptr = headSecondHalf; //traverse for second half.
+        while(ptr->next != head){
+            ptr=ptr->next;
+        }
+        ptr->next = headSecondHalf; //point second half tail to second half head.
+
+        //   pair <Node *,Node *> ans =  make_pair(head,headSecondHalf);
+        ans.first = head; 
+        ans.second = headSecondHalf;
+        
+        return ans; //return ans;
+    }
+
+//Approach 1: Most optimised approach. TC-(N) SC-O(1)
 void splitList(Node *head, Node **head1_ref, Node **head2_ref)
 {
     Node *first=head; //initially pointing first to head and second to head's next so that in both odd and even cases, first pointer will point to last node of first half of linked list.

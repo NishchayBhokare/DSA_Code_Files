@@ -1,5 +1,5 @@
 //Example for Calculate square root of given number using binary search.
-
+//GFG
 #include<iostream>
 #include<math.h>
 #include<iomanip>
@@ -73,8 +73,8 @@ double morePrecision(int num,int tempAns,int precision){
     double factor=1,ans=tempAns; //creating factor and ans variable of double type.
     for(int i=1; i<=precision; i++){ //looping precision times, cause if precision is 3 then we want 3 numbers after decimal point.
         factor = factor/10; //dividing factor by 10 so for first iteration factor will be 0.1 then 0.01, 0.001 etc. this is what we want to add in ans.
-        for(double j = ans; (j * j) < num; j = j + factor){ //now initialising j with ans and after adding j with factor, checking j's square is less than num or not.
-            ans = j; //if less than num then update ans.
+        for(double newAns = ans; (newAns * newAns) < num; newAns = newAns + factor){ //now initialising j with ans and after adding j with factor, checking j's square is less than num or not.
+            ans = newAns; //if less than num then update ans.
         }
     }
     return ans;

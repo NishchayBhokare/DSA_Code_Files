@@ -42,7 +42,7 @@ int pivotIndex(vector<int>& nums) {
     }
 
 
-//GFG Example - 1 base indexing.
+//GFG Example,  1 base indexing.
 int equilibriumPoint(long long a[], int n) {
         long long totalSum=0;
         for(int i=0; i<n; i++) totalSum += a[i]; //calculating total sum

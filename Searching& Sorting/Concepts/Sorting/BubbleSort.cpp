@@ -36,3 +36,24 @@ int main(){
     bubbleSort(arr,size); //calling selection sort.
     print(arr,size); //printing array.
 }
+
+//Bubble sort using recursion
+void bubbleSort (int arr[], int size){
+    if(size == 1 or size == 0) return;
+    
+    for(int i = 0; i<size-1; i++){ //solving first case only. 
+        if(arr[i] > arr[i+1]) swap(arr[i],arr[i+1]);
+    }
+    
+    bubbleSort(arr,size-1);
+}
+int main()
+{
+    int arr[] = {300,21,1,89,5};
+    int size = 5;
+    bubbleSort(arr,size);
+   
+   for(int i = 0; i<size; i++) cout<<arr[i]<<" ";
+   
+   return 0;
+}

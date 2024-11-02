@@ -9,7 +9,32 @@ struct Node
 };
 
 
-//Approach 1: Most optimised approach. Using map. TC-(N) SC-O(N)
+//Approach 1: using set. TC-O(N) SC-O(N)
+ Node *removeDuplicates(Node *head) {
+    unordered_set<int> st;   
+    Node *curr = head;
+    Node *prev = NULL;
+    while(curr != NULL){
+        if(st.find(curr->data) != st.end()){
+            //duplicate is present.
+            Node *temp = curr; //point temp node to current so that further we can delete that node.
+            curr=curr->next; //move curr to next.
+            delete temp;
+            
+            prev->next = curr; //now point prev's next to curr..becuase we have deleted in between nodes.
+        }
+        else {
+            //else just move to next element.
+            st.insert(curr->data); //insert data in set.
+            prev = curr; //point prev to current node.
+            curr = curr->next;    //move curr. 
+        }
+    }
+    
+    return head; //return head.
+}
+
+//Approach 2: Most optimised approach. Using map. TC-(N) SC-O(N)
  Node * removeDuplicates( Node *head) 
     {
      // your code goes here
@@ -60,5 +85,33 @@ Node *removeDuplicates(Node *head)
         }
         ptr=ptr->next;
     }
+    return head;
+}
+
+//same like above.
+Node *removeDuplicates(Node *head) {
+    Node *curr = head;
+    while(curr != NULL){
+        Node *prev = curr;
+        Node *ptr = curr->next;
+        
+        while(ptr != NULL)
+        {
+            if(curr->data == ptr->data){
+                Node *temp = ptr;
+                ptr=ptr->next;
+                delete temp; 
+                
+                prev->next = ptr;
+            }
+            else{
+                prev=ptr;
+                ptr=ptr->next;
+            }
+        }
+        curr = curr->next;
+    }
+    
+    
     return head;
 }

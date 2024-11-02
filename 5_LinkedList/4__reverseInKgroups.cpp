@@ -1,4 +1,5 @@
 // Example for Reverse a singly linked list in k groups.
+//below..code studio advanced version is also there.
 #include<stack>
 #include<bits/stdc++.h>
 using namespace std;
@@ -67,3 +68,41 @@ struct node *reverse (struct node *head, int k)
     ptr->next=nullptr; //ptr pointing to last element so connect last element with null.
     return headNode; //and return headNode which points to first element after reversing linked list.
     }
+
+
+
+//code studio version -> advanced version.
+//no need to reverse nodes list which have size lesss than k.
+Node* kReverse(Node* head, int k) {
+   if(head == nullptr or head->next == nullptr ) return head; //if head or its' next is null then simply return head becuase no need to reverse.
+
+        Node *prev=nullptr;
+        Node *curr=head;
+        Node *forward;
+
+
+        //step 1: check if reaminging nodes are greater than k or not.
+        //if not..then no need to reverse return as it is.
+        Node* check=head;
+        for (int i = 0; i < k; ++i) {
+            if (!check)
+            return head; // Less than 'k' nodes, return as it is
+            check = check->next;
+        }
+
+        //step 2: reverse k nodes
+        int i=1;
+        while(i<=k and curr !=nullptr){ //looping till i less than or equal to k and also current should not be equal to null.
+            forward=curr->next;
+            curr->next=prev;
+            prev = curr;
+            curr=forward;
+            i++;
+        }
+    
+        //step 3: calling recursion for further nodes.
+        head->next=kReverse(forward,k); //forward and current both points to same nodes so pass either curr or forward. //prev node which will returned by recursion call will connected to head's next.
+
+        //step 4: return head of reversed list.
+        return prev; //and return
+}

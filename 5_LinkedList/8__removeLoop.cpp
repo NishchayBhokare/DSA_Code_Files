@@ -67,17 +67,17 @@ void removeLoop(Node* head) //This is also one apporach but giving TLE On gfg.
 
 
 
-//approach 3: by modfiying linked list structure. i.e change data of node to -1
-void removeLoop(Node* head) //This is one simple approach but we need to change data of nodes to -1.
-{
-  Node *ptr=head;
-while(ptr->next!= NULL and ptr->next->data != -1 ){
-    ptr->data=-1;
-    ptr=ptr->next;
-}
-// if(ptr->next == NULL) return;
-ptr->next=NULL;
-}
+// //approach 3: by modfiying linked list structure. i.e change data of node to -1
+// void removeLoop(Node* head) //This is one simple approach but we need to change data of nodes to -1.
+// {
+//   Node *ptr=head;
+// while(ptr->next!= NULL and ptr->next->data != -1 ){
+//     ptr->data=-1;
+//     ptr=ptr->next;
+// }
+// // if(ptr->next == NULL) return;
+// ptr->next=NULL;
+// }
 
 
 

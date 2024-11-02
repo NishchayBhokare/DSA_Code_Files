@@ -36,5 +36,30 @@ bool ispar(string str)
     return false;
 }
 
+//Approach 2: using hashmap.
+bool isValidParenthesis(string s)
+{
+    // Write your code here.
+    unordered_map<char,char> ump;
+    ump['}'] = '{';
+    ump[')'] = '(';
+    ump[']'] = '[';  //creating mapping.
 
+    stack<char>st;
+    for(int i = 0; i<s.size(); i++){
+        if(s[i] == '{' || s[i] == '(' || s[i] == '['){
+            st.push(s[i]);
+        }
+        else{
+            char ch = s[i];
+            if(!st.empty() && ump[ch] == st.top()){
+                st.pop();
+            }
+            else return false;
+        }
+    }
+
+    if(st.empty()) return true;
+    return false;
+}
  

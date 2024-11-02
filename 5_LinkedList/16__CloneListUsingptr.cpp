@@ -69,6 +69,64 @@ Node *copyList(Node *head)
     return head1;
 }
 
+//similar like above but only in three loops.
+Node *copyList(Node *head) {
+        Node *newHead = NULL;
+        Node *temp = head, *tail = NULL;
+      
+        //copying next pointers.
+        while(temp){
+            if(newHead == NULL){ 
+                newHead = new Node(temp->data);
+                tail = newHead;
+            }
+            else{
+                Node *ptr = new Node(temp->data);
+                tail = ptr; //now tail is ptr.
+            }
+            
+            Node *q = temp;
+            temp = temp->next;
+            
+            q->next = tail; //creating linke between newly created node and existing node.
+            tail->next = temp;
+        }
+
+        //now traversing for random pointers.
+        temp = head;
+        tail = newHead;
+        while(temp != NULL){
+            
+          if(temp->random){
+             Node *rand = temp->random;
+             tail->random = rand->next;
+          } 
+           
+          temp = temp->next->next;
+           
+          if(tail->next) tail = tail->next->next;
+          else tail = tail->next;
+        }
+        
+        //now removing pointers which are linked as next to temp.
+        tail = newHead;
+        temp = head;
+        
+        while(tail){
+            temp->next = tail->next;
+              
+            if(tail->next) 
+                tail->next = tail->next->next;
+            
+            temp = temp->next;
+            tail = tail->next;
+        }
+
+        return newHead; 
+    }
+
+
+
 
 //Approach 2: Soution in O(N) TC using Un_Ordered map.  TC-O(N) SC-O(N)
 Node *copyList(Node *head)
@@ -110,6 +168,41 @@ Node *copyList(Node *head)
         return head1;
     }
 
+//similar like above.
+Node *copyList(Node *head) {
+        // Write your code here
+        Node *newHead = NULL;
+        Node *temp = head, *tail = NULL;
+        unordered_map<Node*,Node*> ump;
+        //copying next pointers.
+        while(temp){
+            if(newHead == NULL){ 
+                newHead = new Node(temp->data);
+                tail = newHead;
+            }
+            else{
+                Node *ptr = new Node(temp->data);
+                tail->next=ptr;
+                tail = ptr;
+            }
+
+            ump[temp] = tail; //mapping nodes with address.
+            temp = temp->next;
+        }
+
+        //now traversing for random pointers.
+        temp = head;
+        tail = newHead;
+        while(temp != NULL){
+             tail->random = ump[temp->random];
+
+          tail = tail->next;
+          temp = temp->next;
+        }
+
+        return newHead; 
+    }
+
 
 
 //Approach 3: First create linked list without random pointer then with random pointer. TC-O(N*M) SC-O(1)
@@ -131,7 +224,7 @@ Node *copyList(Node *head)
         head1=head1->next; //shifting head1 from dummy node to its. next.
         ptr=head1; //and again poiting ptr to new head1.
         
-    //step 2: Connect random pointers. Tf for this loop is N*M.
+    //step 2: Connect random pointers. Tcfor this loop is N*M.
         while(curr != NULL){ //looping for arbitary pointer (random pointer)
             if(curr->arb == NULL){ 
                 ptr->arb=NULL;

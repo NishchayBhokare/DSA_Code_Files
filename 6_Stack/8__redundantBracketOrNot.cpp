@@ -22,4 +22,35 @@
     }
 
     return false;
+}
+
+
+//Approach 2: similar like above but not that much efficient..look and code vise.
+bool findRedundantBrackets(string &s)
+{   
+    stack<char>st;
+    for(int i = 0; i<s.size(); i++){
+        if(s[i] == '(' || s[i] == '+' || s[i] == '-' || 
+            s[i] == '*' || s[i] == '/'){
+                st.push(s[i]);
+        }
+        else if(s[i] == ')'){
+            bool flag = false;
+            while(!st.empty() && ((st.top() == '+') ||( st.top() == '-') ||
+                (st.top() == '*') || (st.top() == '/'))){
+                    flag = true;
+                    st.pop();
+            }
+            
+            if(flag) st.pop(); //if we get inside the function then this is valid..so do pop for opening bracket.
+        }
     }
+
+    while(!st.empty() &&( (st.top() == '+') ||( st.top() == '-') ||
+        (st.top() == '*') || (st.top() == '/'))){
+            st.pop();
+    }
+
+    if(st.size()>0) return true;
+    return false;
+}

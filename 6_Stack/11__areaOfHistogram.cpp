@@ -21,8 +21,7 @@
             }
         }
     }
-    
-    
+        
     //little optimised for prevSmaller
      void prevSmaller(vector<long long>&prev, long long arr[],int n){
       stack <long long> st;
@@ -58,9 +57,60 @@
         }
         return maxArea; //finally after all iteration, return maximum area.
     }
+
+
+
+//Approach 2: without inserting -1 in stack..instead create previous and next array with 
+// -1 and size of input array respectively
+//without inserting -1 into the stack.
+void previousSmallerElements(vector<int>&arr,vector<int>&previous, stack<int> st){
+    //previous smallest element index.
+    int n = arr.size();
+    for(int i = 0; i<n; i++){
+        while(!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+
+        if(!st.empty()) previous[i] = st.top();
+        st.push(i);
+    }
+}
+
+    
+void nextSmallerElements(vector<int>&arr, vector<int>&next, stack<int> st){
+    //next smallest elementindex.
+    int n = arr.size();
+    for(int i = n-1; i>=0; i--){
+        while(!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+
+        if(!st.empty()) next[i] = st.top();
+        
+        st.push(i);
+    }
+}
+    
+    int largestRectangleArea(vector<int>& arr) {
+        int n = arr.size();
+        vector<int>previous(n,-1); //initialising vector using -1.
+        vector<int>next(n,n); //initialising vector with size of array.
+        stack<int> st;
+
+        previousSmallerElements(arr,previous,st);
+        nextSmallerElements(arr,next,st);
+
+        int maxArea = 0;
+        for(int i = 0; i<n; i++){
+            int length = arr[i];
+            int breadth = next[i] - previous[i] - 1; //because of creating array with -1 and size of array..no need to add conditions here.
+            int area = length * breadth;
+            maxArea = max(maxArea,area);
+        }
+
+        return maxArea;
+    }
+
     
     
-    //Approach 2: brute force solution TC-O(N2) SC-O(1)
+    
+    //Approach 3: brute force solution TC-O(N2) SC-O(1)
     long long getMaxArea(long long arr[], int n)
     {
         long long maxArea=0;

@@ -35,8 +35,7 @@ bool checkPalindrome(string s)
       if(isalnum(s[i]) == 0) i++; //checking whether current character is alph numberic or not. if not then just move to next character.
 
       else if(isalnum(s[j]) == 0) j--; //checking whether current character is alph numberic or not. if not then just move to next character.
-      
-      //else if(tolower(s[i++]) != tolower(s[j--])) --> we can use built in tolower function also.
+
       else if(lowerCase(s[i]) != lowerCase(s[j]) ) { //if we reach till here that means charcter is alphaNumeric.
       //so if ith element not equals to jth element that means string is not palindrome so return false.
           return false;
@@ -62,5 +61,22 @@ bool checkPalindrome(string s)
       } 
         
 }
+
+
+//Regular version.
+//gfg check palindrome -> using recurison.
+int checkUsingRecursion(string &str,int start,int end){
+	    if(start >= end) return 1;
+	    
+	    if(str[start] != str[end]) return 0;
+	    
+	    checkUsingRecursion(str,start+1,end-1);
+	}
+	
+	int isPalindrome(string S)
+	{
+	    // Your code goes here
+	    return checkUsingRecursion(S,0,S.length()-1);
+	}
 
 }

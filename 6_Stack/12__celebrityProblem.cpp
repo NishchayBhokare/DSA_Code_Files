@@ -1,7 +1,7 @@
 // The Celebrity Problem
 //GFG  
 
-//Approach 1: Most optimised approach. TC-O(N) SC-O(1)  
+//Approach 1: Most optimised approach.Two pointer approach TC-O(N) SC-O(1)  
 //Conditions for celebrity candidate:
     //Everyone knows celebrity candidate
     //Celebrity candidate dont know any one.
@@ -21,16 +21,15 @@ int celebrity(vector<vector<int> >& matrix, int n)
 //   }
     
     
-    //calculating horizotal and vertical sum for candidate
-    int horizontalSum=0,verticalSum=0;
-    for(int i=candidate,j=0; j<n; j++){
-        horizontalSum+=matrix[i][j];  //adding horizotal sum
-        verticalSum+=matrix[j][i]; //similarly vertical sum
-    }
-    
-    if(horizontalSum == 0 and verticalSum==n-1) return candidate; // if horizotal sum is 0 and vertical sum is n-1 that means this candidate is celebrity.
-    //n-1 becuase we skipped this condition, matrix[candidate][candidate] i.e whether candidate knows itself, so to discad this, we check with n-1.
-    return -1; //if not then return -1.`
+   //check row and col for this possible celerbity. he should not know anyone.
+        for(int i=0; i<mat.size(); i++){
+            //check for row & col.
+            if(i!=candidate && (mat[candidate][i] == 1 || mat[i][candidate] == 0)){
+                return -1; //not celebrity.
+            }
+        }
+        
+        return candidate;
 }
     
 
@@ -56,23 +55,17 @@ int celebrity(vector<vector<int> >& matrix, int n)
        
        //at the we will get 1 element into the stack, and that might be our potential candidate
        //checking horizontal line is zero or not it must be zero for celebrity
-       int horizontalSum=0;
-       for(int i=st.top(),j=0; j<n; j++){
-           horizontalSum+=matrix[i][j];
-       }
-       
-       //checking vertically all 1's or not.
-       if(horizontalSum == 0){
-           int verticalSum = 0;
-           
-           for(int i=0,j=st.top(); i<n; i++){
-               verticalSum+=matrix[i][j]; 
-           }
-            
-           if(verticalSum == n-1) return st.top();
-       }
-       
-       return -1;
+        int index = st.top();
+        if(st.size() == 1) {
+            //check row for this possible celerbity. he should not know anyone.
+            for(int i=0; i<n; i++){
+                //check for row & col.
+                if(i!=index && (mat[index][i] == 1 || mat[i][index] == 0)){
+                   return -1;
+                }
+            }
+        }
+        return index;
     }
 
 
@@ -98,10 +91,10 @@ int celebrity(vector<vector<int> >& matrix, int n)
        return -1;
     }
 
-      1 
-         1
-         1
-0  0  0  0  0  0  0
-         1
-         1
-         1
+//          1 
+//          1
+//          1
+// 0  0  0  0  0  0  0
+//          1
+//          1
+//          1

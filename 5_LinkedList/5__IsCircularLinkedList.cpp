@@ -26,7 +26,7 @@ bool isCircular(node *head)
 
 
 
-//Approach: slow and fast pointer. TC-O(N) SC-O(1)
+//Approach for code studio solutin : slow and fast pointer. TC-O(N) SC-O(1)
 bool isCircular(node* head){
 
     if(head == NULL) return true; //if head is null then linked list is circular.
@@ -42,8 +42,24 @@ bool isCircular(node* head){
     } while (fast != slow); //looping till fast is not equal to slow.
 
     if (fast == head) //if fast equals slow and also it equals to head that means it is complete circular.
+    //even length of linked list is even or odd...in both the cases...if linked list is
+    //cicrular then fast will points to head when..slow equals to fast.
       return true;
 
     return false; //when fast equals to slow but not equals to head. i.e loop is present in between somewhere in linked list.
 }
 
+//we can solve this solution using map also..but on code studio it's giving TLE
+bool isCircular(Node* head){
+  if(head == NULL) return true;
+  unordered_map<int,bool> ump;
+  Node *temp = head;
+  do{
+      if(ump[temp]) break;
+      ump[temp] = true;
+      temp = temp->next;
+  }while(temp != NULL);
+
+  if(temp == head) return true;
+  return false;
+}

@@ -65,3 +65,52 @@ void prevSmallest(int arr[],int n, vector<int>&prev ){
         
         return maxArea; //finally return maxArea.
     }
+
+
+
+
+            //we can find area of largest rectangle..without putting -1 in stack initially.
+      
+      
+      void previousSmallerElementIndex(int *arr,vector<int>&previous,int size){
+        stack<int>st;
+        for(int i = 0; i<size; i++){
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                st.pop();
+            }
+            
+            if(!st.empty()) previous[i] = st.top();
+            st.push(i);
+        }
+    }
+    
+    void nextSmallerElementIndex(int *arr,vector<int>&next,int size){
+        stack<int>st;
+        for(int i = size-1; i>=0; i--){
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                st.pop();
+            }
+            
+            if(!st.empty()) next[i] = st.top();
+            st.push(i);
+        }
+    }
+    
+    
+    int findMaxAreadOfRectangle(int *arr,int size){
+        int mArea = 0;
+        vector<int>previous(size,-1);
+        vector<int>next(size,size);
+        
+        previousSmallerElementIndex(arr,previous,size);
+        nextSmallerElementIndex(arr,next,size);
+        
+        for(int i=0; i<size; i++){
+            int length = arr[i];
+            int breadth = next[i] - previous[i] - 1;
+            int area = length*breadth;
+            mArea = max(area,mArea);
+        }
+        
+        return mArea;
+    }

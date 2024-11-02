@@ -35,3 +35,34 @@ vector<string> AllPossibleStrings(string str){
     sort(ans.begin(),ans.end()); //sorting ans vector to get answer in lexicographical order.
     return ans;
 }
+
+
+//subsequences using bit manipulation 
+vector<string> subsequences(string str){
+	vector<string> ans;
+	int num = pow(2,str.length()) - 1; //we are creating num which will represent to given strin. suppose 
+	//stirng of size 3 then digits in num will be 3 i.e 111.
+	//logic is traversing from 1 to <= num..and for every value checking it's binary repersentation
+	//if bit is 1 then take ith character from string..else skip.
+
+	for(int i = 1; i<= num; i++){
+		int val = i, j = 0;
+		string temp;
+		while(val){
+			if(val & 1) temp+=str[j];
+			
+			val = val>>1;
+			j++;
+		}
+		ans.push_back(temp); //on every ith iteation...push value in ans vector of temp.
+	}
+	return ans;
+}
+//logic is ->
+//001=>1 will be tagged to a
+//010=>2 will be tagged to b
+//011=>3 will be tagged to ab
+//100=>4 will be tagged to c
+//101=>5 will be tagged to ac
+//110=>6 will be tagged to bc
+//111=>7 will be tagged to aaa
