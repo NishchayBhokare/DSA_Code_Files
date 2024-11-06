@@ -46,7 +46,8 @@ public:
             next[rear[m-1]] = index; //linking new element to prev element, when we insert new element next[rear[m-1]] will give us index on which rear will point when we update rear in next step.
         }
 
-        next[index] = -1; //and pointing this latest inserted element index as -1 because this is last element wherer we insert element, and when we pop out element that time this will help.
+        next[index] = -1; //and pointing this latest inserted element index as -1 because this is last element wherer we insert element, and when we pop out element that time this will help to make base condition 
+        //as if front[m-1] is -1 then there is no element to pop out.
         
         rear[m-1] = index;//updating rear to next index.
         return true;

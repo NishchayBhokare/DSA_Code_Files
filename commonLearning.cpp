@@ -836,32 +836,6 @@ Merge Sort -> divide array into two half...then we will get this half as sorted.
 Quick sort-> first do partition...in partition..we are placing start element(considering pivot elemtn) in his right position...for that..first check how many element's are lesser than it...once checked...swap first element on his right position...now second task is...on left part of this pivotelement...all elements should be smaller and on right part all elements are greater.
 so to make this...point i to the start element and j to the end element...and check...for every elment. if it's lesser than or greater than pivot element and swap accroding to it. and return pivot indedx.
     
-    
-//not able to solve problem
-not able to solve letter combination.
-not able to sovle permuatation of string.
-not able to solve reverse linkedlist in k groups.
-circular list or not.
-sort 0's 1's 2's in linkedlist.
-add two numbers linked list.
-clone linked list using random pointers.
-merge sort in linked list.
-
-note -> why mege sort in linked list and quick sort in arryas prefarable.
-able to solve but face difficulties for reverse stack using recursion. 
-largest area in histogram. ->24th october 
-celebrity problem -> 25th october
-Max Rectangle -> 25th october    
-Nstack in an array -> 26th october
-design stack that supports push, pop in O(1) -> 27th october.
-quueue implementation -> 27th october
-first-ve numerb in k. (queue) -> 27th october.
-check optimised solution for first-ve numerb in k which is O(N) SC-O(1) from gfg    
-Reverse First K elements of Queue -> 28th october.
-first non repeating character in a stream -> 29th october.
-    
-//need to practice sliding window problems. 
-    
     // end
     return 0;
 }

@@ -28,9 +28,9 @@ using namespace std;
             //Addtition logic, now again if back elment is less than current element then pop out those small element from deque
              while(!maxi.empty() and arr[maxi.back()] <= arr[i]){
                 maxi.pop_back();
-            }
+            } 
             maxi.push_back(i); //and push this current element in deque
-            
+             
             ans.push_back(arr[maxi.front()]); //then push back maximum element in ans vector.
         }
         
