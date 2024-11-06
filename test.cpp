@@ -1,38 +1,80 @@
 #include<bits/stdc++.h>
 using namespace std;
-int findFactoril(int n){
-    if(n == 1) return 1;
 
-    int ans = n * findFactoril(n-1);
-    return ans;
-}
 
-int findPower(int n){
-    if(n == 0) return 1;
+class Node{
+    public:
+    int data;
+    Node *left;
+    Node *right;
 
-    int ans = 2 * findPower(n-1);
-    return ans;
-}
-void findCounting(int n){
-    if(n == 1){
-        cout<<n<<endl;
-        return;
+    Node(int data){
+        this->data = data;
+        left = NULL;
+        right = NULL;
     }
+};
 
-    cout<<n<<endl;
-    return findCounting(n-1);
+ Node* buildTree(Node *root){
+    cout<<"Enter data : "<<endl;
+    int data;
+    cin>>data;
+    if(data == -1) return NULL;
+    
+    root = new Node(data);
+
+    cout<<"Enter data to insert in left part of "<<data<<endl;
+
+    root->left = buildTree(root->left);
+
+    cout<<"Enter data to insert in right part of "<<data<<endl;
+
+    root->right = buildTree(root->right);
+
+    return root;
+}
+
+void traverseTree(Node *root){
+
+    if(!root) return;
+
+    traverseTree(root->left);
+    
+    traverseTree(root->right);
+    cout<<root->data<<' ';
+}
+
+void levelOrderTraversal(Node *root){
+    queue<Node *> q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+        Node *temp = q.front();
+        if(temp) cout<<temp->data<<" ";
+        q.pop();
+
+        if(temp == NULL){
+            cout<<endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+            if(temp->left) q.push(temp->left);
+            if(temp->right) q.push(temp->right);
+        }
+    }
 }
 
 int main(){
-    // cout<<findFactoril(4);
-    cout<<endl;
-    // cout<<findPower(3);
-    findCounting(5);
+    Node *root = NULL;
 
-    // cout<<"hello"<<endl;
-    // int *pr = new int[3];
-    // int *b = new int(2);
-    // cout<<(*b)<<endl;
-    // for(int i = 0; i<2; i++) cout<<pr[i]<<endl;;
-    // return 0;
+    // 3 5 7 -1 -1 9 -1 -1 8 2 -1 -1 -1
+    
+    root = buildTree(root);
+
+    // traverseTree(root);
+    levelOrderTraversal(root);
+
+    return 0;
 }
