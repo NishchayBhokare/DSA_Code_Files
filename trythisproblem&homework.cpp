@@ -53,8 +53,10 @@ first non repeating character in a stream -> 29th october.
 circular tour -> 5th nov.
 k queue in array -> 5th nov.
 maximum and minimum of all subarray. -> 6th nov.
+zig zag traversal tree->8th nov.
 
     
 //need to practice sliding window problems. 
 //need to practice queue questions.
+//inorder preorder post order using iteration.
     

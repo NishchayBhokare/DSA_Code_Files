@@ -107,7 +107,7 @@ void postOrder(node *root)
     {
         // follows LRN
         postOrder(root->left);
-        postOrder(root->right);
+         Order(root->right);
         cout << root->data << " ";
     }
 }

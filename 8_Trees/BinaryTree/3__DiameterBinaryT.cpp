@@ -35,6 +35,20 @@ int height(struct Node *node)
     return maxHeight;
 }
 
+//we can write like this also. -> this is similar function which works as above.
+int findDiameter(Node *root, int &maxDiameter){
+    if(root == NULL) return 0;
+    
+    int lh = findDiameter(root->left,maxDiameter);
+    int rh = findDiameter(root->right,maxDiameter);
+    
+    int diameter = 1 + lh + rh;
+    maxDiameter = max(maxDiameter, diameter);
+    int height = 1 + max(lh,rh);
+    
+    return height;
+}
+
 int diameter(Node *root)
 {
     // Your code here

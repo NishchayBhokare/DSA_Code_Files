@@ -37,6 +37,8 @@ vector <int> zigZagTraversal(Node* root)
             }
             else{ //if in case lefttoRight is false that means we have to move from right to left <---
                 int index = size - i - 1; //In this case index will point from back, that is index will be size - i -1. 
+                //we are using size-i-1 becuase...for this case..parent i is incremeting and index is decreemnting..
+                //so to find position to add element in temp vector..we are doing like this.
                 temp[index] = frontNode->data; //on that index insert front nodes data.
             }
             
@@ -52,4 +54,43 @@ vector <int> zigZagTraversal(Node* root)
     }
     
     return ans; 
+}
+
+
+//Approach 2: using two stack. Tc-O(N) SC-O(N)
+//Approach is..for left to right...insert data for first stack..and 
+// for right to left...insert data for second stack. while popping element from stack..that elements will be need to insret in ans.
+vector <int> zigZagTraversal(Node* root)
+{
+    // Code here
+    stack<Node*> first;
+    stack<Node*> second;
+    vector<int> ans;
+    
+    first.push(root); //insert root in first stack.
+    
+    while(!first.empty() || !second.empty()){ //loop till first or second both stack is not empty
+        
+        while(!first.empty()){ //if first stack is not empty..then it's time to move right to left.
+        //so push element in second stack.
+            Node *temp = first.top(); //take top elment of stack
+            first.pop(); //pop from it.
+            ans.push_back(temp->data); //push that element in stack.
+            
+            if(temp->left) second.push(temp->left); //now...add left element in second stack then right..becuse of
+            //stack's nature...right eleemnt will be on top.
+            if(temp->right) second.push(temp->right);
+        }
+        
+        while(!second.empty()){ //similarly, for second stack. if second stack empty..insert element in first stack.
+            Node *temp = second.top();
+            second.pop();
+            ans.push_back(temp->data);
+            
+            if(temp->right) first.push(temp->right); //insert first right then left.
+            if(temp->left) first.push(temp->left);
+        }
+    }
+    
+    return ans; //return ans
 }

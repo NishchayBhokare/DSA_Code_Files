@@ -48,3 +48,17 @@ int height(struct Node* node){
     solve(node, height,maxHeight);
     return maxHeight; //return answer
 }
+
+
+//almost similar
+// void findHeight(struct Node* node, int currHeight, int &maxHeight){
+//     if(node == NULL) return;
+    
+//     currHeight++;
+//     findHeight(node->left,currHeight,maxHeight);
+//     findHeight(node->right,currHeight,maxHeight);
+    
+//     if(!node->left && !node->right) 
+//         maxHeight = max(maxHeight,currHeight);
+    
+// }
