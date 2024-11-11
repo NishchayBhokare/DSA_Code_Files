@@ -24,7 +24,7 @@ void solve(Node *root,int sum,int length){
             maxSum = sum; //and max sum as well
         }
         
-        if(length == maxLength) maxSum = max(maxSum,sum); //if both current path length and max length is equal then take max of curent sum or maxSum.
+        else if(length == maxLength) maxSum = max(maxSum,sum); //if both current path length and max length is equal then take max of curent sum or maxSum.
         
         return;
     }
