@@ -12,6 +12,46 @@ struct Node
     int data;
 };
 
+//using unordered map. TC-O(N) SC-O(1).
+ vector<int> topView(Node *root)
+{
+    vector<int> ans;
+    queue< pair<Node*, int>>q;
+    unordered_map<int,int> ump; //using unordered map and min, max index..we can solve this question in big oh of N. Tc
+    int minIndex = 0, maxIndex = 0;
+    
+    q.push({root,0});
+    
+    while(!q.empty()){
+        pair<Node*,int>pr = q.front();
+        
+        Node *temp = pr.first;
+        int index = pr.second;
+        q.pop();
+        
+        minIndex = min(minIndex, index); //storing min distance..i.e index.
+        maxIndex = max(maxIndex, index); //similarly for maxdistance.
+        
+        // if(!ump[index]) ump[index] = temp->data;
+        if(ump.find(index) == ump.end()) ump[index] = temp->data; //as we are dealing with only first element
+        //of every distance...so checking..if for that distance...element is already added or not..if not..then add curretn element.
+        
+        if(temp->left){
+            q.push({temp->left, index-1}); //move to left part.
+        }
+        
+        if(temp->right){
+            q.push({temp->right, index+1}); //right
+        }
+    }
+    
+    for(int i = minIndex; i<=maxIndex; i=i+1){ //now..we will start from minIndex to max index..these are the range of distance for every node.
+        ans.push_back(ump[i]); //pushing element..standing on ith distance.
+    }
+    
+    return ans;
+}
+
 //TC-O(Nlogn) SC-O(N)
 vector<int> topView(Node *root)
 {

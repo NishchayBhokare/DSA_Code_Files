@@ -32,3 +32,36 @@ struct Node
        solve(root,level,ans);
        return ans; //finally returning ans
     }
+
+//using map Tc-O(NLOgn) SC-O(N) we can use unordered map also.
+//also we can solve this question using storing levels...as we solved in left view question.
+vector<int> rightView(Node *root)
+{
+    // Your Code here
+    vector<int> ans;
+    if(root == NULL) return ans;
+    
+    queue<Node *>q;
+    q.push(root); //push root node in queue
+    q.push(NULL); //then push null which shows current level is end
+    ans.push_back(root->data);
+    
+    while(q.size() > 1){
+        Node *temp = q.front();
+        q.pop();
+        
+        if(temp == NULL){
+            q.push(NULL);
+            temp = q.front();
+            ans.push_back(temp->data);
+        }
+        
+        if(temp->right)
+            q.push(temp->right);
+            
+        if(temp->left)
+            q.push(temp->left);
+    }
+    
+    return ans;
+}

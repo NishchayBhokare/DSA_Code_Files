@@ -60,6 +60,46 @@ vector<int> verticalOrder(Node *root)
 }
 
 
+//similar like above using unordered_map
+ vector<int> verticalOrder(Node *root)
+    {
+        vector<int> ans;
+        int minIndex = 0, maxIndex = 0;
+        unordered_map<int,vector<int> > ump;
+
+        queue<pair<Node*,int>> q;
+        q.push({root, 0});
+        
+        while(!q.empty()){
+            pair<Node*,int> pr = q.front();
+            
+            Node *temp = pr.first;
+            int index = pr.second;
+            q.pop();
+            
+            ump[index].push_back(temp->data);
+            
+            minIndex = min(index, minIndex);
+            maxIndex = max(index, maxIndex);
+            
+            
+            if(temp->left){
+                q.push({temp->left, index-1});
+            }
+            if(temp->right){
+                q.push({temp->right, index+1});
+            }
+            
+        }
+        
+        for(int i = minIndex; i<=maxIndex; i++){
+            for(auto j:ump[i]){
+                ans.push_back(j);
+            }
+        }
+        return ans;
+    }
+
 
 //Approach 2: TC-O(N) SC-O(N)
 //first iterate over tree and store horizontal distance of every node.

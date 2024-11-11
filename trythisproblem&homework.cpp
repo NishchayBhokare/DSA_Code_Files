@@ -54,6 +54,8 @@ circular tour -> 5th nov.
 k queue in array -> 5th nov.
 maximum and minimum of all subarray. -> 6th nov.
 zig zag traversal tree->8th nov.
+boundary traversal -> 8th nov.
+vertical traversal -> 9th nov.
 
     
 //need to practice sliding window problems. 

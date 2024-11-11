@@ -13,7 +13,8 @@ struct Node
 };
 
 //TC-O(Nlogn) SC-O(N)
-//Almost same as top view just one change that is dont check whether node is present for current distance, just push new node for that distance and at last only bottom node will points to those distance.
+//Almost same as top view just one change that is dont check whether node is present for current distance, 
+//just push new node for that distance and at last only bottom node will points to those distance.
 vector <int> bottomView(Node *root) {
     vector<int> ans;
     queue<pair<Node *,int> > q;

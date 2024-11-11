@@ -45,12 +45,15 @@ vector<int> diagonal(Node *root)
   vector<int> ans;
   queue<Node *>q;
   q.push(root); //in queue pushing all left nodes.
+
   while(!q.empty()){
       Node *temp = q.front(); //getting front node
       q.pop(); //popping out that node
+      
       while(temp){ //while temp not get null just iterate over tree
           if(temp->left) q.push(temp->left); //if temp's left exist then push temp's left in queue
-          ans.push_back(temp->data); //then insert temp's data in answer vector
+          
+           //then insert temp's data in answer vector
           temp=temp->right; //and move to right.
       } 
   }
