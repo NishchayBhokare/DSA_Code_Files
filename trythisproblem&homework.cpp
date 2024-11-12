@@ -58,6 +58,8 @@ boundary traversal -> 8th nov.
 vertical traversal -> 9th nov.
 diagonal traversal -> 11th nov.
 lca in binary tree -> 11th nov.
+k sum path -> 12th nov. (NOTE-> here need to learn...prefix sum algorithm with hashmap. very very imp.).
+maxmimum sum of non adjacent nodes. -> 12th nov.
 
     
 //need to practice sliding window problems. 
