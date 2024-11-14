@@ -83,3 +83,138 @@ int minTime(Node* root, int target)
     int Time = burnTree(targetNode,nodeToParent);
     return Time; //Finally return answer.
 }
+
+
+        //Approach 2: similar like above..but used recrusion for cresation of mapping.
+void createMapping(Node *root,int target, Node *&targetNode, unordered_map<Node*,Node*> &mapping){
+    if(root == NULL) return;
+
+    if(root->data == target) targetNode = root;
+
+    if(root->left){
+        mapping[root->left] = root; //creating parent child mapping.
+        createMapping(root->left,target,targetNode,mapping);
+    }
+
+    if(root->right){
+        mapping[root->right] = root;
+        createMapping(root->right,target,targetNode,mapping);
+    }
+}
+
+int minTime(Node* root, int target) 
+{   
+    int time = 0;
+    if(root->left == NULL && root->right == NULL) return time;
+    Node *targetNode = NULL;
+    unordered_map<Node*,Node*> mapping;
+    unordered_map<Node*,bool>visited;
+
+    createMapping(root,target,targetNode,mapping);
+
+    queue<Node*>q;
+    q.push(targetNode);
+    visited[targetNode] = true;
+
+    bool firstIteration = true;
+    while(!q.empty()){ //these things are same like Approach 1.
+        int size = q.size();
+        for(int i =0; i<size; i++){
+            Node *frontNode = q.front();
+            q.pop();
+
+            if(frontNode->left && !visited[frontNode->left]){
+                q.push(frontNode->left);
+                visited[frontNode->left] = true;
+            }
+
+            if(frontNode->right && !visited[frontNode->right]){
+                q.push(frontNode->right);
+                visited[frontNode->right] = true;
+            }
+
+            if(mapping[frontNode] && !visited[mapping[frontNode]]){
+                q.push(mapping[frontNode]);
+                visited[mapping[frontNode]] = true;
+            }
+        }
+     
+        if(!firstIteration) //condition because we don't want to increment time for given target node.
+            time++; //in first approach we have used flag...so this is alternative for that.
+        
+        else firstIteration = false;
+    }
+
+    return time;
+}
+
+
+
+
+
+                                            //Approach 3:
+//using little extra space..but i have solved the problem 
+void createMapping(Node *root, unordered_map<int,vector<int> > &mapping){
+    if(root == NULL) return;
+
+    if(root->left){
+        //mapping current node as parent for left child node.
+        mapping[root->left->data].push_back(root->data);
+
+        //mapping child node to current node.
+        mapping[root->data].push_back(root->left->data);
+    }
+
+    if(root->right){
+        //same first map parent.
+        mapping[root->right->data].push_back(root->data);
+
+        //mapping child.
+        mapping[root->data].push_back(root->right->data);
+    }
+
+    createMapping(root->left,mapping);
+    createMapping(root->right,mapping);
+}
+
+
+
+int minTime(Node* root, int target) 
+{
+    int time = 0;
+    if(root->left == NULL && root->right == NULL) return time;
+
+    // Your code goes here
+    unordered_map<int,vector<int> > mapping;
+    unordered_map<int,bool> visited;
+
+    createMapping(root,mapping);
+
+    //mark target node as visited.
+    visited[target] = true;
+
+    queue<int> q;
+    for(auto i: mapping[target]){
+        if(!visited[i]){
+            q.push(i);
+            visited[i]=true;
+        }
+    }
+
+    while(!q.empty()){
+        int size = q.size();
+        for(int i = 0; i<size;i++){
+            int node = q.front();
+            q.pop();
+
+            for(auto i:mapping[node]){
+                if(!visited[i]){
+                    q.push(i);
+                    visited[i]=true;
+                }
+            }
+        }
+        time++;
+    }
+    return time;
+}

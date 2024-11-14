@@ -1,8 +1,34 @@
 //Construct Tree from Inorder & Preorder
 //GFG
 
+//Approach 1: optimised approach using hashmap. Tc -O(N) Sc-O(N)
+ Node * solve(vector<int>&pre,int &index, unordered_map<int,int> &ump, int startEnd, int endInd){
+        if(index >= pre.size() || startEnd > endInd){
+            return NULL;
+        }
+        
+        int element = pre[index++];
+        Node *root = new Node(element);
+        int pos = ump[element]; //getting index in big oh 1.
+        
+        root->left = solve(pre,index,ump,startEnd,pos-1);
+        root->right = solve(pre,index,ump,pos+1,endInd);
+        
+        return root;
+    }
+    
+    Node *buildTree(vector<int> &in, vector<int> &pre) {
+        // Code here
+        unordered_map<int,int> ump;
+        for(int i = 0; i<in.size();i++) ump[in[i]] = i; //now creating mapping of element with index.
+        
+        int index = 0, n = in.size();
+        
+        return solve(pre,index,ump,0,n);
+    }
 
-//Approach : TC-O(N2) SC-O(N)
+
+//Approach 2: TC-O(N2) SC-O(N)
 //Analogy: The first element of preorder is root node. so search this node in inorder and once root node is find in inorder then left element from it will be in left side of subtree and right elements will be in right side or subtree, so according to that update start index and end index.
 int findPosition(int element,int in[],int inorderStart,int inorderEnd){ //elements can be duplicate so search for element in range of inorder start index and end index. so that even if duplicates elements are present then we dont need to worry about that
     for(int i=inorderStart; i<=inorderEnd; i++){
@@ -35,3 +61,29 @@ Node* buildTree(int in[],int pre[], int n)
     return ans;
 }
 
+
+//Approach 1: optimised approach using hashmap. Tc -O(N) Sc-O(N)
+ Node * solve(vector<int>&pre,int &index, unordered_map<int,int> &ump, int startEnd, int endInd){
+        if(index >= pre.size() || startEnd > endInd){
+            return NULL;
+        }
+        
+        int element = pre[index++];
+        Node *root = new Node(element);
+        int pos = ump[element]; //getting index in big oh 1.
+        
+        root->left = solve(pre,index,ump,startEnd,pos-1);
+        root->right = solve(pre,index,ump,pos+1,endInd);
+        
+        return root;
+    }
+    
+    Node *buildTree(vector<int> &in, vector<int> &pre) {
+        // Code here
+        unordered_map<int,int> ump;
+        for(int i = 0; i<in.size();i++) ump[in[i]] = i; //now creating mapping of element with index.
+        
+        int index = 0, n = in.size();
+        
+        return solve(pre,index,ump,0,n);
+    }

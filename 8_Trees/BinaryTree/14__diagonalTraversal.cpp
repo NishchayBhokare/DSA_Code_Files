@@ -54,6 +54,8 @@ vector<int> diagonal(Node *root)
           if(temp->left) q.push(temp->left); //if temp's left exist then push temp's left in queue
           
            //then insert temp's data in answer vector
+          ans.push_back(temp->data); //not sure about this
+
           temp=temp->right; //and move to right.
       } 
   }

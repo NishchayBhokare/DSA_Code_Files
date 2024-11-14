@@ -33,6 +33,7 @@ void flatten(Node *root)
     while(curr != NULL){
         if(curr->left != NULL){ //if left exist.
             Node *predecessor = findPredecessor(curr); //then find predecessor for current node
+            
             predecessor -> right = curr->right; //point predecessor's right to current right
             curr->right = curr->left; //and current right to current left.
             curr->left = NULL; //now there is no use of curent left pointer so point it to null
@@ -59,6 +60,7 @@ void flatten(Node *root)
     Node *curr = root;
     if(root->left != NULL) { 
         Node *predecessor = findPredecessor(curr);
+        
         predecessor -> right = curr->right;
         curr->right = curr->left;
         curr->left = NULL;

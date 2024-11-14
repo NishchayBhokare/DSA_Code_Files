@@ -2,6 +2,34 @@
 //GFG
 
 
+
+//using map. TC-O(N) SC-O(N)
+  Node * solve(vector<int> &post,int &index, unordered_map<int,int>&ump, int startInd, int endInd){
+        if(index < 0 || startInd > endInd){
+            return NULL;
+        }
+        
+        int element = post[index--];
+        Node *root = new Node(element);
+        int pos = ump[element];
+        
+        root->right = solve(post,index,ump,pos+1,endInd);
+        root->left = solve(post,index,ump,startInd,pos-1);
+        
+        return root;
+    }
+
+    // Function to return a tree created from postorder and inoreder traversals.
+    Node* buildTree(vector<int> in, vector<int> post) {
+        // code here
+        unordered_map<int,int>ump;
+        for(int i = 0; i<in.size(); i++) ump[in[i]] = i;
+        
+        int index = post.size()-1;
+        
+        return solve(post,index,ump,0,in.size()-1);
+    }
+
 //Approach : TC-O(N2) SC-O(N)
 //Approach is Almost similar as previous problem just two changes.
 //In case of postorder root element will starts from end of array. 
