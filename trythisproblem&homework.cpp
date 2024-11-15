@@ -65,8 +65,16 @@ construct tree using inorder and postorder -> 13th nov.
 burning tree-> 14th nov.
 Morris traversal -> 14th nov.
 flatten linked list -> 14th nov.
+
+//BST
+inorder predecessor and successor -> 15th nov.
+LCA In bst -> 15th nov.
+pair with target sum (two sum) -> 15th nov
+flatten bst to linked list -> 15th nov.
+bst from preorder -> 15th nov.  
     
 //need to practice sliding window problems. 
 //need to practice queue questions.
 //inorder preorder post order using iteration.
     
+

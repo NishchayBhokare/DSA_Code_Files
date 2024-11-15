@@ -12,7 +12,7 @@ struct Node
 };
 
 
-//Approach 1: Simple iterative approach. TC-O(N) SC-O(1)
+                                        //Approach 1: Simple iterative approach. TC-O(N) SC-O(1)
 
 //For a node (except leaf node) Successor will be go to once right and then move to left most node.
 void inOrderSuccessor(Node* root, Node*& suc, int key){
@@ -53,7 +53,9 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 
 
 
-//Approach 2: Recursive approach. TC-O(N) SC-O(1)
+                                            //Approach 2: Recursive approach. TC-O(N) SC-O(1)
+
+
 Node *findMaximum(Node *root){
     while(root->right!=NULL){
         root=root->right;

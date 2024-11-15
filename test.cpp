@@ -15,161 +15,136 @@ class Node{
     }
 };
 
- Node* buildTree(Node *root){
-    cout<<"Enter data : "<<endl;
-    int data;
-    cin>>data;
-    if(data == -1) return NULL;
-    
-    root = new Node(data);
 
-    cout<<"Enter data to insert in left part of "<<data<<endl;
+Node * insertIntoBST(Node *root, int data){
+    if(root == NULL){
+        Node *temp = new Node(data);
+        return temp;
+    }
 
-    root->left = buildTree(root->left);
+    if(data < root->data) 
+        root->left = insertIntoBST(root->left, data);
 
-    cout<<"Enter data to insert in right part of "<<data<<endl;
-
-    root->right = buildTree(root->right);
+    else 
+        root->right = insertIntoBST(root->right,data);
 
     return root;
 }
 
-void traverseTree(Node *root){
-
-    if(!root) return;
-
-    traverseTree(root->left);
-    
-    traverseTree(root->right);
-    cout<<root->data<<' ';
+void takingInput(Node* &root){
+    cout<<"Enter data "<<endl;
+    int data; 
+    cin>>data;
+    while(data != -1){
+        root = insertIntoBST(root,data);
+        cin>>data;
+    }
 }
 
-void levelOrderTraversal(Node *root){
+void levelOrderTraversal(Node *root) // levelOrderTraversal with cout statement to change line.
+{
     queue<Node *> q;
     q.push(root);
-    q.push(NULL);
-    while(!q.empty()){
-        Node *temp = q.front();
-        if(temp) cout<<temp->data<<" ";
-        q.pop();
+    q.push(NULL); // pushing null as line sepertor cause at level 0 only one node will be there i.e root node.
+    while (!q.empty())
+    {
+        Node *temp = q.front(); // getting first node from queue.
+        q.pop();                // popping out that particular node.
 
-        if(temp == NULL){
-            cout<<endl;
-            if(!q.empty()){
+        if (temp == NULL)
+        {                 // if temp is null that means previous level is finished and by line seperator we will move next level.
+            cout << endl; // line seperating.
+            if (!q.empty())
+            { // if there are elements in queue then pushing null in queue i.e next level is also completed in queue.
                 q.push(NULL);
             }
         }
-        else{
-            if(temp->left) q.push(temp->left);
-            if(temp->right) q.push(temp->right);
+        else
+        {
+            cout << temp->data << " "; // if null is not then print temp's data.
+            if (temp->left)
+            { // if temp's left is exist then push it in queue.
+                q.push(temp->left);
+            }
+            if (temp->right)
+            { // if temp's right is exist then push it in queue.
+                q.push(temp->right);
+            }
         }
     }
 }
 
-void buildFromLevelOrderTraversal(Node * &root){
-    queue<Node *> q;
-    cout<<"enter data for root node "<<endl;
-    int data;
-    cin>>data;
-    root = new Node(data);
-    q.push(root);
-    while(!q.empty()){
-        Node *temp = q.front();
-        q.pop();
+int minElementInBst(Node *root){
+    if(root == NULL) return -1;
 
-        cout<<"Enter data for left of "<<temp->data<<endl;
-        int leftChild;
-        cin>>leftChild;
-        if(leftChild != -1){
-            Node *leftNode = new Node(leftChild);
-            temp->left = leftNode;
-            q.push(leftNode);
-        }
+    if(root->left == NULL) return root->data;
 
-        cout<<"Enter data for right of "<<temp->data<<endl;
-        int rightChild;
-        cin>>rightChild;
-        if(rightChild != -1){
-            Node *rightNode = new Node(rightChild);
-            temp->right = rightNode;
-            q.push(rightNode);
-        }
-    }
+    return minElementInBst(root->left);
 }
 
-void iterativePreOrder(Node *root){
-    stack<Node *>st;
-    st.push(root);
-    while(!st.empty()){
-        Node *temp = st.top();
-        st.pop();
+int maxElementInBst(Node *root){
+    if(root == NULL) return -1;
 
-        //print
-        cout<<temp->data<<" ";
-        if(temp->right) st.push(temp->right);
-        if(temp->left) st.push(temp->left);
-    }cout<<endl;
+    if(root->right == NULL) return root->data;
+
+    return maxElementInBst(root->right);
 }
 
-void iterativePostOrder(Node *root){
-    stack<Node*>st;
-    stack<Node*>ans;
-
-    st.push(root);
-    while(!st.empty()){
-        Node *temp = st.top();
-        st.pop();
-        ans.push(temp);
-
-        if(temp->left)
-            st.push(temp->left);
-        
-        if(temp->right)
-            st.push(temp->right);
-    }
-
-    while(!ans.empty()){
-        cout<<ans.top()->data<<" ";
-        ans.pop();
-    }cout<<endl;
-}
-
-void iterativeInOrderTraversal(Node *root){
-    stack<Node *>st;
+Node* deletionInBst(Node * root, int key){
     Node *temp = root;
-    while(true){
-        if(temp != NULL){
-            st.push(temp);
-            temp = temp->left;
+    if(temp == NULL) return NULL;
+
+    if(key < temp->data)
+        temp->left = deletionInBst(temp->left, key);
+
+    else if(key > temp->data)
+        temp->right = deletionInBst(temp->right,key);
+    else{
+
+        //if zero child
+        if(!temp->left && !temp->right){
+            cout<<"Node "<<temp->data<<" is deleted "<<endl;
+            delete temp;
+            return NULL;
         }
+
+        //if one child
+        else if(temp->left && !temp->right){
+            Node *leftPart = temp->left;
+            cout<<"Node "<<temp->data<<" is deleted "<<endl;
+            delete temp;
+            return leftPart;
+        }
+        else if(!temp->left && temp->right){
+            Node *rightPart = temp->right;
+            cout<<"Node "<<temp->data<<" is deleted "<<endl;
+            delete temp;
+            return rightPart;
+        }
+
+        //if two child.
         else{
-            if(st.empty()) break;
-            temp = st.top();
-            st.pop();
-            cout<<temp->data<<" ";
-            temp = temp->right;
+            int maxi = maxElementInBst(root->left);
+            temp->data = maxi;
+            temp->left = deletionInBst(temp->left,maxi);
+            return temp;
         }
     }
+
+    return temp;
 }
 
 int main(){
+    // 10 7 9 5 15 13 14 -1
     Node *root = NULL;
-
-    // 3 5 7 -1 -1 9 -1 -1 8 2 -1 -1 -1
-    //3 5 -1 -1 8 -1 -1
-    //3 -1 2 -1 -1
-    
-    root = buildTree(root);
-
-    // vector<int> arr = {3,5,8,7,9,-1,-1,-1,-1,-1,-1};
-    // buildFromLevelOrderTraversal(root);
-
-        // traverseTree(root);
-    // iterativePreOrder(root);
-    // iterativePostOrder(root);
-    levelOrderTraversal(root);
+    takingInput(root);
     cout<<endl;
-    iterativeInOrderTraversal(root);
+    // cout<<minElementInBst(root)<<endl;
+    // cout<<maxElementInBst(root);
 
-    return 0;
+    Node *ptr = deletionInBst(root, 10);
+    // cout<<"hey";
+    // cout<<ptr->data<<endl<<endl;
+
+    levelOrderTraversal(root);
 }

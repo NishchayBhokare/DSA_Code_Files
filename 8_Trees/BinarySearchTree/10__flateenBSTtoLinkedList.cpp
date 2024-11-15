@@ -52,6 +52,34 @@ TreeNode<int>* flatten(TreeNode<int>* root)
    return head;
 }
 
+//similar like above..but in normal way of inorder traversal.
+  void solve(Node *root, Node* &head, Node * &tail){
+        if(root == NULL) return ;
+        
+        solve(root->left, head, tail);
+
+        if( head == NULL){
+            head = root;
+            tail = root;
+        }
+        
+        Node * temp = root->right; //storing right part.
+        tail->right = root;
+        tail = root;
+        tail->left = NULL;
+        
+        solve(temp,head,tail);
+    }
+    
+    
+    Node *flattenBST(Node *root)
+    {
+        Node *head = NULL;
+        Node *tail = NULL;
+        solve(root,head, tail);
+        return head;
+    }
+
 
 //Approach 3: TC-O(N) SC-O(N)
 //Storing inorder  in array and then updating left and right.

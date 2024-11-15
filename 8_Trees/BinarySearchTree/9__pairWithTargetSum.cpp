@@ -90,3 +90,28 @@ void solve(Node *root, vector<int>&ans){
         }
         return 0;
     }
+
+
+//Approach 3: using hashmap. Tc-O(N) SC-O(N)
+bool solve(BinaryTreeNode<int>* root, int target, unordered_map<int,bool> &ump){
+    if(root == NULL) return false;
+
+    if(ump[target - root->data]) //checking for current node.. if it get minus by target..then required value is presnet in 
+    //map or not..if present ...then pair can be possible else not.
+        return true;
+    else    
+        ump[root->data] = true; //if not..then push current node data to map and marked as true.
+    
+    bool leftAns = solve(root->left,target,ump);
+    bool rightAns = solve(root->right,target,ump);
+
+    if(leftAns || rightAns)  //if anyof the answer is true ..return true.
+        return true;
+    
+    return false;
+}
+
+bool twoSumInBST(BinaryTreeNode<int>* root, int target) {
+	unordered_map<int,bool> ump;
+    return solve(root,target,ump);
+}
