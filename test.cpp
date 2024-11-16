@@ -1,150 +1,68 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-class Node{
+class heap{
     public:
-    int data;
-    Node *left;
-    Node *right;
+    int arr[100];
+    int size = 0;
 
-    Node(int data){
-        this->data = data;
-        left = NULL;
-        right = NULL;
+    void insert(int val){
+        int index = ++size;
+
+        arr[index] = val;
+
+        while(index > 1){
+            int parentInd = index/2;
+            if(arr[parentInd] < arr[index]){
+                swap(arr[parentInd], arr[index]);
+                index = parentInd;
+            }
+            else break;   
+        }
     }
+
+    void print(){
+        for(int i = 1; i<=size; i++){
+            cout<<arr[i]<<" ";
+        }
+    }
+
+    void deletionInHeap(){
+        arr[1] = arr[size]; //putting.
+        size--;
+
+        int index = 1;
+        while(index < size){
+            int leftchild = index * 2;
+            int rightchild = index * 2 + 1;
+
+            if((leftchild <= size) and (arr[index] < arr[leftchild])){
+                swap(arr[index], arr[leftchild]);
+                index = leftchild;
+            }
+             
+            else if((rightchild <= size) and (arr[index] < arr[rightchild]) ){
+                swap(arr[index], arr[rightchild]);
+                index = rightchild;
+            }
+                 
+            else
+                return;
+        }
+    }
+
 };
 
 
-Node * insertIntoBST(Node *root, int data){
-    if(root == NULL){
-        Node *temp = new Node(data);
-        return temp;
-    }
-
-    if(data < root->data) 
-        root->left = insertIntoBST(root->left, data);
-
-    else 
-        root->right = insertIntoBST(root->right,data);
-
-    return root;
-}
-
-void takingInput(Node* &root){
-    cout<<"Enter data "<<endl;
-    int data; 
-    cin>>data;
-    while(data != -1){
-        root = insertIntoBST(root,data);
-        cin>>data;
-    }
-}
-
-void levelOrderTraversal(Node *root) // levelOrderTraversal with cout statement to change line.
-{
-    queue<Node *> q;
-    q.push(root);
-    q.push(NULL); // pushing null as line sepertor cause at level 0 only one node will be there i.e root node.
-    while (!q.empty())
-    {
-        Node *temp = q.front(); // getting first node from queue.
-        q.pop();                // popping out that particular node.
-
-        if (temp == NULL)
-        {                 // if temp is null that means previous level is finished and by line seperator we will move next level.
-            cout << endl; // line seperating.
-            if (!q.empty())
-            { // if there are elements in queue then pushing null in queue i.e next level is also completed in queue.
-                q.push(NULL);
-            }
-        }
-        else
-        {
-            cout << temp->data << " "; // if null is not then print temp's data.
-            if (temp->left)
-            { // if temp's left is exist then push it in queue.
-                q.push(temp->left);
-            }
-            if (temp->right)
-            { // if temp's right is exist then push it in queue.
-                q.push(temp->right);
-            }
-        }
-    }
-}
-
-int minElementInBst(Node *root){
-    if(root == NULL) return -1;
-
-    if(root->left == NULL) return root->data;
-
-    return minElementInBst(root->left);
-}
-
-int maxElementInBst(Node *root){
-    if(root == NULL) return -1;
-
-    if(root->right == NULL) return root->data;
-
-    return maxElementInBst(root->right);
-}
-
-Node* deletionInBst(Node * root, int key){
-    Node *temp = root;
-    if(temp == NULL) return NULL;
-
-    if(key < temp->data)
-        temp->left = deletionInBst(temp->left, key);
-
-    else if(key > temp->data)
-        temp->right = deletionInBst(temp->right,key);
-    else{
-
-        //if zero child
-        if(!temp->left && !temp->right){
-            cout<<"Node "<<temp->data<<" is deleted "<<endl;
-            delete temp;
-            return NULL;
-        }
-
-        //if one child
-        else if(temp->left && !temp->right){
-            Node *leftPart = temp->left;
-            cout<<"Node "<<temp->data<<" is deleted "<<endl;
-            delete temp;
-            return leftPart;
-        }
-        else if(!temp->left && temp->right){
-            Node *rightPart = temp->right;
-            cout<<"Node "<<temp->data<<" is deleted "<<endl;
-            delete temp;
-            return rightPart;
-        }
-
-        //if two child.
-        else{
-            int maxi = maxElementInBst(root->left);
-            temp->data = maxi;
-            temp->left = deletionInBst(temp->left,maxi);
-            return temp;
-        }
-    }
-
-    return temp;
-}
-
 int main(){
-    // 10 7 9 5 15 13 14 -1
-    Node *root = NULL;
-    takingInput(root);
-    cout<<endl;
-    // cout<<minElementInBst(root)<<endl;
-    // cout<<maxElementInBst(root);
+    heap h;
+    h.insert(50);
+    h.insert(55);
+    h.insert(53);
+    h.insert(52);
+    h.insert(54);
 
-    Node *ptr = deletionInBst(root, 10);
-    // cout<<"hey";
-    // cout<<ptr->data<<endl<<endl;
+    h.deletionInHeap();
 
-    levelOrderTraversal(root);
+    h.print();
 }

@@ -1,26 +1,26 @@
 
 
 searching sorting -> 
-5) search in rotated sorted array.
-7) Book allocation problem. 
-8) Aggressive cow problem.
+1) search in rotated sorted array. 5 (solved on 16th nov)
+2) Book allocation problem. 7 (solved on 16th nov)
+3) Aggressive cow problem. 9 (solved on 16th nov)
 
 // String
-6) Remove all occurences
-7) All permuttion
-8) string compression.
+4) Remove all occurences
+5) All permuttion
+6) string compression.
 
-// 2D rry //10th oct
-3)binSerchMtrix.
-4)  
-5) Rot img.
+// 2D arry //10th oct
+7) binSerchMtrix.
+8) Rot img.
 
 NOTE ->>//solve 2d array at least 10 problems.
 
-//Mth
-1) countprimes. //11th oct
-2) GCD.
-3) Module exponentiton.
+//Math
+9) countprimes. //11th oct
+10) GCD.
+11) Module exponentiton.
+
 
 Home work 
 // segmented sive ->learn this see striver video.
@@ -28,7 +28,7 @@ Home work
 // Inc-excl principle.
 // factorial of 212.
 
-//not able to solve problem
+
 not able to solve letter combination.
 not able to sovle permuatation of string.
 not able to solve reverse linkedlist in k groups.
@@ -74,6 +74,7 @@ flatten bst to linked list -> 15th nov.
 bst from preorder -> 15th nov.  
 sorted linked list to bst -> 16th nov.
 mrege two bst -> 16th nov.
+largest bst -> 16th nov.
     
 //need to practice sliding window problems. 
 //need to practice queue questions.

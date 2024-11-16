@@ -1,5 +1,5 @@
 //Largest BST. 
-//GFG
+//check code studio qustion don't see gfg question..u will get confused.
 
 //Approach 1: TC-O(N) SC-O(h)
 class info{ //creating one data structure
@@ -10,7 +10,7 @@ class info{ //creating one data structure
         int isBst;
 };
     
-info solve(Node *root, int &maxSize){
+info solve(TreeNode * root, int &ans){
     if(root == NULL){
         return {INT_MAX,INT_MIN,0,true}; //return data structure which has min as intMax and max as Int_min , size as 0 and isbst as true.
     }
@@ -39,7 +39,7 @@ info solve(Node *root, int &maxSize){
     return curr; //returning current object.
 }
 
-int largestBst(Node *root)
+int largestBST(TreeNode * root){
 {
     int maxSize = 0;
     info head = solve(root,maxSize); 

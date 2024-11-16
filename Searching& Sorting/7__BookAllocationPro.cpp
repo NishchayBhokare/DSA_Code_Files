@@ -102,3 +102,58 @@ int allocateBooks(vector<int> arr, int n, int m) {
     }
     return ans;
 }
+
+
+//just normal solved..
+bool isPossible(vector<int> &arr, int pageCount, int std){
+        int student = 1;
+        
+        int pages = 0, i = 0; 
+        while(i < arr.size()){
+            if( (pages + arr[i]) <= pageCount){
+                pages += arr[i];
+                i++;
+            }
+            else{
+                student++;
+                
+                if(student > std) 
+                    return false;
+                
+                pages = 0;
+            }
+        }
+        
+        if(student <= std) 
+            return true;
+        
+        return false;
+    }
+  
+  
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        if(k > arr.size()) return -1; 
+        
+        
+        int totalPages = 0;
+        
+        for(auto i:arr) totalPages += i;
+        
+        int low = 0, high = totalPages, ans = -1;
+        
+        while(low <= high){
+            int mid = low + (high-low)/2;
+            
+            if(isPossible(arr, mid, k)){
+                ans = mid;
+                high = mid-1;
+            }
+            else
+                low = mid+1;
+        }
+        
+        
+        return ans;
+        
+    }
