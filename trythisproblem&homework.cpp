@@ -72,6 +72,8 @@ LCA In bst -> 15th nov.
 pair with target sum (two sum) -> 15th nov
 flatten bst to linked list -> 15th nov.
 bst from preorder -> 15th nov.  
+sorted linked list to bst -> 16th nov.
+mrege two bst -> 16th nov.
     
 //need to practice sliding window problems. 
 //need to practice queue questions.

@@ -8,17 +8,17 @@
 void flatten(TreeNode<int> * root, TreeNode<int> *&head){
     if(root == NULL) return;
 
-    flatten(root->right, head);
+    flatten(root->right, head); //first process right part...as we have to 
 
-    root->right = head;
-    if(head) head->left = NULL;
-    head = root;
+    root->right = head; //now connect current root to head of flattent tree.
+    if(head) head->left = NULL; //if head is non null..then make left as null.
+    head = root; //move head to root...so that we can process for left part.
 
     flatten(root->left,head);
 }
 
 
-TreeNode<int> * merge(TreeNode<int> * root1, TreeNode<int> * root2){
+TreeNode<int> * merge(TreeNode<int> * root1, TreeNode<int> * root2){ //we can solve using dummy node also.
     TreeNode<int> * ans = NULL, *head=NULL;
     if(root1->data <= root2->data){
         head=root1;
@@ -63,16 +63,16 @@ int CountNodes(TreeNode<int> * head){
 TreeNode<int> * build(TreeNode<int> * &head, int size){
     if(size <= 0 or head == NULL) return NULL;
 
-    TreeNode<int> * Left = build(head,size/2);
+    TreeNode<int> * Left = build(head,size/2); //process first left part..and return root node of left part.
 
-    TreeNode<int> * root = head;
-    root->left = Left;
-    head = head->right;
+    TreeNode<int> * root = head; //now make current root to head.
+    root->left = Left; //root's left is leftpart.
+    head = head->right; //move head to right part.
 
-    TreeNode<int> * Right = build(head,size-(size/2)-1);
-    root->right = Right;
+    TreeNode<int> * Right = build(head,size-(size/2)-1); //process right part.
+    root->right = Right; //once process right part..make root's right to right part.
 
-    return root;
+    return root; //and return root.
 }
 
 TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2){
@@ -94,7 +94,13 @@ TreeNode<int> *mergeBST(TreeNode<int> *root1, TreeNode<int> *root2){
 
 
 
-//Approach 2: TC-O(N) SC-O(N)
+
+
+
+
+
+
+                                        //Approach 2: TC-O(N) SC-O(N)
 void traverse(TreeNode<int> *root,vector<int> &inorder){
     if(root == NULL) return;
     
@@ -187,4 +193,104 @@ vector<int> merge(Node *root1, Node *root2)
 
     // return inorder.
     return inorder;
+}
+
+
+
+
+
+
+
+
+//Currently ...this first approach way..is removed from code studio..now we have to send..vector so that is simple way..
+//but still to get practice of first approach..i have solved in first approach way...and finally converted answer into the
+//vector. and returned it.
+void flattenBST(TreeNode * root, TreeNode *&head){
+    if(root == NULL) return;
+
+    flattenBST(root->right,head); //firs process left part.
+
+    root->right = head;
+    if(head)
+        head->left = NULL;
+    
+    head = root;
+
+    flattenBST(root->left, head);
+}
+
+TreeNode * mergeTwoLinkedLIst(TreeNode *head1, TreeNode *head2){
+    TreeNode * dummy = new TreeNode(-1);
+    TreeNode * head = dummy;
+    while(head1 && head2){ 
+        if(head1->data <= head2->data){
+            dummy->right = head1;
+            dummy = dummy->right;
+            head1 = head1->right;
+        }
+        else{
+            dummy->right = head2;
+            dummy = dummy->right;
+            head2 = head2->right;
+        }
+    }
+    if(head1){
+        dummy->right = head1;
+    }
+
+    if(head2){
+        dummy->right = head2;
+    }
+    return head->right;
+}
+
+
+TreeNode * buildTree(TreeNode * &head, int len){
+    if(len <= 0 || head == NULL ) return NULL;
+
+    TreeNode * leftPart = buildTree(head, len/2);
+
+    TreeNode *root = head;
+    root->left = leftPart;
+
+    head = head->right;
+
+    TreeNode * rightPart = buildTree(head, len - len/2 - 1);
+
+    root->right = rightPart;
+
+    return root;
+}
+
+int getCount(TreeNode * head){
+    int len = 0; 
+    while(head){
+        len++;
+        head = head->right;
+    }
+    return len;
+}
+
+void getInOrder(TreeNode * root, vector<int>&ans){
+    if(root == NULL) return;
+
+    getInOrder(root->left, ans);
+    ans.push_back(root->data);
+    getInOrder(root->right, ans);
+}
+
+vector<int> mergeBST(TreeNode *root1, TreeNode *root2)
+{   TreeNode * head1 = NULL;
+    TreeNode * head2 = NULL;
+    flattenBST(root1,head1);
+    flattenBST(root2,head2); //first flatten tree like linked list..
+   
+   TreeNode * head = mergeTwoLinkedLIst(head1,head2); //then merge those two flatten tree..
+
+    int len = getCount(head); //get size of count of nodes prsent in flattent tree.
+    head = buildTree(head, len); //now build tree..from sorted flattent tree (linked list.)
+
+    vector<int> ans;
+    getInOrder(head,ans); //store node values in ans vector and return.
+    return ans;
 }
