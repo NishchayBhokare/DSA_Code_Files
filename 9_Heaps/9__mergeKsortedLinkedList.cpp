@@ -41,6 +41,28 @@ Node * mergeKLists(Node *arr[], int k)
     return head; //return head of answer linked list.
 }
 
+//using dummy node.
+Node* mergeKLists(vector<Node*>& arr) {
+    priority_queue<Node*, vector<Node*>, comapre > pq;
+
+    for(int i = 0; i<arr.size(); i++){
+        pq.push(arr[i]);
+    }
+    
+    Node *head = new Node(-1); //using dummy node technique.
+    Node *tail = head;
+    
+    while(!pq.empty()){
+        tail->next = pq.top();
+        tail = tail->next;
+        pq.pop();
+        
+        if(tail->next)
+            pq.push(tail->next);
+    } 
+    return head->next;
+}
+
 
 
 //Approach 2: By sorting ans vector. TC-O(nk.lognk) SC-O(n*k).

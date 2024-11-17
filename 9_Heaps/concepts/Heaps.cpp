@@ -98,6 +98,27 @@ void heapify(int arr[], int n, int i)
     }
 }
 
+//or we can do like this also..for heapify 
+void heapify(int *arr, int index, int size){
+    if(index > size/2) return;
+
+    int leftchild = 2 * index;
+    int rightchild = 2 * index + 1;
+
+    int element = arr[index];
+    int largest = leftchild;
+
+    if(rightchild <= size &&  arr[rightchild] > arr[largest])
+        largest = rightchild;
+
+    if(arr[index] < arr[largest])
+    { 
+        swap(arr[index], arr[largest]);
+        heapify(arr, largest, size);
+    }
+}
+
+
 void heapSort(int arr[], int n)
 {                 // heap sort algo to sort the array.
     int size = n; // storing size of array cause we are going to decrease n in loop.

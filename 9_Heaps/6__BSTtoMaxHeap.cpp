@@ -51,3 +51,35 @@ void NRL(Node *root)
         NRL(root->left);     // L - finally, we will move to left of binary tree.
     }
 }
+
+
+//if we don't want to reverse the inorder..we can obsrever this condition as L<R<N
+//so for this..we need regular inorder.
+//Approach 2:
+ void getInOrder(Node *root, vector<int>&in){
+        if(root == NULL) 
+            return;
+            
+        getInOrder(root->left,in);
+        in.push_back(root->data);
+        getInOrder(root->right,in);
+    }
+    
+    void populateData(Node *root, vector<int>&in, int &index){
+        if(root == NULL) 
+            return;
+            
+        populateData(root->left,in,index);
+        populateData(root->right,in,index);
+        
+        root->data = in[index++];
+    }
+    void convertToMaxHeapUtil(Node* root)
+    {
+        // Your code goes here
+        vector<int> in;
+        getInOrder(root,in);
+        
+        int index = 0;
+        populateData(root,in,index);
+    }

@@ -75,6 +75,13 @@ bst from preorder -> 15th nov.
 sorted linked list to bst -> 16th nov.
 mrege two bst -> 16th nov.
 largest bst -> 16th nov.
+
+//heap
+kth smallest numerb -> 17th nov.
+isBinaryTreeHeap -> 17th nov.
+bst to max heap..-> 17th nov (good problem)
+merge k sorted arrys-> 17th nov.
+merge k sorted linked list -> 17th nov.
     
 //need to practice sliding window problems. 
 //need to practice queue questions.
