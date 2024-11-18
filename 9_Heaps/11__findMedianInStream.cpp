@@ -73,6 +73,9 @@ class Solution
 	}
 };
 
+
+
+
 //Approach 2: Using sorting. TC-O(N2) SC-O(1)
 vector<int> temp;
 void insertHeap(int &X)

@@ -25,12 +25,14 @@ class compareMin{ //compare class for comparing
 
 pair<int,int> findSmallestRange(int arr[][N], int n, int k)
 {
-    priority_queue<node *, vector<node*>, compareMin> minHeap; //creating priority queue of node type
+    //creating priority queue to get min element and also to track next element in array after popping out min element.
+    priority_queue<node *, vector<node*>, compareMin> minHeap; 
     
     int miniAns = INT_MAX; 
     int maxiAns = INT_MIN;
     int smallDiff = INT_MAX;  //initially smalldiff will be maximum as possible
 
+    //processing first k element i.e first element of every sub array.
     for(int i = 0; i<k; i++){ 
         node *info = new node(arr[i][0], i, 0); //creating new node.
         minHeap.push(info); //pushing that into the min heap
@@ -38,8 +40,10 @@ pair<int,int> findSmallestRange(int arr[][N], int n, int k)
         maxiAns = max(arr[i][0], maxiAns); //tracking for miniAns and maxiAns
     }
     
+    //creating mini and maxi..to track current mini and maxi.
     int mini = miniAns, maxi = maxiAns; //creating another two variable
-    while(minHeap.size() == k){ //looping till equals to k
+    while(minHeap.size() == k){ //looping till equals to k because..if size is less than k
+    //that means we're not able to push element in heap..i.e one array is finished..so we cannot create range..then no need to enter again in this loop.
         
         node *smallNode = minHeap.top(); //getting top node of min heap
         minHeap.pop(); //pooping out that node
@@ -47,11 +51,11 @@ pair<int,int> findSmallestRange(int arr[][N], int n, int k)
         int row = smallNode->row; //getting row of current element
         int col = smallNode->col; //and also column
         
-        mini = smallNode->data; //updating mini element 
+        mini = smallNode->data; //updating current mini element 
         
-        int diff = maxi - mini; //getting difference of current range
+        int diff = maxi - mini; //getting current difference of current range
         if(diff < smallDiff){ //if currnet range difference less than smallest range difference then update small range diff.
-            smallDiff = diff;
+            smallDiff = diff; //updating smalldiff..as this range can be possible answer.
             miniAns = mini;
             maxiAns = maxi; //also update mini and maxi ans.
         }
