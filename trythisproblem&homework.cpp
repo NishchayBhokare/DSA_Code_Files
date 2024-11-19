@@ -82,6 +82,9 @@ isBinaryTreeHeap -> 17th nov.
 bst to max heap..-> 17th nov (good problem)
 merge k sorted arrys-> 17th nov.
 merge k sorted linked list -> 17th nov.
+smallest range in k list -> 18th nov.
+findMedian in stream -> 18th nov.
+rearrange characters -> 19th nov (There is another approroach too...with TC O(N) SC-O(N+26)).
     
 //need to practice sliding window problems. 
 //need to practice queue questions.
