@@ -17,6 +17,16 @@ int isSafe(int x, int y, vector<vector<int>> &maze, int n, vector<vector<int>> &
         return 0;
 }
 
+//we can use like this also..false condition is simple way.
+// bool isSafe(vector<vector<int>> &mat, int row, int col, vector<vector<bool>>&visited){
+//     int n = mat.size();
+    
+//     if( (row < 0 || row >= n) || (col < 0 || col >= n) || visited[row][col] || mat[row][col] == 0){
+//         return false;
+//     }
+//     return true;
+// }
+
 void solve(vector<vector<int>> &maze, int n, int x, int y, vector<vector<int>> &visited, vector<string> &ans, string path)
 {
     // Base case

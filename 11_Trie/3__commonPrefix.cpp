@@ -57,8 +57,30 @@ class Trie{
     void insertWord(string str){
         insertUtil(root,str);
     } 
+
     
+
+    //we can find prefix...recursively also.
+    void findPrefixInTri(TrieNode * root,string str, string &prefixAns){
+        if(root->childrenCount != 1 || root->isTerminal){
+            return;
+        }
+
+        TrieNode * child;
+        int index = str[0] - 'a';
+        if(root->children[index] != NULL){
+            child = root->children[index];
+            char ch = child->data;
+
+            prefixAns.push_back(ch);
+        }
+        else
+            return;
+
+        findPrefixInTri(child, str.substr(1), prefixAns);
+    }
     
+    //Iterative approach.
     void CheckForPrefix(string first, string &ans){
         
         for(int i=0; i<first.length(); i++){ //looping over first string
@@ -75,7 +97,7 @@ class Trie{
             
             if(root->isTerminal) return; //if current root is terminal node for any of the string then return.
         }
-    }
+    }   
 };
 
 string longestCommonPrefix (string arr[], int N)
@@ -125,4 +147,28 @@ string longestCommonPrefix (string arr[], int N)
     
     if(ans.size() == 0) return "-1"; //if size of ans is 0 then simply return -1.
     return ans; //else return ans string.
+}
+
+//not much better solution ...but ya this is also solution.
+string longestCommonPrefix(vector<string> &arr, int n)
+{
+    // Write your code here
+    string ans = arr[0];
+
+    for(int i = 1; i<arr.size(); i++){
+        string str = arr[i];
+        int j = 0;
+
+        while(j<ans.size() && j<str.size()){
+            if(ans[j] != str[j]){
+             break;
+            }
+            j++;
+        }
+
+        if(j<ans.size())
+            ans.erase(j);
+    }
+
+    return ans;
 }

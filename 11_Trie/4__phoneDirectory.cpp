@@ -82,20 +82,20 @@ using namespace std;
             char ch = s[i]; //getting character
             prefix.push_back(ch); //pushing in prefix
             
-            TrieNode * curr; //crating current node
+            // TrieNode * curr; //crating current node
             int index = ch - 'a'; //getting index for given charater
             
             if(prev->children[index] != NULL){ //child is present at given index case
             
-                curr = prev->children[index]; //so point current to prev's child node
-                printSuggestion(curr,temp,prefix); //and call printSuggestion function for getting string which are starting from character ch.
+                prev = prev->children[index]; //so point current to prev's child node
+                printSuggestion(prev,temp,prefix); //and call printSuggestion function for getting string which are starting from character ch.
                 
             }
             else{ //if absent then break.
                 break;
             }
 
-            prev = curr; //point prev to current for next iteration
+            // prev = curr; //point prev to current for next iteration
             ans.push_back(temp); //push answer after every iteration
             temp.clear(); //clear temp vector.
         }
@@ -126,7 +126,7 @@ vector<vector<string>> displayContacts(int n, string contact[], string s)
 
 
 
-//Approach 2: Iterative approach. TC-O(m*nlogn) SC-O(m+n) 
+//Approach 2: Iterative approach. TC-O(m*nlogn) SC-O(m*n) 
  vector<vector<string>> displayContacts(int n, string contact[], string s)
     {
         vector<vector<string>> ans;
@@ -159,3 +159,117 @@ vector<vector<string>> displayContacts(int n, string contact[], string s)
         }
         return ans; //and return answer.
     }
+
+
+
+
+
+//I have solved this problem by myself...kudos to you nishchay. similar like approach 1.
+//My solution.
+class TrieNode{
+    public:
+    
+    char data;
+    TrieNode * children[26];
+    bool isTerminal;
+
+    TrieNode(int d){
+        data = d;
+        for(int i = 0; i<26; i++)
+            children[i] = NULL;
+
+        isTerminal = false;
+    }
+};
+
+class Trie{
+    public:
+
+    TrieNode *root;
+    Trie(){
+        root = new TrieNode('\0');
+    }
+
+
+    void insertInTrieNode(TrieNode *root, string contact){
+        if(contact.size() == 0){
+            root->isTerminal = true;
+            return;
+        }
+
+        int index = contact[0] - 'a';
+        TrieNode *child;
+
+        if(root->children[index] != NULL){//if already created.
+            child = root->children[index];
+        }
+        else{
+            //create node.
+            child = new TrieNode(contact[0]);
+            root->children[index] =child;
+        }
+
+        insertInTrieNode(child, contact.substr(1));
+    }
+
+    void insert(vector<string>&contactList){
+        for(int i = 0; i<contactList.size(); i++){
+            string contact = contactList[i];
+            insertInTrieNode(root,contact);
+        }
+    }
+
+    void printSuggestions(TrieNode *root, vector<string> &curr, string &str){
+        if(root->isTerminal){
+            curr.push_back(str);
+        }
+
+        TrieNode *child;
+        for(int i = 0; i<26; i++){
+            if(root->children[i] != NULL){
+                child = root->children[i];
+                str.push_back(child->data);
+
+                printSuggestions(child, curr,str);
+                str.pop_back();
+            }
+        }
+
+    }
+
+    void getAllDirectory(string query, vector<vector<string>> &ans){
+
+        string prefix = "";
+        TrieNode *prefixEndNode = root;
+
+        for(int i = 0; i<query.size(); i++){
+           vector<string> curr; 
+           prefix += query[i];
+        
+           int index = query[i] - 'a';
+
+           if(prefixEndNode->children[index] != NULL){
+               prefixEndNode = prefixEndNode->children[index]; //creating endnode..from which we will check all posible permutation of stirng.
+
+               printSuggestions(prefixEndNode,curr,prefix);
+               ans.push_back(curr);
+           }
+           else break;
+        }
+    }
+
+};
+
+vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryStr)
+{
+
+    vector<vector<string>> ans;  
+
+    Trie * t = new Trie();
+    
+    t->insert(contactList);
+
+    t->getAllDirectory(queryStr,ans);
+
+    return ans;
+}
