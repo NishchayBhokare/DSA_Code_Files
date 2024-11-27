@@ -93,7 +93,8 @@ bool isCycle(vector<vector<int>>& adj) {
     
     queue<int>q;
     q.push(j);
-    parent[j]=-1; //for first node..there is not parent..so insert -1.
+    // parent[j]=-1; //for first node..there is not parent..so insert -1.
+    //now -1 condition handles already while initialising array with all -1.
     visited[j]=true;
 
     
@@ -120,20 +121,19 @@ bool isCycle(vector<vector<int>>& adj) {
     return false; //if we reach till here then cycle is not parent for this component.
 }    
 bool isCycle(vector<vector<int>>& adj) {
+    int V = adj.size();
     bool ans = false;
     unordered_map<int,bool>visited;
-    unordered_map<int,int>parent;
+    unordered_map<int,int>parent(V,-1);
     
-    for(auto i:adj){
-        for(auto j:i){ //this is for..graph can be disconnected graph.
-            if(!visited[j])
+        for(int i = 0; i<V; i++){
+            if(!visited[i])
             {
-                ans = solve(j,adj,parent,visited);
+                ans = solve(i,adj,parent,visited);
                 
                 if(ans) return ans; //if cycle is presnet then return immediately.
             }
         }
-    }
     
     return ans; //if we reach till here..then cycle is not present.
 }

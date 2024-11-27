@@ -1,6 +1,59 @@
-// GFG
+// code studio..unable to add code studio question..so added gfg question.
 
-//Approach 1: Optimised Approach using toplogical sort. 
+//question is find..shortest path between soruce node to all nodes for directed wighted graph.
+
+//Approach 1: using Dijkstras algorithm for directed graph.
+vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
+{
+    unordered_map<int,list<pair<int,int>> >adj;
+    
+    for(int i = 0; i<edges.size(); i++){ //creation of adjacency list.
+        int u = edges[i][0];
+        int v = edges[i][1];
+        int w = edges[i][2];
+        
+        adj[u].push_back(make_pair(v,w));
+    }
+
+    vector<int> distance(n,-1); //initialising distance vector with -ve value.
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > pq;
+    //creating min  heap.
+
+    //creating pair of distance and node.
+    int source = 0;
+    pq.push({0,source});
+    distance[source]=0;
+
+    while(!pq.empty()){
+        auto node = pq.top();
+
+        int nodeDistance = node.first;
+        int topNode = node.second;
+        
+        pq.pop();
+
+        for(auto neighbor:adj[topNode]){
+            
+            int neighborNode = neighbor.first;
+            int neighborDist = neighbor.second;
+
+            int totalNeighborDist = nodeDistance + neighborDist;
+
+            if(distance[neighborNode] == -1 || totalNeighborDist < distance[neighborNode]){
+                //added condition is only this..if distnce is -ve..then don't compare..just udpate distnace.
+                
+                //update distance
+                distance[neighborNode] = totalNeighborDist;
+                
+                //now push in stack.
+                pq.push({totalNeighborDist,neighborNode});
+            }
+        }
+    }
+    return distance;
+}
+
+//Approach 2: Optimised Approach using toplogical sort. using dfs
 void solve(int node, unordered_map<int,list<pair<int,int>> >&adj, //just normal toplogical sort.
     stack<int>&st, unordered_map<int,bool>&visited){
     
@@ -15,9 +68,9 @@ void solve(int node, unordered_map<int,list<pair<int,int>> >&adj, //just normal 
     st.push(node);  //before going back..add node into the toplogical sort.
 }
   
-vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
-    unordered_map<int,list<pair<int,int>> >adj;
-    for(int i = 0; i<E; i++){ //creation of adjacency list.
+vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
+{  unordered_map<int,list<pair<int,int>> >adj;
+    for(int i = 0; i<m; i++){ //creation of adjacency list.
         int u = edges[i][0];
         int v = edges[i][1];
         int w = edges[i][2];
@@ -36,7 +89,7 @@ vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
     }
     
     
-    //Here toplogical list is prepared and stored in stack.
+    //now toplogical list is prepared and stored in stack.
     distance[0]=0; //source node of distacne is 0.
     while(!st.empty()){
         int node = st.top();
@@ -66,7 +119,7 @@ vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
 
 
 
-    //Approach 2: using BFS. But it is giving TLE on gfg..as not that much optimised.
+    //Approach 3: using BFS. But it is giving TLE on gfg..as not that much optimised.
 //by bfs..we are traversing all possible path to rech every node.
 vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
     unordered_map<int,list<pair<int,int>> >adj; //data structure to create grapht with node to it's weight.

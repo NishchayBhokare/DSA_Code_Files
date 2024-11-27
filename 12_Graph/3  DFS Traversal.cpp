@@ -3,6 +3,7 @@
 
 //Logic is for dfs..we goes deeper...using recursion...pick one node..then pick next node..then pick
 //next or next node like that.
+//TC-O(2 * Edges) SC-O(V)
 void solve(int node, vector<vector<int>>& adj, 
     unordered_map<int,bool>&visited, vector<int>&ans){
                     
@@ -20,7 +21,8 @@ vector<int> dfsOfGraph(vector<vector<int>>& adj) {
     vector<int>ans;
     unordered_map<int,bool>visited;
     
-    solve(0,adj,visited,ans);
+    int node = 0;
+    solve(node,adj,visited,ans);
     
     return ans;
 }

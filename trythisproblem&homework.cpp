@@ -90,6 +90,12 @@ rearrange characters -> 19th nov (There is another approroach too...with TC O(N)
 implement trie.
 common prefix.
 phone directory.
+
+//Graph
+// shortest path for undirected graph for all nodes...gfg question is pending..need to solve that also.
+graph all questions try once again.
+
+number of islands.
     
 //need to practice sliding window problems. 
 //need to practice queue questions.

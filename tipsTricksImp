@@ -2,3 +2,31 @@
 
 - Changing node links to solve problem -> Use creation of dummy node.
 - Try making relation, like we made in heap concept to solve problem like L<R<N.
+
+
+                            //In graph.
+-bfs ->take one node..and visit its all neighbors. (implementation using queue)
+
+-dfs -> go deep..take one node..then take first neighbor..and call for it (recursive)
+
+topological sort -> for dfs traverse till last and before coming..push node in stack. 
+                 -> for bfs (Kahns Algo) claculating indegree of node..and pushing node in queue which has indegree as 0. when removing current node..decrement adjacent nodes indegree count by 1.
+                 //we can do topological sort in bfs by this and can detect cycle in Directed Acyclic Graph.
+
+-shortest part -> Dijkstra algo (works in directed & undirected graph with positive values)
+         //using min heap and set..just pushing root node..then checking thier adjcent node 
+         dist. updating array pushing adjcent node with dist in queue if dist is lesser then already present in array.
+
+-MinimumSpanning Tree ->
+        Prims Algo: using min heap we can solve this..by inserting node which has min dist and 
+        //and adding that node dist in sum..to calculate cost..and to get parent arr..we can create parent array to.
+
+        Kruskals Algo : using disjoint set..find union by rank and find parent..we can solve this quesiton.
+
+- bridges in graph (Tarajan's Algo)-> uses of low and discovery array with timer. More explain in que. 14.
+
+- Articulation point.
+
+- Kosaraju's algo.
+
+2nd video 3 min. striver.
