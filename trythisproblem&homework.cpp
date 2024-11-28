@@ -96,7 +96,10 @@ phone directory.
 graph all questions try once again.
 
 number of islands.
-    
+nearest cell haveing 1.
+surrounded regions by x.
+Number of distinct islands. 
+
 //need to practice sliding window problems. 
 //need to practice queue questions.
 //inorder preorder post order using iteration.
