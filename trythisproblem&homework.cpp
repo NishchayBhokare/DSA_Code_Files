@@ -99,6 +99,9 @@ number of islands.
 nearest cell haveing 1.
 surrounded regions by x.
 Number of distinct islands. 
+detect cycle in directed graph DFS BFS.
+Eventual safe states
+topological sort using bfs. 7th que.
 
 //need to practice sliding window problems. 
 //need to practice queue questions.

@@ -1,4 +1,6 @@
 //GFG. 
+for topological sort..graph should be DAG. i.e Directed Acyclic Graph.
+
 topological sort is the sorting technique..in which we sort node...u to v..such that..
 node u comes before node v..in answer vector.
 

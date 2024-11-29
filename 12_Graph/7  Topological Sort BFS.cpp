@@ -13,6 +13,12 @@ vector<int> topologicalSort(vector<vector<int>>& adj) {
             indegree[j]++; //incrementing count for j node..as i to j is edge.
         }
     }
+
+    // for(int i = 0; i<v; i++){
+    //     for(auto nbr:adj[i]){
+    //         indegree[nbr]++; //can do like this also.
+    //     }
+    // }
     
     
     //pushing nodes..which has indegree equals to 0.
