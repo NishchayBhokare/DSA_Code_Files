@@ -90,23 +90,79 @@ vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
         return true;
     }
   
+
+
+
+// //Approach 3: Using Topological Sort by reversing node links.
+//In short logic is reveres links..so terminal node will have indegree 0 and we can start checking from terminal node. if any node..connected to terminal node and not to any cycle
+//then there indegree will be 0..but if it's connected to any cycle..then indegree will be greater than 0 after decrementing indegree..
+//so just take..nodes which has indegree as 0 and push in the queue..and while popping out..just add in answer or mark as true.
+
+Why we need to reverse links. -> reason is below.
+// We wish to find a set of eventual safe nodes in the original graph G. Let T be the set of terminal nodes of G. A node 'p' in G is eventual safe if it's neither part of a cycle nor it can 'reach' any cycle. 
+// In other words, all the 'outgoing' paths from 'p' can only reach one of the terminal nodes T. Conversely, if 'q' is an unsafe node, then there exists at least one 'outgoing' path which leads to a cycle (or unsafe nodes). 
+// Now when we reverse G, in the reversed graph, all the outgoing paths become incoming paths and vice-versa. Let's call the reversed graph H. Note that the 'terminal' nodes T of G becomes the start nodes for the topological sort on H.
+
+// In the reversed graph H, all the 'incoming' paths to 'p' must start from some terminal node in T (and must contain no cycles). 
+// On the other hand, there exists at least one 'incoming' path to 'q' which originates from some unsafe node (connected to a cycle). 
+// Now when we perform Kahn's topological sort starting from the terminal nodes T, and repeatedly remove edges from terminal node set to its neighbors, 
+// at some point, all 'incoming' edges to 'p' will be removed and its indegree will become 0, and hence 'p' will be collected as a safe node. 
+// On the other hand, 'q' will be left with at least one edge (involving unsafe nodes connected to a cycle), 
+// and hence its indegree would never become zero, and hence it will not be collected as a safe node.
+
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
-        vector<bool>safe(V,false);
-        vector<bool>path(V,false);
-        vector<bool>visited(V,false);
+    vector<vector<int>>adjList(V);
+    
+    vector<bool>safe(V,false);
+    vector<int>indegree(V,0);
+    
+    for(int i = 0; i<V; i++){
         
-        for(int i = 0; i<V; i++){
-            if(!visited[i]){
-                solve(i,adj,safe,visited,path);
+        for(auto nbr:adj[i]){
+            adjList[nbr].push_back(i); //reversing links..that is make v to u from u to v.
+            indegree[i]++; //also increment indegree of i. as linke is from nbr to i.
+        }
+    }
+    
+    
+    queue<int>q;
+    for(int i = 0; i<indegree.size(); i++){
+        if(indegree[i] == 0) //push all nodes with indegree zero.
+            q.push(i);
+    }
+    
+    while(!q.empty()){
+        int node = q.front();
+        q.pop();
+        
+        safe[node] = true; //make as true..because current node is now safe node.
+        
+        for(auto nbr:adjList[node]){
+            indegree[nbr]--;
+            
+            if(indegree[nbr] == 0){
+                q.push(nbr);
             }
         }
-        
-        vector<int>ans;
-        
-        for(int i = 0; i<V; i++){ //traverse over the safe nodes and push i into the answer if that node is safe..i.e have value as true
-            if(safe[i])
-                ans.push_back(i);
-        }
-        
-        return ans;
     }
+    
+    vector<int> ans;
+    
+    for(int i = 0; i<safe.size(); i++){
+        if(safe[i])
+            ans.push_back(i);
+    }
+    
+    return ans;
+
+
+    // vector<int> ans; //Optimised one..we don't need to mark node as safe..and traverse over safe array..instead..we can do like this..if node is
+                        //then there indegree will definitely 0..so traverse over indegree array and whoever have indegree 0..then just push that node in anwer
+                        
+    // for(int i = 0; i<indegree.size(); i++){
+    //     if(indegree[i] == 0)
+    //         ans.push_back(i);
+    // }
+    
+    // return ans;
+}

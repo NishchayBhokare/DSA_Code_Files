@@ -2,6 +2,8 @@
 //Dijkstra's algorithm on undirected weighted graph.
 
 //Dijkstra's algorithm will work in only with positive values on both directed and undirected graph.
+//if it has negative weight..then we will fall in infinite loop..because every time from u to v distance will get reduce..
+//and we will keep traversing from u to v.  
 
 //actually approach 2 is very optimised..because we have used set..and we can erase pair..which has 
 //maximum distance...but in prioritye queue we cannot do this.
@@ -118,4 +120,47 @@ vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int sour
 
 
     return distance;
+}
+
+
+//Approach 3: normal approach using queue.. GFG.
+vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
+    // code here
+    vector<vector<int> >adj(N);
+    
+    for(int i = 0; i<edges.size(); i++){
+        int u = edges[i][0];
+        int v = edges[i][1];
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    
+    
+    vector<int>distArr(N,-1);
+    queue<int>q;
+    q.push(src);
+    distArr[src] = 0;
+    
+    while(!q.empty()){
+        
+        auto node = q.front();
+        q.pop();
+        
+        int wt = distArr[node];
+        
+        for(auto nbr:adj[node]){
+            
+            int nbrWt = wt + 1;
+            
+            if(distArr[nbr] == -1 || nbrWt < distArr[nbr]){
+                distArr[nbr] = nbrWt;
+                
+                q.push(nbr);
+            }
+        }
+    }
+    
+    
+    return distArr;
 }

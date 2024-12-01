@@ -102,6 +102,12 @@ Number of distinct islands.
 detect cycle in directed graph DFS BFS.
 Eventual safe states
 topological sort using bfs. 7th que.
+course schedule.
+shortest path in directed acyclic graph using topo sort, also dijkstra algo.
+Alien dictionary 
+Word Ladder 1
+Word Ladder 2. 
+word Ladder 2 (optimised one)
 
 //need to practice sliding window problems. 
 //need to practice queue questions.

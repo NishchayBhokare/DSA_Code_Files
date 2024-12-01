@@ -1,8 +1,9 @@
 // code studio..unable to add code studio question..so added gfg question.
 
 //question is find..shortest path between soruce node to all nodes for directed wighted graph.
+//Approach 2: Topo sort will work only if..graph is not cyclic..so for cyclic graph..we need to have dijkstra algo.
 
-//Approach 1: using Dijkstras algorithm for directed graph.
+//Approach 1: using Dijkstras algorithm for directed graph. from source to all nodes TC-O(ElogV) 
 vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
 {
     unordered_map<int,list<pair<int,int>> >adj;
@@ -53,7 +54,7 @@ vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
     return distance;
 }
 
-//Approach 2: Optimised Approach using toplogical sort. using dfs
+//Approach 2: Optimised Approach using toplogical sort. using dfs TC- O(V+E)
 void solve(int node, unordered_map<int,list<pair<int,int>> >&adj, //just normal toplogical sort.
     stack<int>&st, unordered_map<int,bool>&visited){
     
@@ -95,7 +96,11 @@ vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
         int node = st.top();
         st.pop();
 
-        if(distance[node] != -1){ //if distance of node is -1..that means..
+        if(distance[node] != -1){ //we can remove this condition no need..as we traversing from source node..
+        //so all nodes which are in path of source node will be added in topo..so this condition will never come
+        //only connected nodes are added in topo.
+        
+        //but still for info this condition is basically state that, distance of node is -1, means
         //this node disconnected component of graph or indegree of this node is 0.
         //in short..we cannot rech till this node so skip this node from checking.
             for(neighbor:adj[node]){ //checking neighbor of node.
