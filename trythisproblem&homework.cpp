@@ -108,6 +108,9 @@ Alien dictionary
 Word Ladder 1
 Word Ladder 2. 
 word Ladder 2 (optimised one)
+path With Min Effort.
+cheapest flights in k stops.
+minimum multiplication to reach end.
 
 //need to practice sliding window problems. 
 //need to practice queue questions.
