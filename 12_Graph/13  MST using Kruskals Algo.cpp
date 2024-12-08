@@ -1,9 +1,13 @@
 //GFG
+
+//Disjoint set used in dynamic graphs..which keeps on changing.
+
 //we can solve this problem using prims algo too..but this krukal's algo is optmised algo.
 //here u are using disjoint set technique
 //Disjoint set are the set..in which we can get ulitmate parent and makeunion by rank..
 //basically this disjoint set can be used to  find MST. 
 
+//TC- O(E * (4 * alpha)) i.e constant.
 class disJointSet{
 	public:
 	vector<int>parent;

@@ -6,6 +6,10 @@ C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS
 Code, Compile, Run and Debug online from anywhere in world.
 
 *******************************************************************************/
+
+integer max store value in terms of power of 1 to 10  i.e 1e9 becuase maximum we can store is this 2147483647 which is 2e9
+for long long 1e18 similarly for long long it is 9,223,372,036,854,775,807 i.e 9e18.
+
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;

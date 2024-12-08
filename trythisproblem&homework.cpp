@@ -111,6 +111,9 @@ word Ladder 2 (optimised one)
 path With Min Effort.
 cheapest flights in k stops.
 minimum multiplication to reach end.
+number of ways.
+city with threshold distnace.
+mst using prims algo.
 
 //need to practice sliding window problems. 
 //need to practice queue questions.

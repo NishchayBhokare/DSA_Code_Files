@@ -1,5 +1,10 @@
 // GFG
 
+//What is Spanning Tree -> A graph in which we have n nodes and n-1 edges.
+               //and all nodes are reachable from each other
+
+//What is Minimum Spanning tree -> The minimum sum spaning tree among all spanning tree known as MST.
+
 //Approach 1: TC-O(ElogE) SC-O(E)
 //using (PRIM's algorithm) priority queue min heap we can solve this problem.
 //logic is we are taking minmum node distance edge to create spanning tree.
@@ -7,6 +12,7 @@
 //and insert their adjacent nodes...then take..minimum distance node from queue..add their
 //weight in sum and marked as true..and same ..push their adjacents if adjacents are not 
 //visited earlier.. 
+
 int spanningTree(int V, vector<vector<int>> adj[])
     {
         priority_queue< pair<int,int>, vector<pair<int,int>>, 

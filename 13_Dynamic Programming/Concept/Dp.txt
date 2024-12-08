@@ -1,0 +1,18 @@
+//Notes-> 
+
+There are two ways to solve dynamic problem:-
+    1) Tabulation - Bottom Up Dynamic Programming.
+        Bottom up: We start from the base case and we try to go to the required answer
+
+
+    2) Memorization - Top Down Dynamic Programming.
+        -In Memorization, we tend to store the value of subproblems in some map/table.
+        -TOP DOWN:  avoids redundant calls done in recursion reducing time complexity   
+
+
+//Trips and Tricks to solve DP problem.
+ 
+1) Try to represent problem in terms of indexes.
+2) Do all possible stuff on that indexes according to problem statement.
+3) Sum of all stuffs for questions like -> count all ways.
+    or min/max of all stuff for question like -> find min/max of all ways.

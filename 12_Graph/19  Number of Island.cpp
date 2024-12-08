@@ -1,4 +1,4 @@
-//GFG -> Numebr of islands. (i.e total number of connected components)
+//GFG -> Find Numebr of islands. (i.e total number of connected components)
 
 //Approach 1: using DFS.
 //Logic like question 18th...we have to calculate number of islands that means..connected components count

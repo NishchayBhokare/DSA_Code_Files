@@ -6,7 +6,8 @@
 
 //so to find these..logic is first do topological sort..because we want to get nodes like in that way and store nodes in stack.
 //then change the links..if u to v is link...make v to u.
-//it is just because.. we have done topological sort.
+//logic behind this is..in regular links..every strongly connected components are reachable from one to another.
+//so if we reverse the links...then strongly connected components will get seperate out.
 //then again do dfs..just incremnet count..when we are calling dfs function..
 
 

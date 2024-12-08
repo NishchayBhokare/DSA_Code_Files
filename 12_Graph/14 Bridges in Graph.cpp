@@ -42,7 +42,7 @@ void solve(int node,int parent, unordered_map<int,list<int>> &adj, vector<int>&l
         else{
             //this is back edge condition..that means there is another path to reach this node.
             //if we already visited this neihbor..then take discovery time of it.
-            low[node] = min(low[node], disco[nbr]);
+            low[node] = min(low[node], low[nbr]);
         }
     }
 }

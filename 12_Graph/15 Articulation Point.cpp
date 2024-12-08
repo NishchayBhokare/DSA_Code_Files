@@ -2,6 +2,8 @@
 //Articualtion point is the point..by which..if we remove this node...then graph will divide in sub components.
 //Same like bridges in graph..only changes in if conditions.
 
+//If condition logic sum up with..we have to rech before the current node..from neighbr..if we're able to do that..
+//then it's not articluation point. that's why..equal to sign is there.
 void solve(int node,int parent, vector<int>adj[], vector<int>&low, vector<int>&disco,
     unordered_map<int,bool>&visited, vector<int>&ap, int &timer){
         

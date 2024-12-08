@@ -4,13 +4,14 @@
 //can be used for this..condition is..there should not be negative weightage cycle..else u will find in infinite loop.
 //also..with bellman ford algo..u can find..-ve weightage cycle is present or not.
 
-
+//We required vertext -1 iteration to fill and reach every node for shortest distance.
 //Algorithm says..do numerb of vertex - 1 iterations..to check..distance for u to v can be update or not..for v node.
 //on all the edges...
 //after completion of all these n-1 iterations.. now check again for only one iteration on all the edges..and verify..
 //for any node..is distance getting updated or not..if it's getting updating..then -ve cycle present in graph..so can't find
 //answer..return -1.
 //else return vector which stores shortest parth.
+//TC(V*E)
 vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
          vector<int> dist(V,1e8);
             dist[src] = 0;

@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-//Approach 1: Using while Loop
+//Approach 1: Using while Loop TC-O(2^n)
 //series will be  0 1 1 2 3 5 8 13 21 34
 long long int nthFibonacci(long long int n){
         // code here

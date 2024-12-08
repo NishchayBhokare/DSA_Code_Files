@@ -17,6 +17,8 @@ topological sort -> for dfs traverse till last and before coming..push node in s
          //using min heap and set..just pushing root node..then checking thier adjcent node 
          dist. updating array pushing adjcent node with dist in queue if dist is lesser then already present in array.
 
+-floyd warshal shortest path algo. -> It is multi source shortest path algorithm. works in matrix form. TC-O(V*(ElogV))
+
 -MinimumSpanning Tree ->
         Prims Algo: using min heap we can solve this..by inserting node which has min dist and 
         //and adding that node dist in sum..to calculate cost..and to get parent arr..we can create parent array to.
