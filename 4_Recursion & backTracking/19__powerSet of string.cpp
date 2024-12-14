@@ -40,7 +40,7 @@ vector<string> AllPossibleStrings(string str){
 //subsequences using bit manipulation 
 vector<string> subsequences(string str){
 	vector<string> ans;
-	int num = pow(2,str.length()) - 1; //we are creating num which will represent to given strin. suppose 
+	int num = pow(2,str.length()) - 1; //we are creating num which will represent to given string. suppose 
 	//stirng of size 3 then digits in num will be 3 i.e 111.
 	//logic is traversing from 1 to <= num..and for every value checking it's binary repersentation
 	//if bit is 1 then take ith character from string..else skip.

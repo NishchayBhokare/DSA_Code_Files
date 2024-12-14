@@ -10,7 +10,7 @@ int solve(int ind,int k, vector<int>&arr){
     }
 
 
-//or we can right like this also.
+//or we can right like this also because..array elements are from 0.
     // if(ind == 0){ //if we reach till last ind. i.e 0
 	// 	if(k == 0 && arr[0] == 0) return 2;  //now check...if k is already 0 and this base case index in arr equals to 0.
     //     //then there are two susbsets of k.
