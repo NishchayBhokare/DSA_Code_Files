@@ -37,12 +37,13 @@ int solve(int i, int j, string&str1, string&str2, vector<vector<int>>&dp){
 
     if(i<0 || j<0) return 0;
 
+    if(dp[i][j] != -1) return dp[i][j];
+
     //same character condition.
     if(str1[i] == str2[j]){
-      return 1+solve(i-1, j-1, str1, str2, dp);
+      return dp[i][j] = 1+solve(i-1, j-1, str1, str2, dp);
     }
 
-    if(dp[i][j] != -1) return dp[i][j];
 
     //different character condition.
     //in this situation call two recursive calls so that we cannot 
@@ -60,4 +61,28 @@ int getLCSLength(string& str1, string& str2) {
 
     vector<vector<int>>dp(n,vector<int>(m,-1));
     return solve(n-1,m-1,str1,str2, dp);
+}
+
+
+//Approach 3: tabulation.
+int getLCSLength(string & str1, string & str2) {
+  int n=str1.size(), m=str2.size(), count=0;
+  vector<vector<int>>dp(n+1,vector<int>(m+1,0));
+  for(int i=1; i<=n; i++){ 
+      for(int j=1; j<=m; j++){
+          
+          if(str1[i-1] == str2[j-1]){
+              dp[i][j] = 1 + dp[i-1][j-1]; //if string is equal then take..previous count also.
+              
+              count = max(count, dp[i][j]);
+          }
+          else if(dp[i-1][j] > dp[i][j-1]){
+            dp[i][j] = dp[i-1][j];
+          }
+          else
+            dp[i][j] = dp[i][j-1]; 
+      }
+  }
+
+  return count;
 }
