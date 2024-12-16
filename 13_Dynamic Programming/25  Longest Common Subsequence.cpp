@@ -84,5 +84,9 @@ int getLCSLength(string & str1, string & str2) {
       }
   }
 
+//we can write elese part like this also.
+// else{
+//         dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+//     }
   return count;
 }
