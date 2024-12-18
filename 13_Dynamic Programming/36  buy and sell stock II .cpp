@@ -174,8 +174,8 @@ for(int i=n-1; i>=0; i--){
             curr[buy] = max(p1, p2);
         } 
         
-        prev = curr;
     }    
+    prev = curr;
 }
 
 return prev[1];      

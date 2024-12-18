@@ -148,9 +148,8 @@ long long maximumProfit(vector<int>&prices, int k) {
                 curr[buyStatus] = max(p1, p2);
             }
             
-            prev = curr;
         }
-            
+        prev = curr;    
     }
     
     return prev[1];

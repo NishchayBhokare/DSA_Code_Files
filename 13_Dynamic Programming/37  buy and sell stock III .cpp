@@ -168,9 +168,9 @@ int maxProfit(vector<int>&price){
                 }
                 
                 
-                prev = curr;
             }
         }
+        prev = curr;
     }
     
     //this indexes will be the last index of every loop..so just return that.

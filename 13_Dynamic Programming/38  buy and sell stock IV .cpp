@@ -154,8 +154,8 @@ int maxProfit(int transCnt, int n, int price[]) {
                 
             }
             
-            prev = curr;
         }
+        prev = curr;
     }
     
     return prev[k][1];
