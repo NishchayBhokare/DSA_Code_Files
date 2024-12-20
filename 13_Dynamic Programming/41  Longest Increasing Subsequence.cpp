@@ -4,7 +4,7 @@
 //we will either take this current elemnt under consideration..or will not take.
 //if we want to take..then please check..current element is greater than previous or not.
 
-//Approach 1: Using recurison.
+//Approach 1: Using Recurison.
 int solve(int i, int prev, vector<int>&arr, int &n){
     
     if(i == n) return 0;
@@ -27,7 +27,7 @@ int longestSubsequence(vector<int>& arr) {
 }
 
 
-//Approach 2: using Memorization. //addition of memorization and slight change in prev..i.e
+//Approach 2: Using Memorization. //addition of memorization and slight change in prev..i.e
 //as we storing prev index in temp..so just do right shift temp so that -1 will points to 0.
 int solve(int i, int prev, vector<int>&arr, int &n, vector<vector<int>>&dp){
     
@@ -57,7 +57,7 @@ int longestSubsequence(vector<int>& arr) {
 }
 
 
-//Approach 3: using tabulation.
+//Approach 3: Using Tabulation.
 int longestSubsequence(vector<int>& arr) {
     int n=arr.size();
     vector<vector<int>>dp(n+1,vector<int>(n+1,0));
@@ -84,8 +84,9 @@ int longestSubsequence(vector<int>& arr) {
     return dp[0][0];
 }
     
-//Approach 4: using space optimization.
 
+    
+//Approach 4: Using Space Optimization.
 int longestSubsequence(vector<int>& arr) {
     int n=arr.size();
     vector<int>dp(n+1,0);
@@ -115,13 +116,13 @@ int longestSubsequence(vector<int>& arr) {
 }
 
 
-//Approach 5: different iterative approach.
+//Approach 5: Different Iterative Approach.
 //loop from 0 to n and inside that..loop from 0 to i-1. if current ith element is greater than 
 //it's previous jth element then take currLen. and update dp[i]th index according to it.
 int longestSubsequence(vector<int>& arr) {
     int n=arr.size();
     
-    vector<int>dp(n,1);
+    vector<int>cntArr(n,1);
 
     int ans=0;
     for(int i=0; i<n; i++){
@@ -129,14 +130,44 @@ int longestSubsequence(vector<int>& arr) {
         for(int j=0; j<i; j++){
             
             if(arr[i] > arr[j]){
-                int curr = dp[j] + 1;
-                dp[i] = max(dp[i], curr);
+                int curr = cntArr[j] + 1;
+                cntArr[i] = max(cntArr[i], curr);
             }   
         }
         
         //at the end..after computing..for current index..just store maximum answer.
-        ans = max(ans,dp[i]);
+        ans = max(ans,cntArr[i]);
     }
     
     return ans;
+}
+
+
+
+//Approach 6: most optimised approach using binary search. TC-O(Nlogn) SC-O(1).
+
+//logic is loop over every elements..if current eleement is greater than last element of array..
+//then obviously..this current element will be greater than all previous element of array because
+//we're storing elements in increasing order. if current element is lesser or equal than last element
+//from array then check with lower bound which gives.. next greater or equal element's index from array.
+//as we have to check..just size..so we will overite value on that index.
+//and if you dry run it..u will get..at last size of array will be the longest increasing subsequence.
+
+int longestSubsequence(vector<int>& arr) {
+    vector<int>temp;
+    temp.push_back(arr[0]);
+    
+    for(int i=1; i<arr.size(); i++){
+        
+        if(arr[i] > temp.back()){
+            temp.push_back(arr[i]);
+        }
+        else{
+            
+            int ind = lower_bound(temp.begin(), temp.end(), arr[i]) - temp.begin();
+            temp[ind]=arr[i];
+        }
+    }
+
+    return temp.size();
 }
