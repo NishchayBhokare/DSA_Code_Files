@@ -32,3 +32,5 @@ topological sort -> for dfs traverse till last and before coming..push node in s
 - Kosaraju's algo.
 
 2nd video 3 min. striver.
+
+//Comparator function told us that..if you want to swap the value between two varaibles then return false. else return true.

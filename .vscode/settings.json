@@ -2,6 +2,30 @@
     "git.ignoreLimitWarning": true,
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "deque": "cpp",
+        "array": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "span": "cpp",
+        "ostream": "cpp",
+        "algorithm": "cpp",
+        "string": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "stacktrace": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "complex": "cpp",
+        "barrier": "cpp",
+        "random": "cpp",
+        "latch": "cpp",
+        "limits": "cpp",
+        "semaphore": "cpp"
     }
 }
