@@ -34,3 +34,6 @@ topological sort -> for dfs traverse till last and before coming..push node in s
 2nd video 3 min. striver.
 
 //Comparator function told us that..if you want to swap the value between two varaibles then return false. else return true.
+
+//In sliding window question. If we Encounter to find number of binary subArray or no. of odd SubArr or no. of distinct subArray
+//then for this question we can find answer like (number of subArray with which <= k - No. of subarray <=k-1). which is nothing but No. of subarray ==k

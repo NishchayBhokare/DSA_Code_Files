@@ -31,8 +31,8 @@ int solve(vector<int>&arr, int target){
         //if you observe carefully on every right index whose sum is less than or equal to target.
         //then increment count with length of current substring.
         //why it's like this. if you observe. we are storing all possible substrings which can be formed with 
-        //current right index. which are nothing but length. as move are doing left++ so because of this..
-        //we have to do above condition.
+        //current right index. which are nothing but length. as we are moving left++ so because of this..
+        //we have to do above condition. otherwise we will miss some valid sub arrays.
         
         right++;
     }
