@@ -65,5 +65,21 @@ int remove_duplicate(vector<int> &arr) {
     }    
 
 
-
+//Approach 4: TC-O(NLogN) SC-O(No. of distinct elemtns)
+int removeDuplicates(vector<int> &arr) {
+        
+    int n=arr.size();
+    set<int>st;
+    
+    for(auto i:arr){
+        st.insert(i);
+    }
+    
+    int i=0;
+    for(auto j:st){
+        arr[i++]=j;
+    }
+    
+    return i;
+}
 

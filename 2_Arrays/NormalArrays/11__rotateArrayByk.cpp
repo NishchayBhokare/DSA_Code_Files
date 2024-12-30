@@ -13,8 +13,8 @@ void Reverse(int arr[],int start,int end){
 }
 void rotateArr(int arr[], int d, int n){
     d = d % n;
-    Reverse(arr,0,d-1);
-    Reverse(arr,d,n-1);
+    Reverse(arr,0,d-1); 
+    Reverse(arr,d,n-1); 
     Reverse(arr,0,n-1);
 }
 
@@ -37,7 +37,7 @@ void rotateArr(int arr[], int d, int n){
         
         for(int i=0; i<d; i++) ans[j++]=arr[i];
         
-        for(int i=0; i<n; i++) arr[i] = ans[i];
+        arr=ans;
     }
  
   //Approach 4: using temp vector.

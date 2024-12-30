@@ -28,12 +28,32 @@ int lenOfLongestSubarr(vector<int>& arr, int k) {
         maxLen = max(maxLen, len); //now take max length.
     }
 
-    if(mapping.find(sum) == mapping.end()){ //if we already there is pair of sum is present
+    if(mapping.find(sum) == mapping.end()){ //if  already there is pair of sum is present
     //then don't update their pair index. because we want maximum subarray. this will happen when array has 0 elemens. like 2 0 0 4. k=4
         mapping[sum]=i;
     }
     }
 
+    return maxLen;
+}
+
+//We can do like this too.
+int lenOfLongestSubarr(vector<int>& a, int k) {
+    int n=a.size(), pSum=0, maxLen=0;
+    unordered_map<int,int>ump;
+    ump[0]=-1;
+    
+    for(int i=0; i<n; i++){
+        pSum += a[i];
+        if(ump.find(pSum) == ump.end() ) ump[pSum]=i;
+        
+        if(ump.find(pSum-k) != ump.end()){
+            
+            int ind = ump[pSum-k];
+            maxLen = max(maxLen, i-ind);
+        }
+    }
+        
     return maxLen;
 }
 

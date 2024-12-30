@@ -45,6 +45,22 @@ void pushZerosToEnd(int arr[], int n) {
        j++; //and on every iteration increment j, this j will also increment when case like j standing on zero element and i is also standing on zero element.
       } 
 
+//Approach 4: TC-O(N) SC-O(N)
+void pushZerosToEnd(vector<int>& arr) {
+	vector<int>temp;
+	int zeroCnt=0; //first count zero cnt.
+	for(auto i:arr){
+		if(i){
+			temp.push_back(i); //also push non zero elements in temp.
+		}
+		else zeroCnt++; 
+	}
+	
+	while(zeroCnt--){ //loop till zero cnt is greater than 0.
+		temp.push_back(0);
+	}
+	arr=temp; //assign temp to arr.
+}
 
 //Another solution
 	  void moveZeroes(vector<int>& nums) {
@@ -55,3 +71,5 @@ void pushZerosToEnd(int arr[], int n) {
         }
         for(i; i<nums.size(); i++) nums[i]=0; //at last...as we added element by replacing zeroth element...so insert zero's again.
     }
+
+
