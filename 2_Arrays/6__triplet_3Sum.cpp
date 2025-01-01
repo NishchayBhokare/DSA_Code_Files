@@ -82,27 +82,29 @@ vector<vector<int>> findTriplets(vector<int> arr, int n, int sum)
 
 // Triplet sum from GFG. - In gfg problem no need to return ans vector with triplets, just return true if triplet is present or return false.
 //TC- O(n2) SC-O(1)
-bool find3Numbers(int arr[], int n, int k)
-{
-    // Your Code Here
-    sort(arr, arr + n);
-    for (int i = 0; i < (n - 2); i++)
-    {
-        int low = i + 1, high = n - 1;
-        while (low < high)
-        {
-            if (arr[i] + arr[low] + arr[high] < k)
-                low++;
+bool hasTripletSum(vector<int> &arr, int target) {
 
-            else if (arr[i] + arr[low] + arr[high] > k)
-                high--;
-                
+    int n=arr.size();
+    sort(arr.begin(), arr.end());
+    
+    for(int i=0; i<n; i++){
+        
+        int newT = target - arr[i]; //considering ith element is first value of pair. now check remaining two value which equals to newT.
+        
+        int j=i+1, k=n-1;
+        
+        while(j<k){
+            int pairSum = arr[j]+arr[k];
+            if(pairSum < newT)
+                j++;
+            
+            else if(pairSum > newT)
+                k--;
+            
             else
-            {
                 return true;
-            }
         }
     }
-
+    
     return false;
 }
