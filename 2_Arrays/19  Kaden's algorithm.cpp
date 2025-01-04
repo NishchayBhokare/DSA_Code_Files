@@ -1,5 +1,6 @@
 //GFG.
-//we have to  find the maximum sum of a subarray. array contains +ve and -ve elements.
+//we have to  find the maximum sum of a subarray. 
+// array contains +ve and -ve elements.
 //Approach 1: optimised Appraoch. Kaden's algo.
 int maxSubarraySum(vector<int> &arr) {
     
@@ -10,7 +11,8 @@ int maxSubarraySum(vector<int> &arr) {
         sum+=arr[i];
         maxSum = max(maxSum,sum);
         
-        if(sum < 0) sum=0;
+        if(sum < 0) sum=0; //if current sum is lesser than zero..then no need to take it na. because it will anyway..reduce total sum.
+        //so reset sum to 0.
     }
     
     return maxSum;

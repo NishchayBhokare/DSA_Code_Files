@@ -22,7 +22,8 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
             student++;
             if (student > m || arr[i] > mid) //if at any point, student becomes greater than m(given no. of student) return false, student becomes greater than m when, mid will be small and we unable to allocate all books to student i.e (we still remain some books in array to allocate). and also if current ith element greater than mid, that means our mid is small so return false. and search for larg mid.
                 return false;
-            else pageSum = arr[i]; //if above condition is false, then add ith element in pagesum for next student.
+            
+            pageSum = arr[i]; //if above condition is false, then add ith element in pagesum for next student.
         }
     }
     return true; //if we reach till this condition that means, we allocate books with the help of given mid, so return true.
@@ -46,14 +47,31 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
             }
         }
         
-    return 1;
+    return 1; //here we cannot write condition for stud == m or not because if we write condition here.
+    //and if we return false if stud not equals to m. then what happens.
+    //ther will be scenario like stud 3, pagecnt(mid) is 25 and array is 15,10,18,7. ,
+    //if you observe we will allocate 0th and 1st book to s1 because it comes under 25.
+    //for s2 18, and s3 7. 
+    //but what happens. in code. we're allocating 18+7=25 to s2 which is wrong but if you consider
+    //like above then it's right. so in code level. even if student is lesser than m. then also return true.
+    
+    //suppose we have mid is 50. then with mid 50 answer can be possible. but we have to find out minimum difference between arrangemenet of books.
+    //so we need to return true.
+    //we will return false only if student gets exceeded.
 }
 
 int allocateBooks(vector<int> arr, int n, int m)
-{
-    int sum = 0, ans = -1; //creating sum and ans two varibles.
-    for (auto i : arr) sum += i; //first calculating total sum of pages present in array,
-    int low = 0; //also we can keep our low to maximum pages present in array. for eg. in 10, 20, 30, 40, low can be 40 cause, answer will be in range between 40 to 100(total sum).
+{   
+    if(m > n) return -1; //if studnet is greater than number of books.    
+
+    int sum = 0, maxi=0, ans = -1; //creating sum and ans two varibles.
+    for (auto i : arr){
+        maxi = max(mini,i);
+        sum += i; //first calculating total sum of pages present in array,
+    }
+
+    int low = maxi; //also we can keep our low to maximum pages present in array. for eg. in 10, 20, 30, 40, low can be 40 cause, 
+    // answer will be in range between 40 to 100(total sum). why 40 because at least every book should be allocate and for that..we need to take maximum book page.
     int high = sum;
     while (low <= high)
     {

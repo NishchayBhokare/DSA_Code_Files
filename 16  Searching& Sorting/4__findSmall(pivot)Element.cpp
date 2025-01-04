@@ -5,7 +5,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//More optimised approach
+//More optimised approach. 
 int findMin(vector<int>& nums) {
         int low = 0;
         int high = nums.size() - 1;
@@ -13,12 +13,15 @@ int findMin(vector<int>& nums) {
         
         while(low <= high) {
             int mid = (low + high) / 2;
-            //checking for left half
+            //checking for left half. if current mid is greater than nums[low] then low is possible answer
+            //and as current left part is sorted thtat's why mid is greater than low. so store asnwer of low.
+            //and check in right part.
             if(nums[low] <= nums[mid]){
                 ans = min(ans, nums[low]);
                 low = mid + 1;
             } else {
-                ans = min(ans, nums[mid]);
+                ans = min(ans, nums[mid]); //if mid is not greater than low. that means. mid is in right part. so right part
+                //is sorted and minimum possible value will be mid itself. so store it. and move to left part.
                 high = mid - 1;
             }
 

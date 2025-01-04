@@ -1,5 +1,45 @@
 // Example for search element in rotated array.
 
+//Extended question code studio. if elements have duplicate numbers. then we need to add one more check.
+bool search(vector<int>& nums, int target) {
+        
+        int low=0,high=nums.size()-1;
+
+        while(low <= high){
+
+            int mid = low+(high-low)/2;
+
+            if(nums[mid] == target)
+                return true;
+            
+            if(nums[low]==nums[mid] && nums[high]==nums[mid]){ //This is the additional condition we have applied.
+                low++; //skip duplicate elements.
+                high--;
+                continue;
+            }
+            
+            if(nums[mid] <= nums[high]){
+
+                if(target > nums[mid] && target <= nums[high])
+                    low = mid+1;
+                
+                else   
+                    high = mid-1;
+            }
+            else{
+
+                if(target >= nums[low] && target < nums[mid]){
+                    high=mid-1;
+                }
+                else 
+                    low = mid+1;
+            }
+        }
+
+
+        return false;
+    }
+
 
 //Approach 1 : Most Efficient Approach. Using single pass
 //Analogy: if we stand on particualr element, then either left part is sorted or right part is sorted completely.

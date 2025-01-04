@@ -1,27 +1,27 @@
 //GFG.
-
+//eg.  eg. {1,2,3} -> {1,3,2}.
 //Approach 1: Using implementation. TC-O(N) SC-O(1)
 void nextPermutation(vector<int>& arr) {
          
         //First Step 1: Find breakpoint.
         int n=arr.size(),ind=-1;
-        for(int i=n-2; i>=0; i--){
+        for(int i=n-2; i>=0; i--){ //n-2 because we're accessing next element. i+1 so that's why
             
-            if(arr[i] < arr[i+1]){
-                ind=i;
+            if(arr[i] < arr[i+1]){ //if at any point..increasing order from back breaks. that means current i element is lesser than next i.
+                ind=i; //then take this index and break;
                 break;
             }
         }
         
         //edge case.
-        if(ind==-1){
+        if(ind==-1){ //when given permutation will be 321. then for this. we need to just reverse the array. because from back. this permutation is strictly increasing.
             reverse(arr.begin(), arr.end());
             return;
         }
         
-        //Step 2: swap this breakpoint with next smaller element.
-        //as we know..to get immediate smallest element we need to traverse from right. i.e from end.
-    for(int i=n-1; i>ind; i--){
+        //Step 2: swap this breakpoint with next greater element.
+        //as we know..to get immediate greater element we need to traverse from right. i.e from end.
+    for(int i=n-1; i>ind; i--){ //traversing from back..because from back it's increasing order.
         if(arr[i] > arr[ind]){
             swap(arr[i],arr[ind]);
             break;
@@ -36,11 +36,11 @@ void nextPermutation(vector<int>& arr) {
 
 //Approach 2: Using STL. TC-O(N) SC-O(1)
 void nextPermutation(vector<int>& arr) {
-    next_permutation(arr.begin(), arr.end());
+    next_permutation(arr.begin(), arr.end()); 
 }
 
 
-//Approach 3: Brute Force Approach TC-O(N! * N).
+//Approach 3: Brute Force Approach. Using finding all permutation. TC-O(N! * N).
 void solve(int ind, int &n, vector<int>&nums, vector<vector<int>>&ans){
 
     if(ind == n){

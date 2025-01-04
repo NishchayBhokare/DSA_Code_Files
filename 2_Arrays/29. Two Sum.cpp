@@ -1,7 +1,7 @@
 //Leetcode problem.
 
 //Approach 1: Optimised Approach TC-O(N) SC-O(N)
-//Using storing prefix sum. or values.
+//return total pair of two sum. Using storing prefix sum. or values.
 vector<int> twoSum(vector<int>& nums, int target) {
     
     int n=nums.size();

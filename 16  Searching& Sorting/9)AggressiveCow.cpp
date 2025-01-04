@@ -7,14 +7,14 @@
 //cow or not..here greater than mid because we have to find..maximum distance from all the combination to set cows.
 bool isPossible(int n, int k, vector<int> &stalls, int mid){
         int cowCount = 1; //now initially cow count will be 1.
-        int lastPos = stalls[0];  //first cow..setted at 0th position.
+        int cowInd = 0;  //first cow..setted at 0th position.
         for(int i = 0; i<n; i++){
-            if(stalls[i]-lastPos >= mid){ //now checking can we set cow..on ith position.
+            if(stalls[i]-stalls[cowInd] >= mid){ //now checking can we set cow..on ith position.
             //i.e if ith posiition - last cow position is greater than mid that means we can set cow on this position.
                 cowCount++; //so increment cow;
                 if(cowCount == k) return true; //if at any point cow count equals to k..that means we're able to set all cows.
                 //so return true;
-                lastPos = stalls[i]; //else...assign cow and current ith stall.
+                cowInd=i //else...assign cow and current ith stall.
             }
         }
         return false;// if we reach to this...that means cowcount not equal to k.
@@ -24,8 +24,8 @@ bool isPossible(int n, int k, vector<int> &stalls, int mid){
 
     int solve(int n, int k, vector<int> &stalls) {
         sort(stalls.begin(),stalls.end()); //first sort vector
-        int maxi = stalls[n-1];  //maximum element is last elemnet
-        int low = 0, high = maxi, ans = -1; //high equals to max elemnet
+        int maxi = maxDist = stalls[n-1] - stalls[0];  //maximum range will be difference between last and first element.
+        int low = 1, high = maxi, ans = -1; //high equals to max elemnet
         while(low <= high){
             int mid = low+(high - low)/2; //calculating mid
             if(isPossible(n,k,stalls,mid)){  //checking this mid can be the answer or not.

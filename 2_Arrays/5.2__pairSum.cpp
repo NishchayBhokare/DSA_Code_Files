@@ -8,6 +8,7 @@
 using namespace std;
 
 //Approach 1: Most optimised approach. TC-O(Nlogn) SC-O(N)
+//Count the number of pair sum are there and return those pairs.
 vector<vector<int>> pairSum(vector<int> &arr, int k){
    vector<vector<int> > ans;
 
