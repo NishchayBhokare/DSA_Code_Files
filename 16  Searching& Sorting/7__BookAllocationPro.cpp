@@ -110,7 +110,7 @@ bool isPossible(vector<int> arr, int n, int m,int mid ){
 }
 
 int allocateBooks(vector<int> arr, int n, int m) {
-    int sum = 0, ans=-1;
+    int sum = 0, ans=-1;x
     for(auto i: arr) sum += i;
 
  for (int i = 1; i <= sum; i++) { //just few change instead of binary search we're using linear approach from 1 to sum.
