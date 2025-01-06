@@ -128,7 +128,7 @@ Node *copyList(Node *head) {
 
 
 
-//Approach 2: Soution in O(N) TC using Un_Ordered map.  TC-O(N) SC-O(N)
+//Approach 2: Solution in O(N) TC using Un_Ordered map.  TC-O(N) SC-O(N)
 Node *copyList(Node *head)
     {
         Node *head1=new Node (-1);

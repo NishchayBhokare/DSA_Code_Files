@@ -42,7 +42,8 @@
     while(index1 < len1 && index2 < len2){ //looping till both indexes are less than its array length
         
         if(firstArr[index1] <= secondArr[index2]) arr2[mainArrIndex++] = firstArr[index1++];
-        else{
+        
+        else{ //index1 element > index2 element
          arr2[mainArrIndex++] = secondArr[index2++];
       
          count += len1-index1; //so basically if element at index1 is greater than element at index 2 

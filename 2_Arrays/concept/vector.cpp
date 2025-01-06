@@ -46,4 +46,19 @@ int main(){
     }
 
 
+Syntax of erase()
+    iterator erase(iterator position);
+    iterator erase(iterator first, iterator last);
+
+    iterator position: The iterator points to the element to be erased.
+    iterator first, iterator last: A range of elements to be erased. 
+    The function removes elements from vectors in C++ starting from the first and ending at the last (exclusive).
+
+Syntax of substrin.
+string substr (size_t pos, size_t len) const;
+Parameters:
+
+pos: Index of the first character to be copied.
+len: Length of the sub-string.
+size_t: It is an unsigned integral type.
 }

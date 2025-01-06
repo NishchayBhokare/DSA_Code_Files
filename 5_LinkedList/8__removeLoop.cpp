@@ -15,7 +15,8 @@ struct Node
 //When linked list is exact circular that means, if last node is connected with head then slow and fast pointer will also points to head (head means start of circular linked list.) when we detect loop.
 //but if last node connected somewhere between linked list instead connecting with head node, then slow and fast pointer will both point somewhere in linked list instead pointing head node.
 //But, the distance between head node to the start of loop node equals to distance between slow node to start of loop node. 
-//So, if loop is present, then one by one shift temp node (which is intitally pointing to head) and slow node. Once temp node and slow node points on same node i.e that particular node is starting node of loop present in linked list.
+//So, if loop is present, then one by one shift temp node (which is intitally pointing to head) and slow node. 
+// Once temp node and slow node points on same node i.e that particular node is starting node of loop present in linked list.
 void removeLoop(Node *head)
 {
     int loop = 0;

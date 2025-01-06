@@ -1,4 +1,4 @@
-//Example for returning list of pairs whose sum equals to s.
+//Example for returning count of pairs whose sum equals to s.
 //GFG
 
 //Approach 1: One traversal approach. TC-O(N) SC(N);

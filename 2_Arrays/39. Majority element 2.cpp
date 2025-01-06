@@ -1,4 +1,5 @@
 //GFG.
+//Return elements who occurs more than n/3 times.
 
 //Approach 1: Most optimised Approach. TC-O(N) SC-O(1)
 //As we know at max maximum two possible answer can be found for array. so we will use two variables.
@@ -67,9 +68,7 @@ vector<int> findMajority(vector<int>& arr) {
     for(auto i:arr){
         ump[i]++;
         
-        if(ump[i] > n/3){
-            
-            if(ans.size() > 0 && i == ans.back()) continue;
+        if(ump[i] == (n/3+1)){
             ans.push_back(i);
         }
     }

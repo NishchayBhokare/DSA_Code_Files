@@ -24,9 +24,8 @@ Node *sortedInsert(struct Node *head, int data)
     Node *q = nullptr;          // creating another node which points to the null.
     Node *tmp = new Node(data); // Creating another pointer object of struct Node.
 
-    if (p->data >= data)
+    if (p->data >= data) //condition to check...if data can be inserted at first position or not.
     {
-        // if loop for condition when, element insert at the first position.
         tmp->next = p; // new element pointer pointing to the p which is current first element in linked list.
         return tmp;    // returning new head of linked list.
     }

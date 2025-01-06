@@ -17,14 +17,14 @@
     int diffSetBit = xr & ~(xr-1);
     
     
-    //Step3: Differentiate elemetns based on diffSetBit. by taking xor.
+    //Step3: Differentiate elements based on diffSetBit. by taking and.
     int first=0, second=0;
     
-    //take xor for array elements.
+    //take and for array elements.
     for(auto i:arr){
         
-        if((diffSetBit & i) == 0){ //0th club elements.
-            first = first ^ i;
+        if((diffSetBit & i) == 0){ //0th club elements. why & because we want to differential number based on that setbit.
+            first = first ^ i; //then after take xor.
         }
         else{
             second = second ^ i; //1th club elements which has 1 set bit.
@@ -40,6 +40,8 @@
         else
             second = second ^ i;
     }
+
+    //after this step in first and second. duplicate and missing number will be there.
     
 
     

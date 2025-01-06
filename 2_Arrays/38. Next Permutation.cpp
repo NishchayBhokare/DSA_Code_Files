@@ -1,5 +1,5 @@
 //GFG.
-//eg.  eg. {1,2,3} -> {1,3,2}.
+//eg.  eg. {1,2,3} -> {1,3,2}. {1 3 2} -> {2 1 3}
 //Approach 1: Using implementation. TC-O(N) SC-O(1)
 void nextPermutation(vector<int>& arr) {
          
@@ -14,7 +14,7 @@ void nextPermutation(vector<int>& arr) {
         }
         
         //edge case.
-        if(ind==-1){ //when given permutation will be 321. then for this. we need to just reverse the array. because from back. this permutation is strictly increasing.
+        if(ind==-1){ //when given permutation will be 3 2 1. then for this. we need to just reverse the array. because from back. this permutation is strictly increasing.
             reverse(arr.begin(), arr.end());
             return;
         }

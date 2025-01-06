@@ -1,6 +1,7 @@
 //GFG.
 //Majority element.
 
+//return number who occurs more than n/2 times.
 //Approach 1: Most optimised Approach. Moore’s Voting Algorithm TC-O(N) SC-O(1).
 //In short logic is..if any number is majority element. then it will not get cancel out with other element.
 //because it will present in array more than n/2 times. so at least one time thier frequency will remain.

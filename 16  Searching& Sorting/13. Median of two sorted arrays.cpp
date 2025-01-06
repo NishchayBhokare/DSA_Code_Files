@@ -48,7 +48,7 @@ double medianOf2(vector<int>& a, vector<int>& b) {
         if(mid2 < n2) R2=b[mid2]; //same for mid2 & R2.
         
         
-        if(L1 <= R2 && L2 <= R1){
+        if(L1 <= R2 && L2 <= R1){ //if we found right combination then return answer.
             
             if(n%2 == 0) //even numebr of case. total elements.   
                 return (max(L1,L2) + min(R1,R2))/2.0;

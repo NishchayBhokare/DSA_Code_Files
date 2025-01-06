@@ -17,7 +17,8 @@ using namespace std;
             
             int mid = low + (high - low) / 2;
             
-            int element = matrix[mid/col][mid%col]; //condition- 1) (mid / col) by doing this we'll get quotient which will be row index. 2) (mid % col) by doing this we will get remainder which will be column index.
+            int element = matrix[mid/col][mid%col]; //condition- 1) (mid / col) by doing this we'll get quotient which will be row index. 
+            // 2) (mid % col) by doing this we will get remainder which will be column index.
                 
             if(element < target) //if current element is less than target then just increment low to mid + 1.
                 low = mid + 1;

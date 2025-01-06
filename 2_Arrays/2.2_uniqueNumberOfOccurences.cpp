@@ -11,7 +11,8 @@
 
         for(auto &i:ump){ 
             // if(st.find(i.second) != st.end()) return false;
-            if(st.count(i.second)) return false; //if i.second that means current count is already present in set..then it will return count more than zero. 
+            if(st.count(i.second)) return false; //if i.second that means current count is already present in set..
+            // then it will return count more than zero. 
             //that means no unique occurences.
 
             st.insert(i.second);  //else push current frequnecies.
