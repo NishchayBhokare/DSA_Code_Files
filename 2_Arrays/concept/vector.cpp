@@ -47,6 +47,14 @@ int main(){
 
 
 Syntax of erase()
+    erase()                   // Erases whole string
+    s.erase(idx)             // Erases all characters after idx
+    s.erase(idx, k)        // Erases k characters after idx
+
+    //Using iterator.
+    s.erase(itr)             // Erases character at itr
+    s.erase(itrfirst, itrlast) // Erases character in range [first, last)
+
     iterator erase(iterator position);
     iterator erase(iterator first, iterator last);
 
