@@ -99,6 +99,8 @@ vector<string> findPath(vector<vector<int>> &maze, int n) //first function
         }
     }
 
+    //  vector<vector<bool>>visitedInd(n, vector<bool>(n,false)); //or just simply create visited of false.
+
     string path = ""; //to store current path.
     int srcX = 0, srcY = 0; //source x and y.
     solve(maze, n, srcX, srcY, visited, ans, path); //calling solve function.

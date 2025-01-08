@@ -6,6 +6,8 @@ unordered_map<int,int>rowMap; //little optimised approach using map.
 unordered_map<int,int>upparDiagonal;
 unordered_map<int,int>lowerDiagonal;
 
+//Here in this function we're not checking..vertical up. becasue. once we place any queen.
+//we re moving to next column. so there will be no chance of two queens in one column.
 bool isPossible(vector<vector<int>> &board, int row, int col){
     int n = board.size();
     

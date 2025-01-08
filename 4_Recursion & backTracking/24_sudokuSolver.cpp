@@ -5,9 +5,10 @@
 //and move to next recursive call..if not..then return false;.
 
  bool isSafe(int row, int col, int val, int grid[N][N]){
-        for(int i=0; i<N; i++){
+
+        for(int i=0; i<N; i++){ //for loop.
             
-            //Checking for row
+            //Checking for every element of row, for loop is above
             if(grid[row][i] == val) 
                 return false;
             
@@ -64,10 +65,10 @@ bool SolveSudoku(int grid[N][N])
     // void printGrid (int grid[N][N]) 
     // {
     //     SolveSudoku(grid);
-    //     for(int row = 0; row<N; row++){
-    //         for(int col = 0; col<N; col++){
-    //             cout<<grid[row][col]<<" ";
-    //         }
-    //     }
+        // for(int row = 0; row<N; row++){
+        //     for(int col = 0; col<N; col++){
+        //         cout<<grid[row][col]<<" ";
+        //     }
+        // }
         
     // }
