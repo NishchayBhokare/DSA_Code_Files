@@ -5,6 +5,18 @@
 using namespace std;
 
 //TC-O(N) SC-O(N)
+bool isMatches(char &ch, char &topChar){
+    
+    if(ch==')')
+        return topChar == '(';
+    
+    else if(ch=='}')
+        return topChar == '{';
+        
+    else
+        return topChar == '[';
+}
+
 bool ispar(string str)
 {
     stack<char>s; //create stack.
@@ -12,24 +24,20 @@ bool ispar(string str)
         
         char ch=str[i]; //storing character in ch.
         
-        if ((ch == '(') or (ch == '[') or (ch == '{')) { //if character is any of the opening bracket, then push in stack.
+        if (ch=='(' || ch=='{' || ch=='[') { //if character is any of the opening bracket, then push in stack.
             s.push(ch);
         }
-        else if(!s.empty()){ //else first check whether alredy stack empty or not.
-        //if not then enter in block.
+        else{ 
+            if(s.empty()) //if stack empty return false.
+                return false;
           
             char ch2=s.top(); //storing top element of stack into ch2 varible.and checking wheter both contains same opening and closing bracket or not.
-            if( (ch == ')' and  ch2=='(') || (ch == ']' and ch2=='[') ||  
-            (ch == '}' and ch2 == '{') ){ 
-                s.pop();
-            }
-            else{ //if not then return false.
-            return false;
+            s.pop();
+
+            if(!isMatches(ch,ch2)){ 
+                return false; //if not mataches return false.
             }
         }
-        
-        else  //if empty then return false.
-            return false;
     }
     
     if(s.empty()) return true; //finally after all iterations if stack is empty then return true, otherwise false.
