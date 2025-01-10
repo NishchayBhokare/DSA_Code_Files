@@ -34,3 +34,31 @@ using namespace std;
         Reverse(st); //recursive call
         insertAtbottom(st,val); //once stack get empty then for one by one val element call insert at bottom function
     }
+
+
+//Approach 2: Slightly different approach TC-O(N2) SC-O(N)
+ void insertAtBottom(stack<int>&st, int &x, int &i){
+    if(st.size() == i){ //every time we added element bottom element. then i getting increased.
+        st.push(x);
+        return;
+    }
+    
+    int val=st.top();
+    st.pop();
+    
+    insertAtBottom(st,x,i);
+    
+    st.push(val);
+}
+
+void Reverse(stack<int> &st){
+    
+    int n=st.size();
+    for(int i=0; i<n; i++){ //looping till size of array.
+        
+        int x=st.top();
+        st.pop();
+        
+        insertAtBottom(st,x,i);
+    }
+}
