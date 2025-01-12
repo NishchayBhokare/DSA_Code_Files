@@ -21,7 +21,7 @@
     
     for(int i=0; i<n; i++){
         
-        while(st.top() != -1 && arr[i] <= arr[st.top()]){ //check..if stack contains
+        while(st.top() != -1 && arr[i] < arr[st.top()]){ //check..if stack contains
         //greater than one element i.e not -1 then 
         //&& if we  encounter i as lesser element than stack top..then enter in this block.
         //to calculate area of top element index.
@@ -65,7 +65,7 @@
 //Approach 1: Optimised solution TC-O(2N + 2N + N i.e 5N) SC-O(2N + 2N i.e 4N)
     void nextSmaller(vector<long long>&next, long long arr[],int n){
     stack <long long> st;
-    st.p
+    st.push(-1);
 
     for(int i=n-1; i>=0; i--){
         

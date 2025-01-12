@@ -22,6 +22,8 @@ vector<long long> printFirstNegativeInteger(long long int arr[],
         
         if(!q.empty() and (i - q.front()) >= K) { //because of this step we are storing index in dequeue, i.e to remove those elements which is not in range of k.
         //checking front element is out of range or not, if out of range then pop out front
+        // or we can use this formula too. 
+        // q.front() <= (i-k)
             q.pop();
         }
         

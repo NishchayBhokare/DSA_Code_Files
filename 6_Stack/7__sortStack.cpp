@@ -5,6 +5,8 @@
 using namespace std;
 
 //Approach 1: TC-O(N2) SC-O()
+//first divide stack to single element then call sorted insert function.
+
 void SortedInsert(stack<int>&st,int x){
 	if(st.empty()){ //if stack is empty simply insert that given element i.e x and return.
 		st.push(x);
@@ -24,7 +26,7 @@ void SortedInsert(stack<int>&st,int x){
 
 void SortedStack :: sort()
 {
-   if(s.empty()){
+   x`
 		return;
 	}
 

@@ -1,5 +1,5 @@
 //Minimum Cost To Make String Valid from coding ninja or Count the Reversals from gfg
-//GFG
+//on GFG Count Reversals.
 //gfg link- https://practice.geeksforgeeks.org/problems/count-the-reversals0401/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
 
 

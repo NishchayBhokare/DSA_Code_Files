@@ -1,8 +1,81 @@
 //Calculate max rectangle area
-//GFG  
+//GFG 
 
-//Approach: Same approach as we did in finding largest histogram
-// TC-O(n*m) SC-O(m)
+//Approach 1: Most optimised Approach. I have explained this approach in histogram.
+//TC-O(n*(m+2m) i.e n*3m) SC-O(m)
+int getArea(vector<int>&arr, int n){
+    stack<int>st;
+    st.push(-1);
+    int mArea=0;
+    
+    for(int i=0; i<n; i++){
+        
+        while(st.size() != 1 && arr[i] < arr[st.top()]){ //we found next smaller element. at index i. arr[i]
+            
+            int length = arr[st.top()];
+            st.pop();
+            
+            int prevSm=st.top();
+            
+            int nextSm=i;
+            
+            int breadth = nextSm - prevSm - 1;
+            
+            int area = length * breadth;
+            
+            mArea = max(mArea, area);  
+        }
+        
+        st.push(i);
+    }
+    
+    
+    while(st.size() != 1 && !st.empty()){ //process for remaining elements who doesn't have next smaller.
+        
+        int length=arr[st.top()];
+        st.pop();
+        
+        int prevSm=st.top();
+        int nextSm=n;
+        
+        int breadth = nextSm - prevSm - 1;
+        
+        int area = length * breadth;
+        
+        mArea = max(mArea, area);  
+    }
+    
+    return mArea;
+}
+
+
+int maxArea(vector<vector<int>> &mat) {
+    
+    int n=mat.size(), m=mat[0].size();
+    
+    int mArea = getArea(mat[0],m);
+    
+    for(int i=1; i<n; i++){
+        for(int j=0; j<m; j++){
+            
+            if(mat[i][j] == 1)
+                mat[i][j] += mat[i-1][j];
+        }
+        
+        mArea = max(mArea, getArea(mat[i],m));
+    }
+    
+    return mArea;
+}
+
+
+
+
+
+
+
+//Approach 2: Same approach as we did in finding largest histogram
+// TC-O(n*(m+(m+2m+2m) i.e n*6m) SC-O(2m+2m i.e 4m)
  void nextSmallest(int arr[],int n, vector<int>&next){
         stack<int> st;
         st.push(-1);
@@ -70,8 +143,6 @@ void prevSmallest(int arr[],int n, vector<int>&prev ){
 
 
             //we can find area of largest rectangle..without putting -1 in stack initially.
-      
-      
       void previousSmallerElementIndex(int *arr,vector<int>&previous,int size){
         stack<int>st;
         for(int i = 0; i<size; i++){

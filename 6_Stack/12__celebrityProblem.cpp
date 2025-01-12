@@ -5,12 +5,43 @@
 //Conditions for celebrity candidate:
     //Everyone knows celebrity candidate
     //Celebrity candidate dont know any one.
+
+ int celebrity(vector<vector<int> >& mat) {
+
+    int firstP=0;
+    int secondP=mat.size()-1;
+    while(firstP<secondP){ //finding potential candidate of celebrity.
+        
+        if(mat[firstP][secondP]==1) firstP++;
+        
+        else if(mat[secondP][firstP]==1) secondP--;
+        
+        else{
+            firstP++; secondP--;
+        }
+    }
+    
+    if(firstP>secondP)  //if first and second crosess each other..then there no celebrity present.
+        return -1;
+    
+    for(int i=0; i<mat.size(); i++){ //both first and second person will points same person. so take any one.
+        
+        if(i!=firstP && (mat[firstP][i] !=0 || mat[i][firstP] != 1)){ //cross checking possible celebrity row and column.
+            return -1; //if row does'nt equals to 0 because celebrity does'nt know anyone.
+            // and column doesn't equals to 1 because everyone knows celebrity. then return -1.
+        }
+    }
+    
+    return firstP;
+}
+
+//similar like aboev approach.
 int celebrity(vector<vector<int> >& matrix, int n) 
 {   
     
     int candidate=n-1;
     int i=0;
-    while(i < candidate){ //first calculating potential candidate.
+    while(i < candidate){ //first calculating potential candidate. after loop over i and candidate will points to same person.  
         if(matrix[i][candidate] == 1) i++;
         else candidate--;
     }
@@ -59,7 +90,7 @@ int celebrity(vector<vector<int> >& matrix, int n)
         if(st.size() == 1) {
             //check row for this possible celerbity. he should not know anyone.
             for(int i=0; i<n; i++){
-                //check for row & col.
+                //check for row & col.   
                 if(i!=index && (mat[index][i] == 1 || mat[i][index] == 0)){
                    return -1;
                 }

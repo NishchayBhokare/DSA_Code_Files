@@ -25,7 +25,8 @@ class Solution{
            if(st.empty()) return -1;
            
            int curr = st.top();
-           if(curr < minElem){
+           if(curr < minElem){ //if current top is lesser than mini. that means. mini is original x value of this top(why? look in push operation. if current x is lesser than mini. then we're modifying x and updating mini as original x).
+           //and as we're popping out this from stack. then we have to move back to previous stage of min element.
                int popped = minElem;
                minElem = 2*minElem - curr;
                st.pop();
@@ -44,17 +45,28 @@ class Solution{
               st.push(x);
           }
           else{
-              if(x < minElem){
-                  int updatedX = 2 * x - minElem;
+              if(x < minElem){ //if new elemnet is lesser than curren mini..then we need to push this 
+              //new x element by updating it. why? because. if in future..we pop out this lesser element.
+              //then we should able to move back to previous stage of mini element.
+                  int updatedX = 2 * x - minElem; //why 2*x becuase if we do x-minelement. then it will goes into -ve. that's why 2*x.
                   st.push(updatedX);
                   minElem = x;
               }
-              else{
+              else{ //if new element is greater then..even after popping out this elemnet. there will be no impact on min element.
+              //that's why we're storing it in normal way.
                  st.push(x);
               }
           }
        }
 };
+
+//Mathematical proof is.
+ x - mini < 0;
+ //if we add x to both sides.
+ x + x - mini < x;  i.e 2x - mini < x; so 2x-mini is nothing but updated value.
+ //so
+ updatedValue < x. 
+//  so updated value will always lesser than x. and original x will be mini in this cases.
 
 //similar to above only but straightforward..looks simple.
 class SpecialStack {
@@ -102,9 +114,39 @@ class SpecialStack {
 };
 
 
+//Approach 2: Using extra memory..create pair and store in stack. very simple.
+class Solution{
+    stack<pair<int,int>> st;
+    public:
+    
+       /*returns min element from stack*/
+       int getMin(){
+           if(st.empty()) return -1;
+           
+           return st.top().second;
+       }
+       
+       /*returns poped element from stack*/
+       int pop(){  
+           if(st.empty()) return -1;
+           
+           int val=st.top().first;
+           st.pop();
+           return val;
+       }
+       
+       /*push element x into the stack*/
+       void push(int x){
+           if(st.empty())
+                st.push({x,x});
+           
+           else st.push({x,min(x,st.top().second)});
+       }
+};
 
 
-//Approach 2: using space. TC-O(1) SC-O(N);class SpecialStack {
+
+//Approach 3: using space. TC-O(1) SC-O(N);class SpecialStack {
 class SpecialStack {
     public:
         stack<int>st;

@@ -24,6 +24,7 @@ struct petrolPump
             }  
         }
         
+        //why doing this because. for last element's of petrol-distance + dificit should be greater than or equal to 0.
         if(balance + deficit >= 0) return start; //to remove cases when we need to visit every petrol pump two times. 
         else return -1;
     }
@@ -32,7 +33,6 @@ struct petrolPump
 //Approach 2: Checking for every index whether it can start or not. Tc-O(N2) SC-O(1)
 int tour(petrolPump p[],int n)
     {
-        int rear=0;
         int balance=0;
         int start=0;
         for(int start=0; start<n; start++){
@@ -50,7 +50,7 @@ int tour(petrolPump p[],int n)
             
           } while(start != j);
           
-          if(balance >=0 and start == j) return start;
+          if(balance >=0) return start;
         }
         
         return -1;
