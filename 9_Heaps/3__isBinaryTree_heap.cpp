@@ -9,96 +9,7 @@ class Node{
     public:
     Node *left; Node *right ; int data;
 };
-
-//Approach 1: optimised approach by me.
-//similar like approach 2..but the thing is..instead comparising with left and right child.
-//i am passing parent data for current node..so now we just need to check..
-//if current node less than parent or not..for max heap property..
-//rest everything is same like approach 2.
-pair<bool,int> solve(struct Node *tree, int maxi){
-    if(tree == NULL)
-        return {true,0};
-    
-    pair<bool,int> curr = {false, -1}; 
-    
-    int data = tree->data;
-    if(data > maxi) return curr; //checking current node..is less than or not..if not return false pair.
-    
-    pair<bool,int> leftAns = solve(tree->left, data);
-    pair<bool,int> rightAns = solve(tree->right, data);
-    
-    //updating values for current node.
-    int height = max(leftAns.second, rightAns.second) + 1;
-    curr.second = height; //updating height. 
-    
-    
-    //checking cbt completeness.
-    int heightDiff = leftAns.second - rightAns.second;
-    //not complete binary tree.
-    if(heightDiff < 0 || heightDiff > 1) return curr; //i have explained for this below.
-    
-    
-    if(leftAns.first && rightAns.first){
-            curr.first = true;
-            return curr; //apart from this condition and null condition..everything is false for returning.
-    }
-    
-    return curr;
-}
-
-
-bool isHeap(struct Node* tree) {
-    
-    pair<bool,int> pr = solve(tree, INT_MAX);
-    
-    return pr.first;
-}
-
-//Approach 2: solving within one function only.
-//on every node..we are passing pair..in which first field represent...heap till that node 
-//is max heap or not and second field represent height..so that we can use it to check cbt or not.
- pair<bool,int> solve(struct Node *tree){
-    if(tree == NULL)
-    return {true,0};
-    
-    pair<bool,int> leftAns = solve(tree->left);
-    pair<bool,int> rightAns = solve(tree->right);
-    
-    //updating values for current node.
-    int height = max(leftAns.second, rightAns.second) + 1; //storing maximum height from left or right.
-    int data = tree->data;
-    pair<bool,int> curr = {false, height}; //creating pair to return for current node.
-    
-    
-    //checking completeness.
-    int heightDiff = leftAns.second - rightAns.second;
-    if(heightDiff < 0 || heightDiff > 1) return curr; //not complete binary tree.
-    //above two statement checking..whether it is cbt or not..
-    //see, for CBT (expalining 2nd if cond.) leftHeight - rightHeight should not be greater than 1 because..we can allow
-    //only last level to be not filled..other than this level every level should fill okay.
-    
-    //and first if condition is, when right part is exist but left part is not..
-    //so in this case..right part height will be greater than left part..so different will be negative.
-    //so this is also not cbt..so return false; 
-
-    
-    if(leftAns.first && rightAns.first){ //now..if left and right part is true.
-        
-        if((tree->left && data < tree->left->data) || //then check..current node is max heap or not..by comaparing with child nodes.
-            (tree->right && data < tree->right->data))
-                return curr; //if not..then return curr..which is false.
-                
-        else {
-            curr.first = true; //if it's max heap..then return true by updating first field.
-            return curr; //apart from this condition and null condition..everything is false for returning.
-        }
-    }
-    
-    return curr; //this is also false condition..it get's called when any of the left or right part is false.
-}
-
-
-//Approach 3: using counting nodes for cbt. TC-O(N) SC-O(N)
+//Approach 1: using counting nodes for cbt. TC-O(N) SC-O(N)
 //we have to check 2 conditions for whether given tree is heap or not.
 //  1. given tree should be complete binary tree. i.e it should be start from left.
 //  2. root element is greater than all its child elements.
@@ -137,3 +48,99 @@ bool isHeap(struct Node* tree) {
         bool val=solve(tree,nodeCount, index, INT_MAX); //storing return value in val.
         return val; //and finally returning our answer.
     }
+
+
+
+
+
+
+//Wrong Answer.
+
+//Approach 1: optimised approach by me.
+// //similar like approach 2..but the thing is..instead comparising with left and right child.
+// //i am passing parent data for current node..so now we just need to check..
+// //if current node less than parent or not..for max heap property..
+// //rest everything is same like approach 2.
+// pair<bool,int> solve(struct Node *tree, int maxi){
+//     if(tree == NULL)
+//         return {true,0};
+    
+//     pair<bool,int> curr = {false, -1}; 
+    
+//     int data = tree->data;
+//     if(data > maxi) return curr; //checking current node..is less than or not..if not return false pair.
+    
+//     pair<bool,int> leftAns = solve(tree->left, data);
+//     pair<bool,int> rightAns = solve(tree->right, data);
+    
+//     //updating values for current node.
+//     int height = max(leftAns.second, rightAns.second) + 1;
+//     curr.second = height; //updating height. 
+    
+    
+//     //checking cbt completeness.
+//     int heightDiff = leftAns.second - rightAns.second;
+//     //not complete binary tree.
+//     if(heightDiff < 0 || heightDiff > 1) return curr; //i have explained for this below.
+    
+    
+//     if(leftAns.first && rightAns.first){ //if left and right both are valid..then return true.
+//             curr.first = true;
+//             return curr; //apart from this condition and null condition..everything is false for returning.
+//     }
+    
+//     return curr;
+// }
+
+
+// bool isHeap(struct Node* tree) {
+    
+//     pair<bool,int> pr = solve(tree, INT_MAX);
+    
+//     return pr.first;
+// }
+
+//Approach 2: solving within one function only.
+//on every node..we are passing pair..in which first field represent...heap till that node 
+//is max heap or not and second field represent height..so that we can use it to check cbt or not.
+//  pair<bool,int> solve(struct Node *tree){
+//     if(tree == NULL)
+//     return {true,0};
+    
+//     pair<bool,int> leftAns = solve(tree->left);
+//     pair<bool,int> rightAns = solve(tree->right);
+    
+//     //updating values for current node.
+//     int height = max(leftAns.second, rightAns.second) + 1; //storing maximum height from left or right.
+//     int data = tree->data;
+//     pair<bool,int> curr = {false, height}; //creating pair to return for current node.
+    
+    
+//     //checking completeness.
+//     int heightDiff = leftAns.second - rightAns.second;
+//     if(heightDiff < 0 || heightDiff > 1) return curr; //not complete binary tree.
+//     //above two statement checking..whether it is cbt or not..
+//     //see, for CBT (expalining 2nd if cond.) leftHeight - rightHeight should not be greater than 1 because..we can allow
+//     //only last level to be not filled..other than this level every level should fill okay.
+    
+//     //and first if condition is, when right part is exist but left part is not..
+//     //so in this case..right part height will be greater than left part..so difference will be negative.
+//     //so this is also not cbt..so return false; 
+
+    
+//     if(leftAns.first && rightAns.first){ //now..if left and right part is true.
+        
+//         if((tree->left && data < tree->left->data) || //then check..current node is max heap or not..by comaparing with child nodes.
+//             (tree->right && data < tree->right->data))
+//                 return curr; //if not..then return curr..which is false.
+                
+//         else {
+//             curr.first = true; //if it's max heap..then return true by updating first field.
+//             return curr; //apart from this condition and null condition..everything is false for returning.
+//         }
+//     }
+    
+//     return curr; //this is also false condition..it get's called when any of the left or right part is false.
+// }
+
+

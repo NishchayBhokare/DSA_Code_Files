@@ -9,6 +9,8 @@ using namespace std;
 
 //TC-O(N) SC-O(logn)
 void heapify(vector <int> &arr,int n,int i){
+    if(i >= n/2) return; //because from this indexes all area child nodes..and all child nodes are heap in it.
+
     int smallest=i;
     int left= 2 * i+1;
     int right=2 * i+2;

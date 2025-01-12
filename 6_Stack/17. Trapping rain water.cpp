@@ -63,7 +63,7 @@ int maxWater(vector<int> &arr) {
     
     for(int i=0; i<n; i++){
         //if current building is less than prefix max and suffix max then we can surely store water.
-        if(arr[i] < preMax[i] && arr[i] < suffMax[i]) //now check..condition are satiesfiing or not.
+        if(preMax[i]>arr[i] && arr[i] < suffMax[i]) //now check..condition are satiesfiing or not.
             totalWater += min(preMax[i], suffMax[i]) - arr[i];
     }
     

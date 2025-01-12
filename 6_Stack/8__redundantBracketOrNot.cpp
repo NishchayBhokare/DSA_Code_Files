@@ -31,6 +31,7 @@ int checkRedundancy(string s) {
         }
 
         else //if we not found operator. we found closing bracket then increment count.
+        //don't decrement opening..because..we only decrement opening...when we found operator.
             i++;
     }
 
@@ -54,8 +55,8 @@ int checkRedundancy(string s) {
            bool redundant=true;
            while(st.top() != '('){ //checking till opening bracket not encounter, is there operator or not between opening and closing bracket, if operator is encounter then mark redundant as false
                char top=st.top();
-               if(top == '+' or  top == '-' or  top=='*'  or  top == '/') redundant=false;
                st.pop();
+               if(top == '+' or  top == '-' or  top=='*'  or  top == '/') redundant=false;
            }
            st.pop(); // removing that opening bracket
            if(redundant) return true;

@@ -24,7 +24,10 @@ Node *copyList(Node *head)
     ptr=head1; //and again poiting ptr to new head1.
     
 //step 2: Change next links between curr and next.
-
+            //curr curr->next;
+//doing link as | /^
+             // |/
+            // ptr
     while(curr != NULL){ //connecting curr's next to ptr and ptr's next to curr.
         Node *temp1=curr->next;
         Node *temp2=ptr->next; //storing curr's next and ptr's next in temp1 and temp2 recspectively, so that we can track remaining linked list nodes.

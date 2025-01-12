@@ -17,6 +17,7 @@ using namespace std;
             //here we took modulus with n so that last element will compare with first element.
         }   
         return count<=1; //if count is less or equal to 1 then it will return 1, otherwise it will return 0.
+        //why less than also..because array elements may have duplicates.
     }
 
 

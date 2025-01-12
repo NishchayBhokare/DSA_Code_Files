@@ -20,14 +20,14 @@ void sort012(int a[], int n)
         {
             swap(a[l], a[m]);
             l++;
-            m++;
+            m++; //from a[l] we will always get's 0. we're sure abot this. that's why incrementing m too.
         }
         else if (a[m] == 1) //if mid is 1, then just increment mid.
             m++;
         else
         { //last condition when mid is 2, then swap it with high. and decrement high.(we are not inrementing low cause we don't know which element will come from high side.)
             swap(a[m], a[h]);
-            h--;
+            h--; //from a[h] we might get 2,1,0 anything we can get. thats why only decrementing h.
         }
     }
 }

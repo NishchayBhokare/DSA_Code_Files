@@ -22,7 +22,7 @@ string rearrangeString(string str)
     string ans;
     
     while(!pq.empty() && pq.size() > 1){ //looping till not empty or size > 1. because if size equals
-    //to one..there are possiblity that..solutino cannot found..or can be found..because we don't have other characters
+    //to one..there are possiblity that..solution cannot found..or can be found..because we don't have other characters
     //in which we can add top element.
         pair<int,char> p1 = pq.top(); //first pop p1 and p2..first two maximum frequency characters.
         pq.pop(); //and pop it temporarly.

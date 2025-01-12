@@ -13,13 +13,13 @@ int getNthFromLast(Node *head, int n)
 {
        // Your code here
       Node *curr=head;
-      Node *nthNode=head; //Initially pointing both pointer to head node.
       
       while(n--){ //looping till n not gets 0.
           if(curr == NULL) return -1; //if curr reaches till null that means value of n is greater than length of node
           curr=curr->next;
       } //at the end of loop curr will point to n+1 th node.
       
+      Node *nthNode=head; //Initially pointing both pointer to head node.
       while(curr != NULL){ //looping till curr not gets null.
           curr=curr->next;
           nthNode=nthNode->next; //now shifting both pointers, nth node pointing to head and curr pointing to n+1th node initially

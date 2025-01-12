@@ -116,7 +116,7 @@ double medianOf2(vector<int>& a, vector<int>& b) {
     }
     
     while(j<n2){ //for second.
-            if(cnt == ind1) val1 = b[j];
+        if(cnt == ind1) val1 = b[j];
         
         if(cnt == ind2) val2 = b[j];
             

@@ -1,4 +1,5 @@
 //GFG.
+//find element who occurs one time.
 //Approach 1: Most optimised Approach Using binary search. TC-O(logn) SC-O(1)
 int search(int n, int arr[]) {
 

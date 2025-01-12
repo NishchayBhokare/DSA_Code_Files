@@ -26,7 +26,7 @@ void SortedInsert(stack<int>&st,int x){
 
 void SortedStack :: sort()
 {
-   x`
+   if(s.empty()){
 		return;
 	}
 
@@ -36,6 +36,7 @@ void SortedStack :: sort()
 	sort();
 	SortedInsert(s,val);
 }
+
 
 //small change in sorted insert function
 void SortedInsert(stack<int>&st,int x){

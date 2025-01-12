@@ -13,7 +13,7 @@ bool search(vector<int>& nums, int target) {
                 return true;
             
             if(nums[low]==nums[mid] && nums[high]==nums[mid]){ //This is the additional condition we have applied.
-                low++; //skip duplicate elements.
+                low++; //skip duplicate elements. //because if elements are duplicate then cannot take decision of incrementing low or high.
                 high--;
                 continue;
             }

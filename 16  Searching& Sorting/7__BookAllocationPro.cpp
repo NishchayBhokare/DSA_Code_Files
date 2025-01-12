@@ -26,7 +26,9 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
             pageSum = arr[i]; //if above condition is false, then add ith element in pagesum for next student.
         }
     }
-    return true; //if we reach till this condition that means, we allocate books with the help of given mid, so return true.
+    return true; //if we reach till this condition that means, 
+    // we allocate books with the help of given mid, so return true.
+    // don't need to add condition like student == m or not.
 }
 
 

@@ -14,6 +14,27 @@ struct Node
     int data;
 };
 
+pair<int,int> solve(Node *root){
+        
+        if(root==NULL){
+            return {0,0};
+        }
+        
+        pair<int,int>left = solve(root->left);
+        pair<int,int>right=solve(root->right);
+        
+        int height = 1+max(left.first,right.first);
+        int currDiameter = 1+left.first+right.first;
+        
+        int maxDiameter = max({currDiameter, left.second, right.second});
+        
+        return {height,maxDiameter};
+    }
+    int diameter(Node* root) {
+        
+        return solve(root).second - 1; //currently they are asking for count of edges. so total edges will be node cnt -1.
+    }
+
 //Approach 1: Most optimised approach. TC-O(N) SC-O(N)
 //Diameter can be hight of left sub tree + height of right sub tree, 
 //or somewhere in left subtree or somewhere in right subtree.

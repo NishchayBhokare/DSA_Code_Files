@@ -8,19 +8,25 @@
     
     //Step1: Take xor of all elements.
     for(int i=0; i<n; i++){
-        xr = xr ^ arr[i];
-        xr = xr ^ (i+1);
+        xr = xr ^ arr[i]; //take xor for all element in array
+        xr = xr ^ (i+1); //also take xor for first n numbers.  1 to n.
+        //for eg. if array is 1 2 3 4 4
+        //we will take xor like 1 ^ 2 ^ 3 ^ 4 ^ 4 
+                            //  1 ^ 2 ^ 3 ^ 4 ^ 5
+        //at the end..all element will get cancel out except. 4 and 5 last column. and we have to find this.
+        //as at the end. xr will be 4^5 and we cannot differentiate here.
     }
 
     
     //Step2: calculate first different set bit.
-    int diffSetBit = xr & ~(xr-1);
+    int diffSetBit = xr & ~(xr-1); //here we found first differentiateed bit in 4 and 5.
+    // The bitwise NOT operator changes each 0 bit to 1 and each 1 bit to 0.
     
     
     //Step3: Differentiate elements based on diffSetBit. by taking and.
     int first=0, second=0;
     
-    //take and for array elements.
+    //take and for array elements - here we will 
     for(auto i:arr){
         
         if((diffSetBit & i) == 0){ //0th club elements. why & because we want to differential number based on that setbit.
@@ -31,7 +37,7 @@
         }
     }
 
-    //take xor for first n elements. //we're taking this because we have to find missing element too. 
+    //take xor for first n elements. //by doing all these..we have seperate out missing and repeated element.
     for(int i=1; i<=n; i++){
         
         if((diffSetBit & i) == 0){
@@ -41,10 +47,13 @@
             second = second ^ i;
     }
 
-    //after this step in first and second. duplicate and missing number will be there.
-    
+    //because of previous two for loops. what happing is, 
+    //(1 ^ 2 ^ 3 ^ 4 ^ 4) ^ (1 ^ 2 ^ 3 ^ 4 ^ 5) beccause of taking xor we're able to sepearate out.
+    //repeating and missing number. by differentitating it with first different significant bit.
+    //4-> 100 and 5->110 so here second last is different bit. so diffSetBit will be = 010.
 
     
+
     //Step 4: check who is duplicate and misssing among first and second.
     for(auto i:arr){
         
@@ -60,17 +69,17 @@
 
 //Approach 2: Using Maths. TC-O(N) SC-O(1).
 //we're solving this question using proper maths.
-//first calculating x-y. i.e val1. then calculating x2 - y2. because without this. we cannot find values of
+//first calculating x-y(repeating element - missing element.). i.e val1. then calculating x2 - y2. because without this. we cannot find values of
 //x and y.
 vector<int> findTwoElement(vector<int>& arr) {
 
     long long n=arr.size();
     
     long long sum1N=(n*(n+1))/2, sqrSum2N = ((n*(n+1)) * (2*n+1))/6;
-    //getting sum and squares of n numbers
+    //storing sum and squares of first natural n numbers.
     
     long long sum1=0, sqrSum2=0;
-    for(auto i:arr){ //storing sum and squares of first n numbes.
+    for(auto i:arr){ //storing sum and squares array elements.
         sum1+=i;
         sqrSum2+=(long long)i * i;
     }
@@ -102,7 +111,7 @@ vector<int> findTwoElement(vector<int>& arr) {
     int n=arr.size();
     unordered_map<int,int>ump;
     
-    for(int i=0; i<n; i++)
+    for(int i=0; i<n; i++) //first store frequency of every element.
         ump[arr[i]]++;
     
     vector<int>ans;

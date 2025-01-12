@@ -4,7 +4,23 @@
  
  #include<bits/stdc++.h>
  using namespace std;
- 
+
+ //Approach 1: We can start simply from m-1 index.
+ int findMinDiff(vector<int>& a, int m) {
+   sort(a.begin(), a.end());
+   
+   int minDiff=INT_MAX;
+   for(int i=m-1; i<n; i++){
+      
+      int diff = a[i] - a[i-m+1];
+      minDiff = min(minDiff, diff);
+   }
+   
+   return minDiff;
+}
+
+
+//Approach 2: 
  long long findMinDiff(vector<long long> a, long long n, long long m){ //Time complexity is    O(nlogn).
     
     sort(a.begin(),a.end()); //first we need to sort it.

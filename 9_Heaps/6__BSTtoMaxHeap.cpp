@@ -27,11 +27,6 @@ public:
 */
 vector<int> v;
 int i = 0;
-void convertToMaxHeapUtil(Node *root)
-{
-    reverseInorder(root); // we want array in descending order so we execute reverse inorder on binary tree.
-    NRL(root);            // after getting reverse inorder we will call NRL so that so that we can modify in existing binary tree to achieve max heap with given condition.
-}
 void reverseInorder(Node *root)
 { // through this function we will get descending order array.
     if (root != NULL)
@@ -50,6 +45,12 @@ void NRL(Node *root)
         NRL(root->right);    // R - Now, we will move to right of binary tree.
         NRL(root->left);     // L - finally, we will move to left of binary tree.
     }
+}
+
+void convertToMaxHeapUtil(Node *root)
+{
+    reverseInorder(root); // we want array in descending order so we execute reverse inorder on binary tree.
+    NRL(root);            // after getting reverse inorder we will call NRL so that so that we can modify in existing binary tree to achieve max heap with given condition.
 }
 
 

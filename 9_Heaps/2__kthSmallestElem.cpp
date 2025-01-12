@@ -12,17 +12,17 @@ using namespace std;
 
 int kthSmallest(int arr[], int l, int r, int k) {
     priority_queue<int> pq;
-for(int i=0; i<k;i++){ //creating heap of only k elements.
-    pq.push(arr[i]); //pushing into heap.
-}
-
-for(int j=k;j<=r;j++){  //now comparing heap's top with remaining elements i.e k to r elements.
-    if(arr[j] < pq.top()){ //if element is smaller than pq's top then we will enter in if loop.
-    pq.pop(); //poppin out top element from heap.
-    pq.push(arr[j]); //and finally pushing that smaller element in heap.
+    for(int i=0; i<k;i++){ //creating heap of only k elements.
+        pq.push(arr[i]); //pushing into heap.
     }
-}
-return pq.top(); //returning top most element from heap.
+
+    for(int j=k;j<=r;j++){  //now comparing heap's top with remaining elements i.e k to r elements.
+        if(arr[j] < pq.top()){ //if element is smaller than pq's top then we will enter in if loop.
+            pq.pop(); //poppin out top element from heap.
+            pq.push(arr[j]); //and finally pushing that smaller element in heap.
+        }
+    }
+    return pq.top(); //returning top most element from heap.
 }
 
 

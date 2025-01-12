@@ -1,6 +1,57 @@
 //Find median in a stream.
 //Coding ninja, GFG.
 
+//Approach: My approach.
+priority_queue<double>maxi;
+priority_queue<double,vector<double>, greater<double>>mini;
+
+void insertHeap(int &x)
+{
+	
+	if(maxi.size()==mini.size()){
+		if(!mini.empty() && x >= mini.top()){
+			mini.push(x);
+		}
+		else
+			maxi.push(x);
+	}
+	else if(mini.size() > maxi.size()){
+		if(x >= mini.top()){
+			maxi.push(mini.top());
+			mini.pop();
+			mini.push(x);
+		}
+		else
+			maxi.push(x);
+	}
+	else{
+		
+		if(x <= maxi.top()){
+			mini.push(maxi.top());
+			maxi.pop();
+			maxi.push(x);
+		}
+			else{
+			mini.push(x);
+		}
+		
+	}
+}
+
+
+//Function to return Median.
+double getMedian()
+{
+	
+	if(maxi.size() > mini.size()){
+		return maxi.top();
+	}
+	else if(mini.size()>maxi.size())
+		return mini.top();
+	
+	else return ((maxi.top()+mini.top())/2.0);
+}
+
 //Approach 1: Optimised Approach gfg. Tc-O(Nlogn) SC-O(N)
 class Solution
 {
