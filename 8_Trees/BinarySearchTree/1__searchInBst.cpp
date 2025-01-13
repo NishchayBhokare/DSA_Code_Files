@@ -14,7 +14,7 @@ struct Node
 };
 
 
-//Approach 1: Optimised Approach TC-O(N) SC-O(1)
+//Approach 1: Optimised Approach TC-O(LogN) SC-O(1)
 bool search(Node* root, int x) {
    while(root != NULL){ //loop till root not becomes null
        if(x == root->data) return true; //if we found element then simply return true.
@@ -29,7 +29,7 @@ bool search(Node* root, int x) {
 }
 
 
-//Approach 2: Recursive Approach TC-O(N) SC-O(N)
+//Approach 2: Recursive Approach TC-O(logn) SC-O(h)
 bool search(Node* root, int x) {
     // Your code here
     if(root==NULL) return false; //if root is initially is null or after traversing to the end and element is not found that time we will return false; 

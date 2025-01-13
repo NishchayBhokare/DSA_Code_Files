@@ -1,18 +1,7 @@
 //Find Predecessor and Successor
 //GFG
-#include <iostream>
-using namespace std;
 
-struct Node
-{
-    int key;
-    struct Node *left;
-    struct Node *right;
-    int data;
-};
-
-
-                                        //Approach 1: Simple iterative approach. TC-O(N) SC-O(1)
+                            //Approach 1: Simple iterative approach. TC-O(N) SC-O(1)
 
 //For a node (except leaf node) Successor will be go to once right and then move to left most node.
 void inOrderSuccessor(Node* root, Node*& suc, int key){
@@ -53,7 +42,7 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 
 
 
-                                            //Approach 2: Recursive approach. TC-O(N) SC-O(1)
+                                    //Approach 2: Recursive approach. TC-O(N) SC-O(1)
 
 
 Node *findMaximum(Node *root){

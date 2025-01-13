@@ -11,8 +11,8 @@ struct Node
     int data;
 };
 
-//Approach 1: Most optimised approach TC-O(N) SC-O(H)
-int nextElements(stack<Node*>&st1){
+//Approach 1: Most optimised approach. By using inordere logic on the go. TC-O(N) SC-O(H)
+int nextElements(stack<Node*>&st1){ //coming from left part.
     Node *temp = st1.top(); //storing top element in x
     st1.pop(); //popping that elements
     int x = temp->data; 
@@ -24,7 +24,7 @@ int nextElements(stack<Node*>&st1){
     return x; //at the end return x 
 }
 
-int previousElements(stack<Node*>&st2){ //exactly opposte or normal inorder 
+int previousElements(stack<Node*>&st2){ //exactly opposte or normal inorder //coming from right part. 
     Node *temp = st2.top();
     st2.pop();
     int x = temp->data;

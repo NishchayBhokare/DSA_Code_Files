@@ -1,18 +1,39 @@
 //k Sum paths problem GFG.
 //GFG
+// https://www.geeksforgeeks.org/problems/k-sum-paths/1
 
-#include <iostream>
-#include<bits/stdc++.h>
-using namespace std;
+//Approach 1: Optimised Approach. TC-O(N) SC-O(N) - Solve using prefix sum logic.
+void solve(Node *root,int sum, int k, unordered_map<int,int>&mp, int &count){
+    if(root == NULL) return;
+    
+    sum+=root->data;
+    
+    if(mp.find(sum-k) != mp.end()){ //if removal sum we found in map. then we can increment 
+    //count by frequency of removal sum.
+        count+=mp[sum-k];
+    }
+    
+    mp[sum]++; //increment frequency for current sum.
+    
+    solve(root->left,sum,k,mp,count);
+    solve(root->right,sum,k,mp,count);
+    
+    mp[sum]--; //backtrack. once current path done then backtrack. means decrement 
+    // frequency of its sum. so that..we won't consider this in other paths.
+}
 
-struct Node
-{
-    struct Node *left;
-    struct Node *right;
-    int data;
-};
+int sumK(Node *root, int k) {
 
-//Approach 1: Iterative approach, Optimised one. TC - O(N2) SC-O(N)
+    unordered_map<int,int>mp;
+    mp[0]=1; //we have added freuency of zero sum as 1. becasue we need to make sure..if 
+    //sum 
+    int sum=0, count=0;
+    
+    solve(root,sum,k,mp,count);
+    return count;
+}
+
+//Approach 2: Iterative approach. TC - O(N2) SC-O(N)
 int count = 0;
 void solve(Node *root,int k,vector<int> path){
     if(root == NULL) return;
@@ -24,8 +45,11 @@ void solve(Node *root,int k,vector<int> path){
     
     int sum = 0;
     
-    for(int i=path.size()-1; i>=0; i--){ //calculating all path, once reached to root is null 
-        sum += path[i]; //then iterate over current path from back side. cause sum path can be formed anywhere between path.
+    for(int i=path.size()-1; i>=0; i--){ //calculating all path on every node. after getting 
+    //path till that node. //here we're doing this for every node. when left and right computation done.
+
+        sum += path[i]; //then iterate over current path from back side. 
+        // cause sum path can be formed anywhere between path.
         if(sum == k) count++; //if sum equals to k then increment count
     }
 }

@@ -1,5 +1,5 @@
 //Boundary Traversal of binary tree
-
+https://www.geeksforgeeks.org/problems/print-a-binary-tree-in-vertical-order/1
 #include <iostream>
 #include<bits/stdc++.h>
 using namespace std;
@@ -101,6 +101,7 @@ vector<int> verticalOrder(Node *root)
     }
 
 
+//very brute force. dont' see.
 //Approach 2: TC-O(N) SC-O(N)
 //first iterate over tree and store horizontal distance of every node.
 

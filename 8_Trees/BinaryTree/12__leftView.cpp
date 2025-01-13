@@ -54,7 +54,8 @@ vector<int> leftView(Node *root)
            temp = q.front(); //getting new node, as we pop so new node will recieve by temp
            q.pop(); //popping out this node from queue
 
-           ans.push_back(temp->data); //and this new node will be the first left most node of new lelvel so , pushing first lefmost element in answer vector.
+           ans.push_back(temp->data); 
+           //and this new node will be the first left most node of new level so , pushing first lefmost element in answer vector.
        }
    
        if(temp->left) q.push(temp->left); //move to left
@@ -82,7 +83,7 @@ vector<int> leftView(Node *root) {
         
         q.pop();
         
-        if(mp.find(level) == mp.end())
+        if(mp.find(level) == mp.end()) //if first node of new level then add this node.
             mp[level] = temp->data;
         
         if(temp->left)

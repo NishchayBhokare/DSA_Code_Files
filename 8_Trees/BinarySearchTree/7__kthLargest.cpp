@@ -15,7 +15,8 @@ struct Node
 
 
 //Approach 1: Most optimised approach TC-O(N) SC-O(1)
-//Using morris traversal, similar as we did in kth smallest element just instead moving to left, we are moving to right first
+//Using morris traversal, similar as we did in kth smallest element.
+// just instead moving to left, we are moving to right first
 
  int kthLargest(Node *root, int k)
 {

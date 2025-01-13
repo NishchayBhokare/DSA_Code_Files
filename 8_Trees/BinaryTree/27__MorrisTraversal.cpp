@@ -3,7 +3,7 @@
 //link is for normal traversal..but i have solved question using morris travresal.
 
 
-//Question -> Inorder output using Morris traversal.
+                     //Question -> Inorder output using Morris traversal.
  //Morris traversal. TC-O(N) SC-O(1)
 Node *findPredecessor(Node *temp){ //finding predecessor.
     Node *curr = temp;
@@ -37,7 +37,7 @@ vector<int> inOrder(Node* root) {
             //and move to right part as we already traversed left part.
                 pred->right = NULL;
                 ans.push_back(curr->data);
-                curr = curr->right;
+                curr = curr->right; //we have processed right part so move to left part.
             }
         }
     }

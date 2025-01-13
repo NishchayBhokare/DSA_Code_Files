@@ -3,22 +3,6 @@
 //link-
     // https://practice.geeksforgeeks.org/problems/delete-nodes-greater-than-k/1
 
-#include<bits/stdc++.h>
-using namespace std;
-
-class Node{
-    public:
-    int data;
-    Node *left;
-    Node *right;
-    Node(int d){
-        this->data=d;
-        this->left=NULL;
-        this->right=NULL;
-    }
-};
-
-
 //Approach 1: TC-O(size) SC - O(1).
  Node* deleteNode(Node* root, int k)
 {
@@ -37,11 +21,15 @@ class Node{
 
     else{ //if root's data is bigger than k, so move to right side.
         root->right = deleteNode(root->right,k); 
-//after going to right when we get element lesser than k , then we will remove that element and will attached to root->right of recent call.
+//after going to right when we get element lesser than k , 
+// then we will go to right part of it. and at the end. 
+//will connect updated part of root's right to root->right. do dry run u will understand.
+//mostly on smalle example we will get null as root's right so will connect that with root's right.
     }
     
     return root; //returninig root.
 }
+
 
 
 //Approach 2: Using postorder traversal. TC-O(size) SC-O(1)

@@ -8,7 +8,9 @@
 BinaryTreeNode<int>* solve(int &index, int min,int max,vector<int>&preorder){
 
     if(index >= preorder.size()) return NULL; //if index gets out of range or array then return null and if element not in the range of min and max then also return null.
-    if(preorder[index] < min or preorder[index] > max) return NULL;
+    if(preorder[index] < min || preorder[index] > max) return NULL; //if current element
+    //doesn't fits in this range..then return null and we will check for this element in other subpart
+    //of tree.
 
     int data = preorder[index++]; //store data and increment index
     BinaryTreeNode<int>* curr = new BinaryTreeNode<int>(data); //create node

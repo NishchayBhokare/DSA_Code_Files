@@ -35,18 +35,22 @@ bool isIdentical(Node *r1, Node *r2)
         return false;
     }
 
+    if(r1->data != r2->data) return false; //if data doen's have same then return false.
+
     bool left = isIdentical(r1->left, r2->left);    // moving to the left side of subtree in both r1 & r2.
     bool right = isIdentical(r1->right, r2->right); // moving to the right side of subtree in both r1 & r2.
+    
+    bool value=true;
 
-    bool value = r1->data == r2->data; // now checking current node data are same or not. if same then value = 1 & if not same then value = 0.
-
-    if (left && right && value)
+    if (left && right)
         return true; // if all three are true i.e left subtree, right subtree and current node. then we will return true.
     return false;    // otherwise false.
 }
 
 
-//similar approach like above
+
+
+//Approach 2: similar approach like above
 bool isIdentical(Node *r1, Node *r2) {
     // Your Code here
     if(r1 == NULL && r2 == NULL) return true;

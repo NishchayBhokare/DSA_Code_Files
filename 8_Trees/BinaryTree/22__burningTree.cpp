@@ -2,36 +2,51 @@
 //GFG
 
 
-//Approach : TC-O(N) SC-O(N)
+//Approach : TC-O(N) SC-O(N) -> Creation of node to parent mapping.
 //Analogy: 
     //Step 1: Create node to parent node mapping 
     //step 2: get target node //This step 1 and step 2 are doing in create mapping function
     //step 3: burn tree; //step 3 are gets done in burn tree function
 
-Node * createMapping(Node *root,unordered_map<Node *, Node *> &nodeToParent, int target){
+// Node * createMapping(Node *root,unordered_map<Node *, Node *> &nodeToParent, int target){
     
-    Node *targetNode = NULL; //initially pointing target node to null
-    queue<Node *> q; //doing level order traversal for mapping
-    q.push(root);
-    while(!q.empty()){
-        Node *frontNode = q.front();
-        q.pop();
+//     Node *targetNode = NULL; //initially pointing target node to null
+//     queue<Node *> q; //doing level order traversal for mapping
+//     q.push(root);
+//     while(!q.empty()){
+//         Node *frontNode = q.front();
+//         q.pop();
         
-        if(frontNode->data == target) targetNode = frontNode;  //if we found target element then store that node in target Node.
+//         if(frontNode->data == target) targetNode = frontNode;  //if we found target element then store that node in target Node.
         
-        if(frontNode->left){ //if front node's left exist then,
-            nodeToParent[frontNode->left] = frontNode; //connect front node's left with current node. i.e front node's left will be child and front node will be parent
-            q.push(frontNode->left); //and also push that left node in queue
-        }
+//         if(frontNode->left){ //if front node's left exist then,
+//             nodeToParent[frontNode->left] = frontNode; //connect front node's left with current node. i.e front node's left will be child and front node will be parent
+//             q.push(frontNode->left); //and also push that left node in queue
+//         }
         
-        if(frontNode->right){ //similarly for right side
-            nodeToParent[frontNode->right] = frontNode;
-            q.push(frontNode->right);
-        }
-    }
+//         if(frontNode->right){ //similarly for right side
+//             nodeToParent[frontNode->right] = frontNode;
+//             q.push(frontNode->right);
+//         }
+//     }
     
-    return targetNode; //finally return target node.
+//     return targetNode; //finally return target node.
 
+// }
+void createMapping(Node *root,int target, Node *&targetNode, unordered_map<Node*,Node*> &nodeToParent){
+    if(root == NULL) return;
+
+    if(root->data == target) targetNode = root;
+
+    if(root->left){
+        nodeToParent[root->left] = root; //creating parent child mapping.
+        createMapping(root->left,target,targetNode,nodeToParent);
+    }
+
+    if(root->right){
+        nodeToParent[root->right] = root;
+        createMapping(root->right,target,targetNode,nodeToParent);
+    }
 }
 
 
@@ -41,10 +56,13 @@ int burnTree(Node *targetNode, unordered_map<Node *, Node *> nodeToParent){
     queue<Node *> q; //pushing target node in queue
     q.push(targetNode);
     visited[targetNode] = true; //marking target node as visited
+
     while(!q.empty()){ //looping till q not gets empty
+
         int size = q.size(); //getting size of queue
-            int flag = 0; 
-        for(int i=0; i<size; i++){ //looping over queue size times
+        int flag = 0; 
+        for(int i=0; i<size; i++){ //looping over queue for current queue size. as these new added nodes.
+        //we're doing like this..because we have to keep track of timer so.
             Node *frontNode = q.front(); //getting front node
             q.pop(); //popping from queue
             
@@ -69,6 +87,42 @@ int burnTree(Node *targetNode, unordered_map<Node *, Node *> nodeToParent){
             if(flag) Time++; //once for loop is over and flag equals to 1 that means we update queue so we requre  1 unit to burn elements present in queue, so incrment time by 1.
         
     } 
+
+
+                                     //or we can do like this too..
+    queue<Node*>q;
+        unordered_map<Node*,bool>visited;
+        
+        q.push(targetNode);
+        visited[targetNode]=true;
+        q.push(NULL);
+        
+        while(q.size()>1){
+            
+            Node* frontNode = q.front();
+            q.pop();
+            
+            if(frontNode == NULL){
+                timer++;
+                q.push(NULL);
+                continue;
+            }
+            
+            if(!visited[frontNode->left] && frontNode->left){
+                visited[frontNode->left]=true;
+                q.push(frontNode->left);
+            }
+            
+            if(!visited[frontNode->right] && frontNode->right){
+                visited[frontNode->right]=true;
+                q.push(frontNode->right);
+            }
+                
+            if(!visited[mp[frontNode]] && mp[frontNode]){
+                visited[mp[frontNode]]=true;
+                q.push(mp[frontNode]);
+            }
+        }
     return Time; //once queue gets over return time.
 }
 
@@ -78,14 +132,16 @@ int minTime(Node* root, int target)
 {   
     unordered_map<Node *, Node *> nodeToParent; //creating map which stores node to parent mapping that we're storing parent of particular node. first->node and second->node's parent
     
-    Node * targetNode = createMapping(root,nodeToParent,target); //calling createmapping function for mapping node to parent and also for finding target node.
+    // Node * targetNode = createMapping(root,nodeToParent,target); //calling createmapping function for mapping node to parent and also for finding target node.
+    Node * targetNode = NULL;
+    createMapping(root,nodeToParent,target, targetNode); //calling createmapping function for mapping node to parent and also for finding target node.
     
     int Time = burnTree(targetNode,nodeToParent);
     return Time; //Finally return answer.
 }
 
 
-        //Approach 2: similar like above..but used recrusion for cresation of mapping.
+//Approach 2: similar like above..but used recrusion for cresation of mapping.
 void createMapping(Node *root,int target, Node *&targetNode, unordered_map<Node*,Node*> &mapping){
     if(root == NULL) return;
 
@@ -152,6 +208,8 @@ int minTime(Node* root, int target)
 
 
 
+
+
                                             //Approach 3:
 //using little extra space..but i have solved the problem 
 void createMapping(Node *root, unordered_map<int,vector<int> > &mapping){
@@ -193,6 +251,7 @@ int minTime(Node* root, int target)
     //mark target node as visited.
     visited[target] = true;
 
+
     queue<int> q;
     for(auto i: mapping[target]){
         if(!visited[i]){
@@ -215,6 +274,33 @@ int minTime(Node* root, int target)
             }
         }
         time++;
+    }
+
+//or we can do like this too.
+    queue<int>q;
+    unordered_map<int,bool>visited;
+    q.push(target);
+    visited[target]=true;
+    q.push(-1);
+    
+    while(q.size()>1){
+        
+        int frontNode = q.front();
+        q.pop();
+        
+        if(frontNode == -1){
+            timer++;
+            q.push(-1);
+            continue;
+        }
+        
+        for(auto node: mp[frontNode]){
+            
+            if(!visited[node]){
+                q.push(node);
+                visited[node]=true;
+            }
+        }
     }
     return time;
 }

@@ -13,7 +13,8 @@ struct Node
     struct Node *right;
     int data;
 };
-
+//first -> height, second->diameter len.
+//Approach 1: Most optimised Approach. TC-O(N) SC-O(N)
 pair<int,int> solve(Node *root){
         
         if(root==NULL){
@@ -35,7 +36,9 @@ pair<int,int> solve(Node *root){
         return solve(root).second - 1; //currently they are asking for count of edges. so total edges will be node cnt -1.
     }
 
-//Approach 1: Most optimised approach. TC-O(N) SC-O(N)
+//NO need to check for below code.
+
+//Approach 2: TC-O(N) SC-O(N)
 //Diameter can be hight of left sub tree + height of right sub tree, 
 //or somewhere in left subtree or somewhere in right subtree.
 int maxDiameter = 0; // initially maxi i.e diameter is 0;

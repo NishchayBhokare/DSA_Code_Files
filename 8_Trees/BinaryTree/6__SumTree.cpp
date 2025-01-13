@@ -19,9 +19,11 @@ int solve(Node *root)
 {
     if (!root)
         return 0; // if root is null we will return 0;
-        
+
+    //we must add this condition because from root is null we will get left sum and right sum is 0. and current node won't equals to zero.    
     if (!root->left && !root->right)
-        return root->data; // when we will reach to child node that time we will return data of that child node. cause no need to check sum of left and right for that child node.
+        // when we will reach to child node that time we will return data of that child node. cause no need to check sum of left and right for that child node.
+        return root->data; 
 
     if (f == 0)
         return 0; // now at any point if flag is zero then no need to check further nodes.

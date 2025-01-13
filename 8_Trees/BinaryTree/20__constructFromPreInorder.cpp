@@ -9,10 +9,10 @@
         
         int element = pre[index++];
         Node *root = new Node(element);
-        int pos = ump[element]; //getting index in big oh 1.
+        int mid = ump[element]; //getting index in big oh 1.
         
-        root->left = solve(pre,index,ump,startEnd,pos-1);
-        root->right = solve(pre,index,ump,pos+1,endInd);
+        root->left = solve(pre,index,ump,startEnd,mid-1);
+        root->right = solve(pre,index,ump,mid+1,endInd);
         
         return root;
     }

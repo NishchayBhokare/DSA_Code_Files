@@ -2,26 +2,27 @@
 //Coding ninja
 
 //Approach 1: Most optimised approach TC-O(N) SC-O(H)
-//Using dummy pointer we are pointing dummy to previous of root then changin links
-void solve(TreeNode<int>* root,TreeNode<int>* &dummy ){ //Doing inorder
+//Using tail pointer we are pointing tail to previous of root then changing links
+void solve(TreeNode<int>* root,TreeNode<int>* &tail ){ //Doing inorder
     if(root == NULL) return;
 
-    solve(root->left,dummy);
+    solve(root->left,tail);
 
-    dummy->right = root; //changing links pointing dummy's right to root.
-    dummy = root; //and update dummy to root
-    dummy->left = NULL; //and new node left to null
+    tail->right = root; //changing links pointing tail's right to root.
+    tail = root; //and update tail to root
+    tail->left = NULL; //and new node left to null
 
-    solve(root->right,dummy);
+    solve(root->right,tail);
 }
 
 TreeNode<int>* flatten(TreeNode<int>* root)
 {
-   TreeNode<int>* dummy = new TreeNode<int>(-1); //creating dummy node
-   TreeNode<int>* prev = dummy;
-   solve(root,dummy);
+   TreeNode<int>* dummyHead = new TreeNode<int>(-1); //creating dummy node
+   TreeNode<int>* tail = dummyHead;
+   solve(root,tail);
    
-   TreeNode<int>*Root = prev->right; //ponting root to prev's right, because prev is nothing but starting dummy node.
+   TreeNode<int>*Root = prev->right; 
+   //ponting root to prev's right, because prev is nothing but starting dummy node.
 
    return Root;
 }

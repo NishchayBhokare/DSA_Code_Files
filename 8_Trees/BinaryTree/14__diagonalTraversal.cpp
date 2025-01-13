@@ -4,15 +4,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct Node
-{
-    int data;
-    struct Node *left;
-    struct Node *right;
-    int data;
-};
-
-
 //Approach 1: Recursive approach TC-O(Nlogn) SC-O(N)
 void solve(Node *root,int distance,map<int, vector<int> > &mp){
     if(root == NULL) return;

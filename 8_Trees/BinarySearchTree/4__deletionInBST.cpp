@@ -3,18 +3,6 @@
 // link-
     // https://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/1
 
-#include <iostream>
-using namespace std;
-
-struct Node
-{
-    int data;
-    struct Node *left;
-    struct Node *right;
-    int data;
-};
-
-
 //TC-O(N) SC-O(h)
 int minValue(Node *root){
     if(root==NULL) return -1;  //if initially root is null we will return -1.
@@ -62,7 +50,7 @@ Node *deleteNode(Node *root, int X) {
         }
         
         //3rd case when have 2 childs
-        if(root->left!=NULL && root->right!=NULL){
+        if(root->left!=NULL && root->right!=NULL){ //min value is nothing but successor. but we can solve this using predecesor. below solution.
             int minKey=minValue(root->right); //we will serch for minimum element from right subtree. so that after deleting sequenece of inorder will not get change.
             root->data=minKey; //changing root's data to minimum data.
             root->right=deleteNode(root->right,minKey); //we are going to delete for that minimum element.
@@ -70,6 +58,50 @@ Node *deleteNode(Node *root, int X) {
         }
         
     }
-    
-    
 }
+
+
+//same like above..but here..in deletion of two child cases..we're taking maximum element from left subtree
+
+Node * findPredecessor(Node *root){
+        root=root->left;
+        
+        while(root->right != NULL)
+            root=root->right;
+        
+        return root;
+    }
+    
+    Node *deleteNode(Node *root, int x) {
+        
+        if(root==NULL) return NULL;
+        
+        if(root->data==x){
+            
+            if(root->left==NULL && root->right==NULL)
+                return NULL;
+            
+            else if(root->left==NULL)
+                return root->right;
+            
+            else if(root->right==NULL)
+                return root->left;
+                
+            else{
+                
+                Node *pred = findPredecessor(root);
+                root->data = pred->data;
+                
+                root->left = deleteNode(root->left, pred->data);
+            }
+        }
+        else if(x < root->data)
+            root->left = deleteNode(root->left, x);
+        else
+            root->right = deleteNode(root->right,x);
+        
+        
+        
+        
+        return root;
+    }

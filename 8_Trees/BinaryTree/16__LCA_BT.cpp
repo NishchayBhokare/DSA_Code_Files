@@ -14,7 +14,7 @@ struct Node
 
 //TC - O(N) SC-O(height)
  Node* lca(Node* root ,int n1 ,int n2 )
-    { 
+{ 
        if(root==NULL) return NULL;//when n1 or n2 not found;
        if(root->data==n1 or root->data==n2) return root; //we got node either n1 or n2 then we will return it to parent node.
     
@@ -27,7 +27,9 @@ struct Node
        else return rn; //else right node is non null but left node is NULL then simpley return non NULL node. cause current node can't be ancestor of n1 & n2.   
 }
 
-//using iteration. Tc-O(N) SC-O(N)
+
+
+//Approach 2: using iteration. Tc-O(N) SC-O(N)
  bool flag = false;
 void findAncestor(Node *root, int val, vector<Node*>&path){
     if(root == NULL) return;
@@ -69,3 +71,46 @@ Node* lca(Node* root ,int n1 ,int n2 )
     
     return ans;
 }
+
+
+
+//similar like above
+ bool findNode(Node *root, int n, vector<Node*>&nNodes){
+        
+        if(root==NULL) return false;
+        
+        nNodes.push_back(root);
+        
+        if(root->data == n){
+            return true;
+        }
+        
+        bool left = findNode(root->left, n, nNodes);
+        if(left) return true;
+        
+        bool right = findNode(root->right,n,nNodes);
+        if(right) return true;
+        nNodes.pop_back();
+        
+        return false;
+    }
+    
+    Node* lca(Node* root, int n1, int n2) {
+        
+        vector<Node*>n1Nodes;
+        vector<Node*>n2Nodes;
+        
+        findNode(root,n1, n1Nodes);
+        findNode(root,n2, n2Nodes);
+        
+        int i=0, n=n1Nodes.size(), m=n2Nodes.size();
+        
+        while(i<min(n,m)){
+          if(n1Nodes[i]->data != n2Nodes[i]->data)
+                break;
+            
+            i++;
+        }
+        
+        return n1Nodes[i-1];
+    }

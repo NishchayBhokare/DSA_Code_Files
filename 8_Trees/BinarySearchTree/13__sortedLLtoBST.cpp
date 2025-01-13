@@ -20,12 +20,13 @@ TNode* solve(LNode * &head,int size){
     
     //creating node (N)
     TNode* root = new TNode(head->data);
-    root->left = Left;
+    root->left = Left; //once left part is prepared..connect current root's left to left part.
     head = head->next;
     
     //constructing right side bst. (R)
-    TNode *Right = solve(head, size-size/2-1);
-    root->right = Right;
+    TNode *Right = solve(head, size-size/2-1); //except mid node..give size so suppose size is 5 then here we will pass size as 2. 
+    //because,  left part is 2 + current node 1 + right part 2 ====> 5.
+    root->right = Right; //same once right done..then connect right to right part.
     
     return root; //and return root; i.e head;
 }
@@ -37,7 +38,7 @@ TNode* sortedListToBST(LNode *head) {
 }
 
 
-//Approach 2: optimised Using extra space. i.e storing nodes with respective its index in map.
+//Approach 2: Using extra space. i.e storing nodes with respective its index in map.
 //TC-O(N) SC-O(N)
 TNode* solve(LNode * head,int start, int end, unordered_map<int, LNode *> &indexToNode){
         

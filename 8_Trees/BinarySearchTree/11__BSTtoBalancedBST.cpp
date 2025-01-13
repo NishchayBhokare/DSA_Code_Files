@@ -1,15 +1,6 @@
 //Normal BST to Balanced BST.
 //GFG
-#include <iostream>
-using namespace std;
-
-struct Node
-{
-    int key;
-    struct Node *left;
-    struct Node *right;
-    int data;
-};
+https://www.geeksforgeeks.org/problems/normal-bst-to-balanced-bst/1
 
 
 //Approach: TC-O(N) SC-O(N)
@@ -22,7 +13,8 @@ void traverse(Node *root, vector<int>&vec){
     traverse(root->right,vec);
 }
 
-//throught inorder traversal, construct balanced binary search tree, by calculating middle node or every call.
+//through out inorder traversal, construct balanced binary search tree, 
+// by calculating middle node or every call.
 Node * solve(int start,int end, vector<int> &vec){
     if(start > end) return NULL;
     

@@ -1,9 +1,20 @@
 //Merge two BST 's 
 //Coding ninja, GFG.
 
+// void flatten(TreeNode<int>* root,TreeNode<int>* &tail ){ //Doing inorder
+//     if(root == NULL) return;
+
+//     flatten(root->left,tail);
+
+//     tail->right = root; //changing links pointing tail's right to root.
+//     tail = root; //and update tail to root
+//     tail->left = NULL; //and new node left to null
+
+//     flatten(root->right,tail);
+// }
 
 
-//Coding ninja
+//Coding ninja. also we can flatten bst using dummy node too.
 //Approach 1: optimised approach TC-O(N) SC-O(h1+h2);
 void flatten(TreeNode<int> * root, TreeNode<int> *&head){
     if(root == NULL) return;

@@ -1,21 +1,8 @@
 //Flatten binary tree to linked list 
+https://www.geeksforgeeks.org/problems/flatten-binary-tree-to-linked-list/1
 //In this flatten example we have to return head or original tree so this is just flatten linked list not by inorder way like in bst.
 //GFG
-#include<bits/stdc++.h>
-using namespace std;
 
-class Node{
-    public:
-    int data;
-    Node *left;
-    Node *right;
-
-    Node(int d){
-        this->data=d;
-        this->left=NULL;
-        this->right=NULL;
-    }
-};
 
 //Approach 1: Most optimised Approach Using Morris traversal. TC-O(N) SC-O(1)
 Node * findPredecessor(Node *curr){ //Finding predecessor
@@ -41,6 +28,7 @@ void flatten(Node *root)
         curr = curr->right; //and move to current right to process next nodes.
     }
 }
+
 
 
 //Approach 2: Using Recursion. TC-O(N) SC-O(N)
@@ -70,6 +58,7 @@ void flatten(Node *root)
 }
 
 
+//NOt much readable.
 //Approach 3: Using level order traversal with stack TC-O(N) SC-O(N)
  void flatten(Node *root)
 {   
@@ -82,7 +71,8 @@ void flatten(Node *root)
         if(temp->right) st.push(temp->right); //first insert right then left
         if(temp->left) st.push(temp->left); 
         
-        if(!st.empty()){ //we inserted first right then left so top node will be left, so now connect right to top of stack node and there is no use of left so connect it with null.
+        if(!st.empty()){ //we inserted first right then left so top node will be left, 
+        // so now connect right to top of stack node and there is no use of left so connect it with null.
             temp->left = NULL;
             temp->right = st.top();
         } //Do same for every node.

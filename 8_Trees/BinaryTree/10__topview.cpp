@@ -1,5 +1,5 @@
 //Top view of binary tree.
-
+https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1
 #include <iostream>
 #include<bits/stdc++.h>
 using namespace std;
@@ -33,8 +33,8 @@ struct Node
         maxIndex = max(maxIndex, index); //similarly for maxdistance.
         
         // if(!ump[index]) ump[index] = temp->data;
-        if(ump.find(index) == ump.end()) ump[index] = temp->data; //as we are dealing with only first element
-        //of every distance...so checking..if for that distance...element is already added or not..if not..then add curretn element.
+        if(ump.find(index) == ump.end()) ump[index] = temp->data; //as we are dealing with only first element of every distance...
+        // so checking..if for that distance...element is already added or not..if not..then add current element.
         
         if(temp->left){
             q.push({temp->left, index-1}); //move to left part.

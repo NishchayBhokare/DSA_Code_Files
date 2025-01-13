@@ -59,7 +59,8 @@ void rightBoundaryNodes(Node *root, vector<int>& ans){
 
     else rightBoundaryNodes(root->right,ans); //if right is exist then check normally to right side
     
-    ans.push_back(root->data); // as we want answer from deppest right node to top right node so, once we reached to deepest node then push that node data in ans vector, and one by one while returning insert remaining root's data
+    ans.push_back(root->data); // as we want answer from deppest right node to top right node so, 
+ IMP->   // once we reached to deepest node then push that node data in ans vector, and one by one while returning insert remaining root's data
 }
 
 

@@ -12,7 +12,15 @@ class info{ //creating one data structure
     
 info solve(TreeNode * root, int &ans){
     if(root == NULL){
-        return {INT_MAX,INT_MIN,0,true}; //return data structure which has min as intMax and max as Int_min , size as 0 and isbst as true.
+              //  Mini,  Maxi,  size,isbst
+        return {INT_MAX, INT_MIN, 0, true}; //return data structure 
+        // which has min as intMax and max as Int_min , size as 0 and isbst as true.
+        
+        //We're returning mini as int_max so that..if node checks..from right subtree..mini value
+        //then it will surely lesser than int_max.
+
+        //same for maxi from leftpart..return int_min so when node check maxi from left tree..it will get int_min.
+        //and current node will surely greater than that int_min
     }
     
     info left = solve(root->left, maxSize);
@@ -27,14 +35,15 @@ info solve(TreeNode * root, int &ans){
     
     if(left.isBst and right.isBst and (data > left.maxi and data < right.mini)){
         curr.isBst = true; //if left and right sub tree is bst and also if current node's data greater than left maximum  and current node's data lesser than right minimum. then current node is bst.
+        maxSize = max(curr.size, maxSize);
     }
     else curr.isBst = false; //else current node is not bst
     
     
-    //if current node is bst then update answer.
-    if(curr.isBst){
-        maxSize = max(curr.size, maxSize); //updating maxsize.
-    }
+    // //if current node is bst then update answer.
+    // if(curr.isBst){
+    //     maxSize = max(curr.size, maxSize); //updating maxsize.
+    // }
     
     return curr; //returning current object.
 }

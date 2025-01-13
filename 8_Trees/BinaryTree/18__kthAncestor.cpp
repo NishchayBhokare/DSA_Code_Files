@@ -1,8 +1,11 @@
 //kth Ancestor
 //GFG
+https://www.geeksforgeeks.org/problems/kth-ancestor-in-a-tree/1
 
 //Approach : TC-O(N) SC-O(1)
-//First find given node in binary tree, once we find node then backtrack k times till we not reach condition of k equals to 0, once reached to this condition store current node's data in ans and return from function
+//First find given node in binary tree, once we find node then backtrack k times 
+// till we not reach condition of k equals to 0, 
+// once reached to this condition store current node's data in ans and return from function
 void solve(Node *root,int &k, int node, int &ans,int &flag){ //passing k,ans and flag as reference.
     if(flag == 1) return; //at any point flag is 1 then return no need for further checking in left or right.
     if(root == NULL) return;
