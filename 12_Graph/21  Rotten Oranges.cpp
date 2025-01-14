@@ -63,6 +63,84 @@ int orangesRotting(vector<vector<int>>& mat) {
 
 
 
+//Also we can solve this question by creating classes and all.
+//here i have created queue using normal object. we can solve by creating pointer to object.
+// queue<rootenOranges*>q; q.push(new rootenOranges(i,j,0)),rootenOranges *node = q.front();, int row=node->row, etc. this will be the changes to convert into pointer to object
+class rootenOranges{ //created class for rotten oranges.
+    public:
+        int row;
+        int col;
+        int time;
+        
+        rootenOranges(int r, int c, int t){
+            this->row=r;
+            this->col=c;
+            this->time=t;
+        }
+};
+class Solution {
+  public:
+    // Function to find minimum time required to rot all oranges.
+    int orangesRotting(vector<vector<int>>& mat) {
+        
+        int n=mat.size(), m=mat[0].size();
+
+        vector<vector<int>>visited(n,vector<int>(m,0));
+        queue<rootenOranges>q; //queue of rotten oranges.
+        
+        int freshCnt=0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(mat[i][j] == 2){
+                    rootenOranges obj(i,j,0); //create object and push into the queue
+                    q.push(obj);
+                }
+                
+                if(mat[i][j]==1)
+                    freshCnt++;
+            }
+           
+        }
+
+        vector<int>rowArr={-1,1,0,0};
+        vector<int>colArr={0,0,1,-1};
+        int totalTime=0;
+        while(!q.empty()){
+            
+            rootenOranges node = q.front();
+            q.pop();
+            
+            int row=node.row;
+            int col=node.col;
+            int t = node.time;
+            
+            totalTime = max(t,totalTime);
+            
+            for(int i=0; i<4; i++){
+                int newRow=row+rowArr[i];
+                int newCol=col+colArr[i];
+                
+                if(newRow>=0 && newRow<n && newCol>=0 && newCol<m &&
+                    !visited[newRow][newCol] && mat[newRow][newCol] == 1){
+                    
+                    rootenOranges obj(newRow,newCol,t+1);
+                    q.push(obj);
+                    visited[newRow][newCol]=true;
+                    freshCnt--;
+                }
+            }
+         
+        }
+        
+        
+        if(freshCnt > 0) return -1;
+        
+        return totalTime;
+    }
+};
+
+
+
 //Approach 2: using adding delimeter..so that..we can increment count..after getting -1 as delimeter.
  int orangesRotting(vector<vector<int>>& mat) {
 
