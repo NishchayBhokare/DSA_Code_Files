@@ -63,7 +63,8 @@ int orangesRotting(vector<vector<int>>& mat) {
 
 
 
-//Also we can solve this question by creating classes and all.
+                //Also we can solve this question by creating classes and all.
+
 //here i have created queue using normal object. we can solve by creating pointer to object.
 // queue<rootenOranges*>q; q.push(new rootenOranges(i,j,0)),rootenOranges *node = q.front();, int row=node->row, etc. this will be the changes to convert into pointer to object
 class rootenOranges{ //created class for rotten oranges.

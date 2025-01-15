@@ -1,7 +1,7 @@
 // GFG
 
-//What is Spanning Tree -> A graph in which we have n nodes and n-1 edges.
-               //and all nodes are reachable from each other
+What is Spanning Tree -> A graph in which we have n nodes and n-1 edges.
+and all nodes are reachable from each other
 
 //What is Minimum Spanning tree -> The minimum sum spaning tree among all spanning tree known as MST.
 
@@ -43,6 +43,8 @@ int spanningTree(int V, vector<vector<int>> adj[])
                 int adjNode = neighbor[0];
                 int dist = neighbor[1];
                 
+                //only this condition is enough...because..we don't have to find..shortest path to that node.
+                //so no need to check use of distance array.
                 if(!visited[adjNode]){ //if adjacent node is not visited already..then push into the queue.
                     pq.push({dist,adjNode});
                 }

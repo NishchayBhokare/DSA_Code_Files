@@ -138,15 +138,15 @@ int minimumSpanningTree(vector<vector<int>>& edges, int n)
 
     // vector<pair<int,int>>mst; 
 
-    int tw = 0;
+    int tw = 0; //total weight.
     for(int i = 0; i<edges.size(); i++){
 
         int u = edges[i][0];
         int v = edges[i][1];
+        int w = edges[i][2];
 
         int uP = findParent(parent,u); //finding ultimate parent.
         int vP = findParent(parent,v);
-        int w = edges[i][2];
 
         if(uP != vP){
 

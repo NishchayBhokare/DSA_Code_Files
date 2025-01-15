@@ -1,5 +1,5 @@
 //GFG
-//Number of provinces is nothing but number components we have to return.
+//Number of provinces is nothing but number of components we have to return.
 
 //Approach 1: using dfs.
 //Logic is..when we call dfs function for main..then increment count..because..that will be start node

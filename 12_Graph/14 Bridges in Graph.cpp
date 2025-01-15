@@ -1,11 +1,11 @@
 //Code studio question
 //Tarajan's algorithm.
 
-//Bridges in graph is the edge between u to v..so if we remove that edge...then graph will divide
-//into the two parts.
+Bridges in graph is the edge between u to v..so if we remove that edge...then graph will divide
+into the two parts.
 
 //Here we have to find all the bridges prsent in graph.
-//Logic is creation two arrays low and discovery array..and timer.
+//Logic is creation of two arrays low and discovery array..and timer.
 
 //on every dfs call timer will incresase by one to go from one node to next node.
 
@@ -28,7 +28,7 @@ void solve(int node,int parent, unordered_map<int,list<int>> &adj, vector<int>&l
 
   
             low[node] = min(low[node], low[nbr]); 
-            //current node taking lowest insrtion time from theri adjacent nodes..
+            //current node taking lowest insrtion time from their adjacent nodes..
 
 
             //if lowerst insertion time from adjacent node...is greater than discovery of current node..that means..this neighbor is 
@@ -41,7 +41,7 @@ void solve(int node,int parent, unordered_map<int,list<int>> &adj, vector<int>&l
         }
         else{
             //this is back edge condition..that means there is another path to reach this node.
-            //if we already visited this neihbor..then take discovery time of it.
+            //if we already visited this neihbor..then take discovery time/low of it.
             low[node] = min(low[node], low[nbr]);
         }
     }
@@ -74,6 +74,7 @@ vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
 
     return result; //final result.
 }
+
 
 
 //GFG question need to check..bridge is present between given two nodes or not.

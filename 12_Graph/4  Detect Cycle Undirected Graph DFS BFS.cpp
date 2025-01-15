@@ -17,6 +17,17 @@
             if(ans) return ans;
         }
     }
+
+    //or
+    // for(auto nbr:adj[node]){ //we can write for loop like this too.
+        
+    //     if(nbr == parent) continue;
+        
+    //     if(visited[nbr]) return true;
+        
+    //     bool ans = solve(nbr,node,adj,visited);
+    //     if(ans) return true;
+    // }
     
     return false;
 }    
@@ -25,18 +36,15 @@ bool isCycle(vector<vector<int>>& adj) {
     bool ans = false;
     unordered_map<int,bool>visited;
     
-    for(auto i:adj){
-        for(auto node:i){
-            if(!visited[node])
-            {
-                ans = solve(node,-1,adj,visited); //currently passing parent as -1.
-                
-                if(ans) return ans; //if cycle is presnet then return immediately.
-            }
+    for(int node=0; node<adj.size(); node++){  //we're looping over all nodes..because there can be multiple components.
+        if(!visited[node]){  
+            int parent = -1;
+            if(solve(node, parent, adj, visited)) //if return value is true..then no need to check further..return true as it is
+                return true;
         }
     }
-    
-    return ans;
+        
+    return false;
 }
 
 

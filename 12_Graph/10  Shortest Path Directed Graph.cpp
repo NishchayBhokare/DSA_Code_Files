@@ -1,6 +1,6 @@
 // code studio..unable to add code studio question..so added gfg question.
 
-//question is find..shortest path between soruce node to all nodes for directed wighted graph.
+question is find..shortest path between soruce node to all nodes for directed wighted graph.
 //Approach 2: Topo sort will work only if..graph is not cyclic..so for cyclic graph..we need to have dijkstra algo.
 
 //Approach 1: using Dijkstras algorithm for directed graph. from source to all nodes TC-O(ElogV) 
@@ -54,7 +54,12 @@ vector<int> shortestPathInDAG(int n, int m, vector<vector<int>> &edges)
     return distance;
 }
 
+
+
 //Approach 2: Optimised Approach using toplogical sort. using dfs TC- O(V+E)
+1) first do dfs topo sort order.
+2) loop till stack not empty..and calculate u to v distance and update distance arrray accordingly.
+
 void solve(int node, unordered_map<int,list<pair<int,int>> >&adj, //just normal toplogical sort.
     stack<int>&st, unordered_map<int,bool>&visited){
     

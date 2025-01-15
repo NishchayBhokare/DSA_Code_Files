@@ -8,7 +8,7 @@ void solve(int row, int col, vector<vector<char>>& grid, vector<vector<int>>&vis
     
     visited[row][col] = 1; 
     
-    for(int newRow = -1; newRow<=1; newRow++){
+    for(int newRow = -1; newRow<=1; newRow++){ //going into all 8 directions.
         for(int newCol = -1; newCol<=1; newCol++){
             int nRow = newRow + row;
             int nCol = newCol + col;
@@ -28,7 +28,7 @@ int numIslands(vector<vector<char>>& grid) {
     vector<vector<int>>visited(n,vector<int>(m,0));
     queue<pair<int,int>>q;
     
-    for(int i = 0; i<n; i++){
+    fo  
         for(int j = 0; j<m; j++){
             if(grid[i][j] == '1' && !visited[i][j]){
                 land++; //incrementing land for every start node.
@@ -94,7 +94,7 @@ int numIslands(vector<vector<char>>& grid) {
 }
 
 
-//Approach 1: using bfs..here optimization can be..we can integrate 8 function calls into the one..
+//Approach 1: using bfs..here scop of optimization can be..we can integrate 8 function calls into the one..
 //by using two for loops..check Approach 1.
 void checkForPush(int row, int col, vector<vector<char>>& grid, queue<pair<int,int>>&q,
     vector<vector<int>>&visited){

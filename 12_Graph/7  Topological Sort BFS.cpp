@@ -1,6 +1,7 @@
 //Approach 1: using BFS (Kahn's Algorithm)
-//Basically we're calculating indegree of every node...after that..
-// pushing nodes in queue which has indgree zero.
+//Basically we're calculating 
+1) indegree of every node...after that..
+2) pushing nodes in queue which has indgree zero.
 
 vector<int> topologicalSort(vector<vector<int>>& adj) {
     

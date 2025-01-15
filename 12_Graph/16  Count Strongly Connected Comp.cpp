@@ -7,7 +7,10 @@
 //so to find these..logic is first do topological sort..because we want to get nodes like in that way and store nodes in stack.
 //then change the links..if u to v is link...make v to u.
 //logic behind this is..in regular links..every strongly connected components are reachable from one to another.
-//so if we reverse the links...then strongly connected components will get seperate out.
+//so if we reverse the links...then node which are reachable from u to v will become v to u. now..if we check..whether 
+//this v is still reachable from somewhere..because we have changed link from u -> v to v->u
+//so if still its reachble then these two nodes are strongly connected.
+// strongly connected components will get seperate out once we reverse the links. do dry run.
 //then again do dfs..just incremnet count..when we are calling dfs function..
 
 
@@ -56,7 +59,7 @@ int kosaraju(int V, vector<vector<int>>& adj)
         visited[i] = false; //updating visited map to false for all nodes.
         
         for(auto j:adj[i]){
-            transpose[j].push_back(i);    
+            transpose[j].push_back(i);   //changing links from i->j to j->i. 
         }
     }
     

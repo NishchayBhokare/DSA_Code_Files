@@ -16,7 +16,7 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
         //for top and bottom row.
         for(int row = 0,col=0; col<m; col++){
             //add top array row if O
-            if(mat[row][col] == 'O'){
+            if(mat[row][col] == 'O'){   
                     q.push({row,col});
                     visited[row][col] = true;
             }
@@ -63,7 +63,6 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
             }  
         }
     } 
-     
     //aprt from visited 'O's ...mark remianing O's as X..because those O's are
     //surrounded by X.
     for(int i = 0; i<n; i++){
@@ -75,6 +74,60 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
     }
     return mat;
 }
+
+
+//Approach Using DFS
+void solve(int row, int col, vector<vector<char>>&mat, vector<vector<bool>>&visited){
+        int n=mat.size(), m=mat[0].size();
+    visited[row][col]=true;
+    
+    vector<int>rowArr={-1,1,0,0};
+    vector<int>colArr={0,0,1,-1};
+    
+    for(int i=0; i<4; i++){
+        
+        int newRow = row+rowArr[i];
+        int newCol = col+colArr[i];
+        
+        if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && mat[newRow][newCol]=='O' && !visited[newRow][newCol])
+            solve(newRow, newCol, mat,visited);
+    }
+}
+
+vector<vector<char>> fill(vector<vector<char>>& mat) {
+    
+    int n=mat.size(), m=mat[0].size();
+    vector<vector<bool>>visited(n,vector<bool>(m,false));
+    for(int i=0; i<n; i++){
+        
+        if(!visited[i][0] && mat[i][0]=='O')
+            solve(i,0,mat,visited);
+        
+        if(!visited[i][m-1] && mat[i][m-1]=='O')
+            solve(i,m-1,mat,visited);
+    }
+    
+    for(int j=0; j<m; j++){
+        
+        if(!visited[0][j] && mat[0][j]=='O')
+            solve(0,j,mat,visited);
+        
+        if(!visited[n-1][j] && mat[n-1][j]=='O')
+            solve(n-1,j,mat,visited);
+    }
+    
+    
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            
+            if(mat[i][j]=='O' && !visited[i][j])
+                mat[i][j]='X';
+        }
+    }
+    
+    return mat;
+}
+     
 
 
 //Appraoch 2: same using above..just eleminate multiple loops to iterate over boundary of given matrix.
@@ -153,7 +206,7 @@ return count;
 }
  
 
-//similar like above..but just using foour loops to traverse over the boundary of matrix.
+//similar like bfs first approach..but just using foour loops to traverse over the boundary of matrix.
 Approach 3:
  vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
   {

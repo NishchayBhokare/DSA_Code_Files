@@ -41,7 +41,7 @@ int wordLadderLength(string start, string target, vector<string>& wordList) {
                 //so push this word into the queue by incrementing seqlen.
                     
                     q.push({word, seqLen+1});
-                    s.erase(word); //also erase from queue..so that we will not select this word in near future.
+                    s.erase(word); //also erase from set..so that we will not select this word in near future.
                 }
             }
             

@@ -3,13 +3,13 @@
 //but when we are poping out from queue then before storing in temp vector..we are doing substraction with base values of row and col.
 //base node is nothing but..first node of this..connected links.
 //logic is..if islands are same then their row and col value will be equal after doing substraction with base node.
-//so applying this logic..and if its same..then stack will remove it..duplicate values..
+//so applying this logic..and if its same..then set will remove it..duplicate values..
 
 //TC-O(N*M Log(N*M)) SC-O(N*M)
 int countDistinctIslands(vector<vector<int>>& grid) {
     int n = grid.size(), m = grid[0].size();
-    queue<pair<int,int>>q;
-    set<vector< pair<int,int> >>st;
+    queue<pair<int,int>>q;                                                               //two distinct islands.
+    set<vector< pair<int,int> >>st; //set will store group of distinct islands like[[{0,0},{0,1},{1,0}] , [{2,1}{2,2}]]
     vector<vector<bool>>visited(n,vector<bool>(m,false));
     
     vector<int>rowArr = {-1,1,0,0};
