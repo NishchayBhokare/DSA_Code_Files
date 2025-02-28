@@ -5,8 +5,10 @@
 //Approach 1: Using Dijkstra's Algo Approach. 
 //Basically we are using prirority queue..and distance array.
 //on every node..we are storing absolute differnce in distance array...but there is catch..we are not storing
-//absolute diff as it is..we are getting maximum absolute diff among (parent node absolute diff and current node absolute diff)
-//and then storing maximum absolute difference in distance array if it is lesser than previous for current node. 
+//absolute diff as it is..we are storing maximum absolute diff among (parent node absolute diff and current node absolute diff)
+//In simple words..at the end..we're storing maximum absoolute differnece between two adjacent nodes u to v on this path.
+//and for every row and col's dist array..we're storing max abs diff.
+
 // we're doing this because, for particular path..we have to check..what will be the maximum
 //absolute difference between the two nodes..so maximum absolute diff we're passing to next node till destination node.
 
@@ -33,7 +35,8 @@ int MinimumEffort(int rows, int columns, vector<vector<int>> &heights) {
         int row = node[1];
         int col = node[2];
         
-        if(row == n-1 && col == m-1){ //if we get top node as destionation..then return it's effort. i.e minimum absolute differnec between all paths..and maximum absolute diffence of all nodes in current path.
+        if(row == n-1 && col == m-1){ 
+            //if we get top node as destionation..then return it's effort. i.e minimum absolute differnec between all paths..and maximum absolute diffence of all nodes in current path.
             return nodeDiff;
         }
         

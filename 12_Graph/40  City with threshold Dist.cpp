@@ -1,6 +1,9 @@
 //GFG. 
  
- //Approach 1: using flyod warshal algo.    
+ //Approach 1: using flyod warshal algo.   
+ //In short using floyd warshl algo..we will find..all possible path from i to j. so once 
+ //matrix is prepared with paths..then just check..for ith city..how many cities are reachable within threshold value.
+
  //We have to return city number which has adjacent city count is lesser among all city and their adjancent city
  //distance should be less than threshold.
  //As we have to return city number..first preparre adjacency list in matrix form.
@@ -37,7 +40,7 @@
     
     
     int minCntCity = n, cityNo = -1;
-    for(int row = 0; row<n; row++){
+    for(int row = 0; row<n; row++){ //loop over matrix and check..how many cities are reachable within threshold.
         
         int currCnt = 0;
         

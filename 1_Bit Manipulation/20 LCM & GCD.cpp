@@ -1,4 +1,9 @@
 //GFG. 
+the LCM is the smallest integer that is evenly divisible by both a and b. For example,
+LCM(240,60) = 240
+
+The greatest common factor (GCF or GCD or HCF) of a set of whole numbers is the largest positive integer that divides evenly into all numbers with zero remainder.
+GCD(240,60)= 60
 
 //Approach 1: Most optimised Approach.
 vector<int> lcmAndGcd(int a, int b) {

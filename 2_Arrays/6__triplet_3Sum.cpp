@@ -36,7 +36,9 @@ vector<vector<int>> findTriplets(vector<int> arr, int n, int s)
                     temp.push_back(arr[low]);
                     temp.push_back(arr[high]);
                     ans.push_back(temp); // pushing temp in ans vector, which is vector of vector.
-
+                   
+                    // or ans.push_back({arr[i],arr[low],arr[high]});
+                    
                     while (low < high && arr[low] == arr[low + 1])
                         low++; // incrementing low, till low is equal to low+1. (to avoid duplicate triplet)
                     while (low < high && arr[high] == arr[high - 1])

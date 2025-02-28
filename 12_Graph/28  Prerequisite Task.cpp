@@ -1,5 +1,53 @@
 //GFG
 
+//Approach 2: we can solve this question by just checking whther cycle is present or not..if yes..then return false
+//else true
+bool solve(int node, vector<vector<int>>&adj, vector<bool>&dfs, vector<bool>&visited){
+    
+    visited[node] = true;
+    dfs[node] = true;
+    for(auto nbr:adj[node]){
+        if(!visited[nbr]){
+            bool ans = solve(nbr,adj,dfs,visited);
+            
+            if(ans == false)
+            return false; 
+        }
+        else{
+            
+            if(dfs[nbr]) //if visited and also dfs visited then return false..that is not possible because cycle is presnet.
+                return false;
+        }
+    }
+    
+    dfs[node] = false;
+    return true; //return true..as far now..it's possible.
+}
+
+bool isPossible(int N,int P, vector<pair<int, int> >& pre) {
+    
+    vector<vector<int>>adj(N);
+    vector<bool>visited(N,false);
+    vector<bool>dfs(N,false);
+    
+    for(auto i:pre){
+        adj[i.first].push_back(i.second);
+    }
+    
+    
+    for(int i = 0; i<N; i++){
+        
+        if(!visited[i]){
+            bool ans = solve(i,adj,dfs,visited);
+            
+            if(ans == false) //if answer is false..that means cycle is prsent so return false;
+            return false;
+        }
+    }
+    
+    return true; //else true.
+}
+
 //Question is very simple..we have to check..all task can complete or not..you can go through gfg for better understanding of que.
 //we can solve this question by simply chcecking if there any cycle prsent or not..if yes..then task cannot be gets' complete.
 //another way..i solved it by myself.
@@ -55,54 +103,6 @@ bool isPossible(int N,int P, vector<pair<int, int> >& pre) {
     return true;
 }
 
-
-//Approach 2: we can solve this question by just checking whther cycle is present or not..if yes..then return false
-//else true
-bool solve(int node, vector<vector<int>>&adj, vector<bool>&dfs, vector<bool>&visited){
-    
-    visited[node] = true;
-    dfs[node] = true;
-    for(auto nbr:adj[node]){
-        if(!visited[nbr]){
-            bool ans = solve(nbr,adj,dfs,visited);
-            
-            if(ans == false)
-            return false; 
-        }
-        else{
-            
-            if(dfs[nbr]) //if visited and also dfs visited then return false..that is not possible because cycle is presnet.
-                return false;
-        }
-    }
-    
-    dfs[node] = false;
-    return true; //return true..as far now..it's possible.
-}
-
-bool isPossible(int N,int P, vector<pair<int, int> >& pre) {
-    
-    vector<vector<int>>adj(N);
-    vector<bool>visited(N,false);
-    vector<bool>dfs(N,false);
-    
-    for(auto i:pre){
-        adj[i.first].push_back(i.second);
-    }
-    
-    
-    for(int i = 0; i<N; i++){
-        
-        if(!visited[i]){
-            bool ans = solve(i,adj,dfs,visited);
-            
-            if(ans == false) //if answer is false..that means cycle is prsent so return false;
-            return false;
-        }
-    }
-    
-    return true; //else true.
-}
 
 
 //Approach 3: Using BFS..topological sort.

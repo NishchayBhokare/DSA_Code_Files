@@ -4,6 +4,7 @@ Algorithm for finding distance from 0 (src) to nth(dest) node
 //Apporach 1: optimised apporach..for more explanation..refer 11th question.
  vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
 	unordered_map<int,list<pair<int,int>> > adj;
+	// vector<vector<pair<int,int> >>adj(n)
 	
 	for(int i = 0; i<m; i++){ //creation of adjacency list.
 		int u = edges[i][0];

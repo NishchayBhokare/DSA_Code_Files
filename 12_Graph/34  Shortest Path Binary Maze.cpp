@@ -1,8 +1,8 @@
 //GFG.
 
 //TC-O(N*M) SC-O(N*M).
-//Approach is simple..we are normal bfs is doing..similar to dijkstra algo..and pushing elements in queue
-//we have used here queue..because no need to use priority queue..as distance is gettin increased by 1 for all directions.
+//Approach is simple..we are doing normal bfs..similar to dijkstra algo..and pushing elements in queue
+//we have used here queue..because no need to use priority queue..as distance is getting increased by 1 for all directions.
 
 int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
                     pair<int, int> des) {
@@ -12,7 +12,8 @@ int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
     if(grid[des.first][des.second] == 0) //if destination row and col has value 0. that means we cannot reach there so return -1.
         return -1;
         
-    if(source.first == des.first && source.second == des.second) //if source row's col's and destination row's and col's is same..that means..we need to return 0.
+    if(source.first == des.first && source.second == des.second) //if source row's col's and destination row's and col's is same..
+    // that means..we need to return 0.
         return 0;
     
     int rowArr[]={-1,1,0,0}; //as we have 4 directions mentined in question so storing directions in arrays.
@@ -22,7 +23,7 @@ int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
     
     queue<vector<int>> q;
     q.push({source.first, source.second,0}); //push source node with weight..distance in queue.
-    distance[source.first][source.second] = 0; //make distance for source node is o.
+    distance[source.first][source.second] = 0; //make distance for source node is 0.
     
     while(!q.empty()){
         auto node = q.front(); //take front node.

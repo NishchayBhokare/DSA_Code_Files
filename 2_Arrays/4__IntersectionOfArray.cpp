@@ -18,11 +18,10 @@ using namespace std;
             
         while((i+1) < n and a[i] == a[i+1]) i++; //applying this condition because we want common elements but it should be distinct so to avoid from duplicate common elements, applying this condition.
     
-            if(a[i] < b[j]) i++;
-            else if(a[i] > b[j]) j++;
-            else if(a[i]==b[j]){
-                count++; i++; j++;
-            }
+        if(a[i] < b[j]) i++;
+        else if(a[i] > b[j]) j++;
+        else if(a[i]==b[j]){
+            count++; i++; j++;
         }
         return count;
 }

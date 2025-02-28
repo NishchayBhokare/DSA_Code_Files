@@ -67,7 +67,7 @@ int solve(vector<vector<int>>&arr, vector<vector<int>>&dp, int n, int lastTask){
     
 int maximumPoints(vector<vector<int>>& arr, int n) {
     
-    vector<vector<int>>dp(n,vector<int>(4,-1));
+    vector<vector<int>>dp(n,vector<int>(4,-1)); //as we're passing 3..as last task..so create subarray length of 4.
     
     return solve(arr,dp,n-1,3); //3 shows...we're starting so choose any of the task.
 }

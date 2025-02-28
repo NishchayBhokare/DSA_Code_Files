@@ -10,7 +10,7 @@ int binary_to_decimal(string str)
 { // TC- O(n) and no space
     // Code here.
     int i = 0, ans = 0;
-    for (int j = str.length() - 1; j >= 0; j--, i++)
+    for(int j = str.length() - 1; j >= 0; j--, i++)
     { // looping from back to front.
         if (str[j] == '1')
             ans = ans + pow(2, i); // if digit is 1 then we will take pow of that particular digit/bit with addition of ans and assigning back to  ans.

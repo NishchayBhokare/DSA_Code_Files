@@ -3,7 +3,7 @@
 //Approach 1: Using implementation. TC-O(N) SC-O(1)
 void nextPermutation(vector<int>& arr) {
          
-        //First Step 1: Find breakpoint.
+        //First Step 1: Find breakpoint - from back check for..first element who breaks the increasing order from back.
         int n=arr.size(),ind=-1;
         for(int i=n-2; i>=0; i--){ //n-2 because we're accessing next element. i+1 so that's why
             

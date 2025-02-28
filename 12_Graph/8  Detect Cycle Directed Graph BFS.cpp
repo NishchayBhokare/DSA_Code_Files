@@ -74,7 +74,9 @@ bool isCyclic(int V, vector<vector<int>> adj) {
                 q.push(neighbor);
         }
     }
-    
+
+ //or we can use count varaible over loop instead of looping over indegree array..at the end we will check..how many times count is incremented..if its increment by V times.
+    //then node cycle is present.
     for(auto i:indegree){
         if(i != 0) //if for any node..vertex..if indegree is still greater than 0 i.e not equal to 0 then return true.
             return true;

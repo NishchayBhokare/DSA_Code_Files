@@ -43,7 +43,10 @@
             
             int totalPrice = nodePrice + nbrPrice;
 
-            if((nbrStop-1) <= K && totalPrice < priceArr[nbrNode]){
+            if((nbrStop-1) <= K && totalPrice < priceArr[nbrNode]){ 
+                //as we added source node also..so source node to first dest will be consider as 0 stops.
+                //becasue we reached..so that's why checking condition like..nbrStop-1 is lesser than k then push.
+                //and if stop is lesser and price too..then only update price array and push in queue.
                 
                 pq.push({nbrStop, nbrNode, totalPrice});
                 priceArr[nbrNode] = totalPrice;

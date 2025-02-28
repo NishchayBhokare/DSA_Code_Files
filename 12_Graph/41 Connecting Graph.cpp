@@ -1,5 +1,9 @@
 //GFG.
 
+//Very simple just count the number of disconnected components..then number of components - 1
+//edges will be required..if all nodes are connected with each other..then required edges will be
+// 1 - 1 = 0. 
+
 //Approach 1: using dfs. simple approach 
 void solve(int node, vector<vector<int> >&adjList, vector<bool>&visited){
     
@@ -36,7 +40,8 @@ int Solve(int n, vector<vector<int>>& edge) {
     for(int i = 0; i<n; i++){
         if(!visited[i]){
             solve(i,adjList,visited);
-            comp++; //just count the number of compoentns.
+            comp++; //just count the number of compoentns if we're calling function from here
+            //mulitple times.
         }
     }
     

@@ -27,7 +27,7 @@ int minimumMultiplications(vector<int>& arr, int start, int end) {
             int nextVal = (value * next)%mod; //multiplying value with next value from array and store it into varaible.
             int nextStep = steps + 1; //update nextStep by 1.
             
-            if(nextVal == end)  ///if we found nextVal equals to end..then return nextVal.
+            if(nextVal == end)  //if we found nextVal equals to end..then return nextVal.
                 return nextStep;
             
             if(nextStep < stepsArr[nextVal]){ //if nextStep less than nextVal. then then push it into the queue and update steps array.
