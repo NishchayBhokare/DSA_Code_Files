@@ -6,7 +6,7 @@
 //In short logic is..if any number is majority element. then it will not get cancel out with other element.
 //because it will present in array more than n/2 times. so at least one time thier frequency will remain.
 
-//but if..we're getting frequency greater than 1 for any number. still we need to croos check at the end..whther that
+//but if..we're getting frequency greater than 1 for any number. Still, we need to croos check at the end..whther that
 //number is present more than n/2 times or not.
 int majorityElement(vector<int>& nums) {
     int n=nums.size();
@@ -16,7 +16,7 @@ int majorityElement(vector<int>& nums) {
 
     for(int i=0; i<n; i++){
 
-        if(cnt==0){ //if cnt is zero. then assing new element to elem.
+        if(cnt==0){ //if cnt is zero. then assign new element to elem.
             elem = nums[i];
             cnt=1; //and initialise cnt to 1.
         }

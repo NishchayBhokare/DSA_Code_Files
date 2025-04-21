@@ -9,6 +9,17 @@ struct Node
     Node* right;
 };
 
+
+//Simple way.
+int countLeaves(Node* root) {
+    // write code here
+    if(root==NULL) return 0;
+    
+    if(root->left == NULL && root->right == NULL) return 1;
+
+    return countLeaves(root->left) + countLeaves(root->right);
+}
+
 //TC-O(N) SC-O(1)
 void solve(Node *root, int &count){ //use any traversal, here using preorder and take count as reference variable
     if(root == NULL){

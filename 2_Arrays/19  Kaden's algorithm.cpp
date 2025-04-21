@@ -64,4 +64,22 @@ int maxSubarraySum(vector<int> &arr) {
     
     return maxSum;
 }
-    
+Hi Team,
+
+I am Nishchay Bhokare, I have 1.7 years of experience at TCS, specializing in Angular, TypeScript, Node.js, Express.js, MongoDB, and REST APIs, with a focus on building scalable and accessible web applications.
+
+Additionally, I am proficient in Data Structures and Algorithms (DSA) and have solved 500+ problems on platforms like GeeksforGeeks, CodeStudio, and LeetCode.
+
+I have attached my resume for your reference.
+
+Email: nishchay1602@gmail.com
+
+If you think I would be a good fit, I would like to discuss further about this good opportunity. Thank you in advance! 
+
+Thank you in advance!
+
+
+
+Best regards,
+
+Nishchay
