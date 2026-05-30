@@ -1,0 +1,135 @@
+#include <algorithm>
+#include <bits/stdc++.h>
+#include <cmath>
+#include <string>
+
+using namespace std;
+
+string ltrim(const string &);
+string rtrim(const string &);
+
+
+
+/*
+ * Complete the 'processLogs' function below.
+ *
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts following parameters:
+ *  1. STRING_ARRAY logs
+ *  2. INTEGER threshold
+ */
+
+void getId(string &trans, string &senId, string &recId){
+    
+    int i=0;
+    while(trans[i] != ' ' && i<trans.length()){  
+        senId+= trans[i];
+        i++;
+    }
+    i++;
+    while (trans[i] != ' ' && i<trans.length()) {
+        recId += trans[i];
+        i++;
+    }
+}
+
+bool cmp(string &a, string &b){
+    return stoi(a) < stoi(b);
+}
+
+vector<string> processLogs(vector<string> logs, int threshold) {
+    
+    unordered_map<string, int>ump;
+    
+    vector<string>ans;
+    for(auto i:logs){
+        string trans =i;
+        
+        string senId="", recId="";
+        getId(trans,senId,recId);
+        
+        ump[senId]++;
+        if(senId != recId) ump[recId]++;
+    }
+    
+    for(auto &i:ump){
+        
+        if(i.second >=threshold)
+            ans.push_back(i.first);
+    }
+    
+    // sort(ans.begin(), ans.end(),[](const string &a, const string &b)
+    // {return  stoi(a) < stoi(b);});
+    
+    sort(ans.begin(), ans.end(), cmp);
+    return ans;
+}
+
+
+
+
+
+
+
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string logs_count_temp;
+    getline(cin, logs_count_temp);
+
+    int logs_count = stoi(ltrim(rtrim(logs_count_temp)));
+
+    vector<string> logs(logs_count);
+
+    for (int i = 0; i < logs_count; i++) {
+        string logs_item;
+        getline(cin, logs_item);
+
+        logs[i] = logs_item;
+    }
+
+    string threshold_temp;
+    getline(cin, threshold_temp);
+
+    int threshold = stoi(ltrim(rtrim(threshold_temp)));
+
+    vector<string> result = processLogs(logs, threshold);
+
+    for (int i = 0; i < result.size(); i++) {
+        fout << result[i];
+
+        if (i != result.size() - 1) {
+            fout << "\n";
+        }
+    }
+
+    fout << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}

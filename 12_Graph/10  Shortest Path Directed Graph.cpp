@@ -1,4 +1,4 @@
-// code studio..unable to add code studio question..so added gfg question.
+// Code studio..unable to add code studio question..so added gfg question.
 
 question is find..shortest path between soruce node to all nodes for directed wighted graph.
 //Approach 2: Topo sort will work only if..graph is not cyclic..so for cyclic graph..we need to have dijkstra algo.
