@@ -55,7 +55,85 @@ public:
     }
 };
 
-//Approach 2:Philosopher picks Fork when both forks are available.
+
+//Approahc 2: using semaphore. 
+
+class Semaphore{
+    private:
+        int count;
+        mutex mtx;
+        condition_variable cv;
+
+    public:
+    void setCount(int c){
+        this->count = c;
+    }
+
+    void wait(){
+
+        unique_lock<mutex> lock(mtx);
+        count--;
+
+        if(count < 0) //agar count lesser than zero hai matlab already koi thread c.s ke andar hai. so wait.
+        //kynki initially count is 1 so if one thread is already there and another thread comes then 1-2 equals to -1 which lesser than zero.
+            cv.wait(lock);
+    }
+
+
+    void signal(){
+        unique_lock<mutex> lock(mtx);
+        count++;
+
+        if(count <= 0) //agar count lesser than zero hai that means aur threads wait kar rahe hai..so notify kardo.
+        //agar single thread hoti toh count 1 hojata 0 se. after increment
+            cv.notify_all();
+    }
+};
+
+
+class DiningPhilosophers {
+public:
+    Semaphore fork[5]; 
+    mutex m;
+    condition_variable cv;
+
+    DiningPhilosophers() {
+        
+        for(int i=0; i<5; i++){
+            fork[i].setCount(1);
+        }
+    }
+
+    void wantsToEat(int ph,
+                    function<void()> pickLeftFork,
+                    function<void()> pickRightFork,
+                    function<void()> eat,
+                    function<void()> putLeftFork,
+                    function<void()> putRightFork) {
+		
+        
+
+        unique_lock<mutex>lock(m);
+    
+       fork[ph].wait();
+       fork[(ph+1)%5].wait(); 
+       
+       pickLeftFork();
+       pickRightFork();
+
+       eat();        
+
+       fork[ph].signal();
+       fork[(ph+1)%5].signal(); 
+
+       putLeftFork();
+       putRightFork();
+
+       cv.notify_all();
+    }
+};
+
+//Approach 3:Philosopher picks Fork when both forks are available. my way. not good.
 class DiningPhilosophers {
 public:
     vector<int>fork;
