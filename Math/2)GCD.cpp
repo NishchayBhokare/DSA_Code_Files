@@ -1,32 +1,36 @@
 //Example to find Greatest Common Divisor(GCD) or Highest Common Factor(HCF).
 //GFG
 
+#include<bits/stdc++.h>
+using namespace std;
 //Approach 1:Most Efficient algo. using Euclidean algo. by modulus operation. TC - O(log(min(a,b))) SC - O(1)
  
-	int solve(int a, int b){ 
-	    
-	   while(a!= 0 &&  b!= 0){ //looping till both not equal to zero, cause any of the no. is zero that means we got gcd which will be either a or b.
-	        
-	        if(a > b) a = (a%b); //if a greater than b, do modulus between a,b and store remainder to a.
-	        else b = (b%a); //similarly opposite when b greater than a.
-	    }
-	    if(a==0)return b; //finally when we get any of the no. is zero, then check if a is zero then return b.
-	    return a; //else return a.
-	}	
-    int gcd(int a, int b) 
-	{ 
-	    return solve(a,b); 
-	} 
+int solve(int a, int b){ 
+	
+	while(a!= 0 &&  b!= 0){ //looping till both not equal to zero, cause any of the no. is zero that means we got gcd which will be either a or b.
+		
+		if(a > b) a = (a%b); //if a greater than b, do modulus between a,b and store remainder to a.
+		else b = (b%a); //similarly opposite when b greater than a.
+	}
+
+	//return max(a,b);
+	if(a==0)return b; //finally when we get any of the no. is zero, then check if a is zero then return b.
+	return a; //else return a.
+}	
+int gcd(int a, int b) 
+{ 
+	return solve(a,b); 
+} 
 
 
 //Approach 2: Using recursion. TC-O(log(min(a,b))) SC-O(log(min(a,b)));
  int gcd(int a, int b) 
-	{ 
-        if(b == 0) return a;
-        gcd(b,a%b);
+{ 
+	if(b == 0) return a;
+	gcd(b,a%b);
 
-       // return b == 0 ? a : gcd(b, a % b); single line answer.
-	} 
+	// return b == 0 ? a : gcd(b, a % b); single line answer.
+} 
 
 
 
@@ -47,3 +51,18 @@ int solve(int a, int b){
 	    return solve(a,b); 
 	} 
 
+
+//Approach 4: Take min of both..and iterate till we get common divisor.
+int gcd(int a, int b) {
+	// code here
+	
+	int num = 0;
+	for(num = min(a,b); num > 0; num--){
+		
+		if(a%num == 0 and b%num == 0){
+			break;
+		}
+	}
+	
+	return num;
+}

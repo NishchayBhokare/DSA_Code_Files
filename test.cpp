@@ -1,38 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
 int main() {
-    
+
     int t;
     cin>>t;
+
     while(t--){
+         
+        string s;
+        int n;
+        cin>>n;
+        cin>>s;
 
-        int n, m;
-        cin>>n>>m;
-
-        vector<string>vec(n);
-        for(int i=0; i<n; i++){
-           cin>>vec[i];
-        }
-
-        int sumLen=0, cnt=0;
-        for(auto str:vec){
-            int len = str.length();
-
-            if(sumLen+len <= m){
-
-                sumLen+=len;
-                cnt++;
+        int len=0, maxTime=0;
+        for(int i=0; i<s.length(); i++){
+            
+            if(s[i] == '#')
+                len++;
+            
+            else{
+                maxTime = max(maxTime, (len+1)/2);
+                len = 0;
             }
-            else break;
         }
-           
 
-        cout<<cnt<<endl;
-    }
+        if(len > 0)  maxTime = max(maxTime, (len+1)/2);
+
+        cout<<maxTime<<endl;
+    }   
+
 
     return 0;
 }
-
-

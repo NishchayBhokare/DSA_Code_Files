@@ -5,6 +5,8 @@
 // This is because if n has a factor greater than its square root, it must also have a factor smaller than its square root.
 bool isPrime(int n) {
     
+    if(n==1) return false;    
+
     for(int i=2; i<=sqrt(n); i++){
         
         if(n%i == 0) return false;
