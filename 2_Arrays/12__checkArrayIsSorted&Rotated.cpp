@@ -32,7 +32,7 @@ using namespace std;
     }
 
 //Approach 2: Recursive approach TC-O(n) SC-O(n).
-     bool arraySortedOrNot(int arr[], int n) {
+    bool arraySortedOrNot(int arr[], int n) {
       if(n == 1) return true;
       
       if(arr[0] > arr[1]) return false;

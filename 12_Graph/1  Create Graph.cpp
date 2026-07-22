@@ -1,5 +1,6 @@
 //Both GFG and coding ninja..question's anawer is provided.
-
+#include<bits/stdc++.h>
+using namespace std;
 
 //gfg answer. 
 vector<vector<int>> printGraph(int V, vector<pair<int, int>>& edges) {
@@ -20,7 +21,7 @@ vector<vector<int>> printGraph(int V, vector<pair<int, int>>& edges) {
 //Same like above..just one addition is ..we want nodes values first..so first for loop is adding vertex value.
 //at vertex index.
 vector < vector < int >> printAdjacency(int n, int m, vector < vector < int >> & edges) {
-    
+    // n->vertex and m-> is edges
     vector<vector<int>>adj(n,vector<int>());
     for(int i = 0; i<n; i++){
         adj[i].push_back(i);

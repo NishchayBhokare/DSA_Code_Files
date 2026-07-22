@@ -6,7 +6,7 @@
 //then it will be (AB)(CD)  or A(BCD) or (ABC)(D). there are teh compbination.
 //and we have to figure out. number of minimum multiplcation among all possible ways.
 
- //Approach 1:using recursive approach. TC - exonential Sc-o(N*N) + O(N-stack space).
+ //Approach 1:using recursive approach. TC - exponential Sc-o(N*N) + O(N-stack space).
 int solve(int i, int j, vector<int>&arr){
     if(i==j) return 0;
     
