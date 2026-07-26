@@ -31,7 +31,7 @@ vector<long long> printFibb(int n) // TC- O(n) SC- O(n).
 }
 
 
-//Approach 2: Using only elements from vector.
+//Approach 2: Using only elements from vector. Similar to DP approach.
 vector<long long> printFibb(int n) 
     {
         //code here

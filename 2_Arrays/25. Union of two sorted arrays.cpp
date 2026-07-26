@@ -90,9 +90,74 @@ vector<int> findUnion(vector<int> &a, vector<int> &b) {
     
     return ans;
 }
+
+
+//Approach 3: One more small change. TC-O(N+M) SC-O(N+M)
+vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // code here
+        
+        vector<int>ans;
+        
+        int i,j;
+        
+        if(a[0] <= b[0]){
+            ans.push_back(a[0]);
+            i=1; j=0;
+        }
+        else{
+            ans.push_back(b[0]);
+            i=0; j=1;
+        }
+        
+        int n=a.size(), m=b.size();
+        
+        while(i<n && j<m){
+            
+            if(a[i] <= b[j]){
+                
+                if(ans.back() == a[i])
+                    i++;
+                
+                else
+                    ans.push_back(a[i++]);
+            }
+                
+            else{
+                
+                if(ans.back() == b[j])
+                    j++;
+                
+                else
+                    ans.push_back(b[j++]);
+                
+            }
+            
+        }
+        
+        
+        while(i<n){
+            
+            while(ans.back() == a[i] && i<n)
+                i++;
+            
+            if(i<n) ans.push_back(a[i++]);
+        }
+        
+        
+         while(j<m){
+            
+            while(ans.back() == b[j] && j<m)
+                j++;
+            
+           if(j<m) ans.push_back(b[j++]);
+        }
+        
+        
+        return ans;
+    }
     
 
-//Approach 3: Using set. TC-O((n+m)log(n+m)) SC-O(n+m).
+//Approach 4: Using set. TC-O((n+m)log(n+m)) SC-O(n+m).
 vector<int> findUnion(vector<int> &a, vector<int> &b) {
 
     vector<int>ans;

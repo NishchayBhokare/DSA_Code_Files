@@ -1,5 +1,37 @@
 //Leetcode.
 
+//Approach: My approach. easy to understand.
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans;
+        ans.push_back({1});
+
+        for(int row=2; row<=numRows; row++){
+
+            vector<int>temp;
+
+            //starting element: push 1.
+            temp.push_back(1);
+
+            //middle elements.
+            vector<int>prev = ans.back();
+
+            for(int i=1; i<prev.size(); i++)
+                temp.push_back(prev[i-1] + prev[i]);
+            
+            //ending element: push 1.
+            temp.push_back(1);
+
+
+            ans.push_back(temp);
+        }
+
+        return ans;
+    }
+};
+
+
 //Approach: we have to generate pascales triangle..addition of previous array. 
 vector<vector<int>> generate(int numRows) {
     

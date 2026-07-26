@@ -1,6 +1,7 @@
-//Remove duplicate elements
+//Remove duplicate elements from sorted array.
 //GFG
-
+#include<bits/stdc++.h>
+using namespace std;
 //Optimised approach new question in gfg.
 //update the array as distinct elemnts and return size of distinct elemnt.
 int remove_duplicate(vector<int> &arr) {

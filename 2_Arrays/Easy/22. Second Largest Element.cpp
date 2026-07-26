@@ -18,3 +18,9 @@ int getSecondLargest(vector<int> &arr) {
     
     return second;
 }
+
+
+//Approach 2: Sort the array in ascending and return 1st postion value
+
+//Approach 3: in first pass calcualte maximum number then by taking that max number in second pass
+    // calculate second max number

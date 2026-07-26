@@ -1,4 +1,7 @@
 //leetcode.
+#include<bits/stdc++.h>
+using namespace std;
+
 
 //Approach 1 - Most optimised solution. TC-O(2N*M) SC-O(1)
 //In this approach to remove space to store apperance of zero..we're using first row of matrix and first column.

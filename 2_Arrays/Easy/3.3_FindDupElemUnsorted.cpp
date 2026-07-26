@@ -1,7 +1,8 @@
 //find duplicate elements ranging from 1 to n.
 //Leetcode.
 
-
+#include<bits/stdc++.h>
+using namespace std;
 //Approach 1: we are marking duplicate element - 1 as -ve..
 //so if index is already -ve..then element is duplicate...
 //this solution is applicable for range in between 1 to n.

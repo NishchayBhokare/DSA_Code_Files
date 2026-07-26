@@ -7,7 +7,7 @@
 //we will do binary search on array A.
 //while doing BS, we're taking mid1 elements from Array A. and (mid2 = requiredLeftPart-mid1) elements from Array b.
 //now mid1 and mid2 will points to starting position of right part in both the arrays.
-            M1                                         M1
+            M1                                          M1
 eg. 1 2 3 | 4 5 (for n=(n1+n2) of even case)    eg. 1 3 | 4 (for n = (n1+n2) of odd case)
         2 | 7 8                                       2 | 7
             M2                                          M2  

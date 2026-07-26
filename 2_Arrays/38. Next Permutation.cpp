@@ -39,6 +39,50 @@ void nextPermutation(vector<int>& arr) {
     next_permutation(arr.begin(), arr.end()); 
 }
 
+//Approach 4: My solution. TC-O(N) SC-O(1)
+class Solution {
+  public:
+    void nextPermutation(vector<int>& arr) {
+        // code here
+        
+        if(arr.size()==1)
+            return;
+        
+        //first find break point.
+        
+        int bpInd = -1, size = arr.size();
+        
+        int i = size-2;
+        
+        
+        while(i>=0 && arr[i] >= arr[i+1])
+            i--;
+        
+        bpInd = i;
+        
+        if(bpInd == -1){
+            reverse(arr.begin(), arr.end());
+            return;
+        }
+        
+        //get just bigger number than breakpoint
+        int bigInd = -1;
+        i=size-1;
+        
+        while(i>=0 && arr[i] <= arr[bpInd])
+            i--;
+        
+        bigInd = i;
+        
+        swap(arr[bpInd], arr[bigInd]);
+        
+        reverse(arr.begin()+bpInd+1, arr.end());
+        
+        
+    }
+};
+
+
 
 //Approach 3: Brute Force Approach. Using finding all permutation. TC-O(N! * N).
 void solve(int ind, int &n, vector<int>&nums, vector<vector<int>>&ans){

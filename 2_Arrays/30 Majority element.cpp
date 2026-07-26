@@ -56,3 +56,42 @@ int majorityElement(vector<int>& nums) {
 
     return -1;
 }
+
+
+//Approach 3: My solve
+class Solution {
+  public:
+    int majorityElement(vector<int>& arr) {
+        // code here
+        
+        int cnt=1, num=arr[0];
+        
+        for(int i=1; i<arr.size(); i++){
+            
+            if(arr[i] != num){
+                
+                cnt--;
+                
+                if(cnt == 0){
+                    num = arr[i];
+                    cnt = 1;
+                }
+            }
+            
+            else
+                cnt++;
+        }
+        
+        cnt = 0;
+        
+        for(int i=0; i<arr.size(); i++){
+            if(arr[i] == num)
+                cnt++;
+        }
+        
+        if(cnt > arr.size()/2)
+            return num;
+            
+        return -1;
+    }
+};
