@@ -35,7 +35,7 @@ int maxProduct(vector<int> &arr) {
 //here logic is we're using two varaibles.
 //mini and maxi. mini stores miniimum product where as maxi stores maximum product.
 //and if there is -ve element then we will swap it.
-//why we're doing this because. -ve element * min value is greater than -ve elemnt * maxValue.
+//why we're doing this because. (-ve element * min) value is greater than (-ve elemnt * maxValue).
 //so before doing this operation make sure to swap both this varaibles.
 
 //now take max of current element and maxi*current eleemnt.

@@ -49,6 +49,7 @@
          count += len1-index1; //so basically if element at index1 is greater than element at index 2 
         //  then definitely index1+1, index1+2 will also greater than element at index2 cause both subarray is sorted. 
         // so relation will be length of first sub array minus index1 will be the inversion count for element at index 2.
+        
         }    
 
     }

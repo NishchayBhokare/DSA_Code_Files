@@ -25,19 +25,24 @@
                 swap(matrix[row][startCol++], matrix[row][endCol--]);
             }
         }
+
+        //or we can use reverse function.
+        // for(int i=0; i<matrix.size(); i++){
+        //     reverse(matrix[i].begin(), matrix[i].end());
+        // }
    
     }
 
 //2: TC-O(N) SC-O(N)
 void rotate(vector<vector<int>>& matrix) {
-        int rowSize = matrix.size(), colSize = matrix[0].size();
-        vector<vector<int>>vec(rowSize, vector<int>(colSize,0));
+    int rowSize = matrix.size(), colSize = matrix[0].size();
+    vector<vector<int>>vec(rowSize, vector<int>(colSize,0));
 
-        for(int i = 0, col=0; i<rowSize && col<colSize; i++,col++){
-            for(int j = 0, row=rowSize-1; j<colSize && row>=0; row--,j++){ 
-                vec[i][j]=matrix[row][col];
-                
-            }
+    for(int i = 0, col=0; i<rowSize && col<colSize; i++,col++){
+        for(int j = 0, row=rowSize-1; j<colSize && row>=0; row--,j++){ 
+            vec[i][j]=matrix[row][col];
+            
         }
-        matrix = vec;
     }
+    matrix = vec;
+}
