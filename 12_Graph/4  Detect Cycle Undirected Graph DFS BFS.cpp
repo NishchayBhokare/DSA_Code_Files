@@ -1,4 +1,60 @@
 //GFG
+#include<bits/stdc++.h>
+using namespace std;
+
+//Using simple vector list.
+class Solution {
+  public:
+  
+    bool solve(vector<vector<int>>&adj, vector<int>&visited, int node, int parent){
+        
+        visited[node] = 1;
+
+        for(auto neighbor: adj[node]){
+            
+            if(!visited[neighbor]){
+                
+                if(solve(adj,visited,neighbor,node))
+                    return true;
+            }
+            else if(neighbor != parent) //if we reach at this step means,
+            // neighbor is visited, so just check if it parent or not. If no, then reutrn true
+            //stating that cycle is present.
+                return true;
+        }
+        
+        return false;
+    }
+  
+    bool isCycle(int V, vector<vector<int>>& edges) {
+
+        // vector<int>adj[V]; //we can create like this too.
+        vector<vector<int>>adj(V);
+        
+        for(auto m:edges){
+            int u = m[0];
+            int v = m[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        
+        vector<int>visited(V,0);
+        
+        for(int node=0; node<V; node++){
+
+            if(!visited[node]){
+                
+                int parent = -1; //for first node parent is -1.
+                if(solve(adj,visited,node,parent))
+                    return true;
+            }
+            
+        }
+
+        
+        return false;
+    }
+};
 
 //Approach 1:using DFS traversal..but without using parent data structure..only using parent varaible.
  bool solve(int node, int parent, vector<vector<int>>& adj,
@@ -16,6 +72,8 @@
             
             if(ans) return ans;
         }
+
+        return false;
     }
 
     //or
@@ -144,4 +202,65 @@ bool isCycle(vector<vector<int>>& adj) {
         }
     
     return ans; //if we reach till here..then cycle is not present.
+}
+
+//This is one more solution.
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+  private: 
+  bool detect(int src, vector<int> adj[], int vis[]) {
+      vis[src] = 1; 
+      // store <source node, parent node>
+      queue<pair<int,int>> q; 
+      q.push({src, -1});  //direclty store node and parent pair.
+      // traverse until queue is not empty
+      while(!q.empty()) {
+          int node = q.front().first; 
+          int parent = q.front().second; 
+          q.pop(); 
+          
+          // go to all adjacent nodes
+          for(auto adjacentNode: adj[node]) {
+              // if adjacent node is unvisited
+              if(!vis[adjacentNode]) {
+                  vis[adjacentNode] = 1; 
+                  q.push({adjacentNode, node}); 
+              }
+              // if adjacent node is visited and is not it's own parent node
+              else if(parent != adjacentNode) {
+                  // yes it is a cycle
+                  return true; 
+              }
+          }
+      }
+      // there's no cycle
+      return false; 
+  }
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        // initialise them as unvisited 
+        int vis[V] = {0};
+        for(int i = 0;i<V;i++) {
+            if(!vis[i]) {
+                if(detect(i, adj, vis)) return true; 
+            }
+        }
+        return false; 
+    }
+};
+
+int main() {
+    
+    // V = 4, E = 2
+    vector<int> adj[4] = {{}, {2}, {1, 3}, {2}};
+    Solution obj;
+    bool ans = obj.isCycle(4, adj);
+    if (ans)
+        cout << "1\n";
+    else
+        cout << "0\n";
+    return 0;
 }

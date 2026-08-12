@@ -6,6 +6,69 @@
 #include <iostream>
 using namespace std;
 
+
+//Simple one 
+class Solution {
+  public:
+    int maxDiameter = 0;
+
+    int solve(Node *root){
+        if(!root) return 0;
+
+        int left = solve(root->left);
+        int right = solve(root->right);
+        
+        
+        int height = max(left,right)+1;
+        
+        maxDiameter = max(maxDiameter, left+right+1);
+        
+        return height;
+    } 
+    int diameter(Node* root) {
+        
+        solve(root);
+        
+        return maxDiameter - 1;
+    }
+};
+
+//One more approach
+class Solution {
+  public:
+    int maxDiameter = 0;
+    //maxDiameterLen,
+    int solve(Node *root){
+        if(!root) return -1;
+
+        int left = solve(root->left);
+        int right = solve(root->right);
+        
+        int diameter = 0;
+        
+        if(left != -1 and right != -1){
+            diameter = left+right+2;
+        }
+        else if(left != -1)
+            diameter = left+1;
+        else
+            diameter = right+1;
+        
+        
+        int height = max(left,right)+1;
+        
+        maxDiameter = max(maxDiameter, diameter);
+        
+        return height;
+    } 
+    int diameter(Node* root) {
+        
+        solve(root);
+        
+        return maxDiameter;
+    }
+};
+
 struct Node
 {
     int data;

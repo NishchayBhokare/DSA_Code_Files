@@ -5,6 +5,42 @@ using namespace std;
 //In BFS -> Breadth First Serach..we picked..one node and then visit there all neighbouring nodes.
 //so for that...we used queue. and visisted map..to track..current node is visited or not.
 
+//Optimised one.
+class Solution {
+  public:
+    vector<int> bfs(vector<vector<int>> &adj) {
+        // code here
+        
+        int n = adj.size();
+        vector<int>ans;
+        vector<int>visited(n+1,0);
+        
+        queue<int>q;
+        q.push(0);
+        visited[0]=1;
+        
+        while(!q.empty()){
+                
+            int node = q.front();
+            q.pop();
+            
+            ans.push_back(node); //add in answer vector.
+            
+            for(auto neighbor:adj[node]){
+                
+                if(!visited[neighbor]){
+                    
+                    visited[neighbor] = 1;
+                    q.push(neighbor);
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
 //TC-O(V+E) SC-O(V)
 vector<int> bfsOfGraph(vector<vector<int>> &adj) {
     vector<int> ans;

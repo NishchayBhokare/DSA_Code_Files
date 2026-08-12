@@ -13,7 +13,7 @@ void solve(int node, vector<vector<int>>& adj,
     for(auto i: adj[node]){ //loop over adjaceny list for (current) node index element.
         if(!visited[i]){ 
             solve(i,adj,visited,ans); //solve for i node.
-        }
+        }       
     }
 }
 

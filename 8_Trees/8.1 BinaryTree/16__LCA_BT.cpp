@@ -1,6 +1,39 @@
 // Lowest Common Ancestor in a Binary Tree
 // GFG
 
+//This is one more approach.
+class Solution {
+  public:
+    pair<bool,Node*> solve(Node*root, int n1, int n2){
+        
+        if(!root)
+            return {false, NULL};
+        
+        if(root->data == n1 or root->data == n2) 
+            return {true, root};
+        
+        pair<bool, Node*> left = solve(root->left, n1, n2);
+        pair<bool, Node*> right = solve(root->right, n1, n2);
+        
+        if(left.first && right.first)
+            return {true,root};
+        
+        else if(left.first)
+            return {left.first,left.second};
+            
+        else if(right.first)
+            return {right.first,right.second};
+            
+        else return {false,NULL};
+        
+    }
+  
+    Node* lca(Node* root, int n1, int n2) {
+        //  code here
+        return solve(root, n1, n2).second;
+    }
+};
+
 #include <iostream>
 using namespace std;
 

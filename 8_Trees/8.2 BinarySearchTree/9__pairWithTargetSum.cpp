@@ -42,16 +42,16 @@ int isPairPresent(struct Node *root, int target)
     
     Node *temp = root;
     while(temp != NULL){ //first traversing root to left most node and store this node in stack
-        st1.push(temp);
-        temp=temp->left;
-    }
+            st1.push(temp);
+            temp=temp->left;
+        }
     
     temp=root;
     while(temp != NULL){ //similarly for right side and store in second stack
         st2.push(temp);
         temp=temp->right;
     }
-    
+            
     int i = nextElements(st1); //getting one by one elements in normal inorder way
     int j = previousElements(st2); //getting one by one elements in reverse inorder way
     

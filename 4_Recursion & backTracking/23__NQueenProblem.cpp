@@ -45,7 +45,7 @@ void updateBoard(vector<vector<int>> &board,int row, int col, int val){
     rowMap[row] = val;
     
     //update upper diagonal 
-    upparDiagonal[n-1+col-row] = val; //this is expression to make..all diagonal value same fo or upper diagonal.
+    upparDiagonal[n-1+col-row] = val; //this is expression to make..all diagonal value same for upper diagonal.
     
     //update lower diagonal
     lowerDiagonal[row+col] = val; //same for lower diagonal.

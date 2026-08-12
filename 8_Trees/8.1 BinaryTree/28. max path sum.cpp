@@ -2,6 +2,7 @@
 https://www.geeksforgeeks.org/problems/maximum-path-sum-from-any-node/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
 //Approach 1: It is more similar like finding diameter.
 int maxi=INT_MIN; //create max varaible.
+
 int solve(Node *root){
     if(root==NULL) return 0;
     
@@ -22,3 +23,63 @@ int findMaxSum(Node* root)
     return maxi;
 
 }
+
+//More easy to understand
+class Solution {
+  public:
+  int maxSum=INT_MIN;
+    int solve(Node *root){
+        
+        if(!root) return 0;
+        
+        
+        int left = solve(root->left);
+        int right = solve(root->right);
+
+        int data = root->data;
+        
+        int sum = max({data, left+data, right+data});
+        
+        maxSum = max({maxSum, sum, data+left+right});
+        
+        return sum;
+    }
+    
+    
+    
+    int findMaxSum(Node *root) {
+  
+        solve(root);
+        return maxSum;
+    }
+};
+
+
+class Solution {
+  public:
+  int maxSum=INT_MIN;
+    int solve(Node *root){
+        
+        if(!root) return 0;
+        
+        
+        int left = max(0,solve(root->left));
+        int right =  max(0,solve(root->right));
+
+        int data = root->data;
+        
+        int sum = data + max(left, right);
+        
+        maxSum = max({maxSum, sum, data+left+right});
+        
+        return sum;
+    }
+    
+    
+    
+    int findMaxSum(Node *root) {
+  
+        solve(root);
+        return maxSum;
+    }
+};
