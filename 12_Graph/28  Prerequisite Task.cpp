@@ -114,7 +114,16 @@ bool isPossible(int N,int P, vector<pair<int, int> >& pre) {
     
     for(auto i:pre){
         adj[i.first].push_back(i.second);
+
     }
+
+    // for(auto m:pre){ 
+    //     int u=m[0], v=m[1];
+    //     adj[u].push_back(v);
+
+    //     indegree[v]++; //we can calculate indegree while cerating graph too.
+    // }
+    
     
     
     vector<int>indegree(N);

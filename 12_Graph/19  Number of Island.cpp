@@ -28,7 +28,7 @@ int numIslands(vector<vector<char>>& grid) {
     vector<vector<int>>visited(n,vector<int>(m,0));
     queue<pair<int,int>>q;
     
-    fo  
+    for(int i=0; i<n; i++){
         for(int j = 0; j<m; j++){
             if(grid[i][j] == '1' && !visited[i][j]){
                 land++; //incrementing land for every start node.

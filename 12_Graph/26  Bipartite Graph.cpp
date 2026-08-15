@@ -1,5 +1,6 @@
 //GFG
 //BFS and DFS. approach 3 is dfs.
+//for better understanding u can use visited array too. check 2nd solution.
 
 //Approach 1: using BFS -> Optimised approach. TC-O(V+E) SC-O(V)
 //simple logic..just do bfs..and mark current node suppose as 1 and their adjacent node is opposite of it..i.e 0.
@@ -24,19 +25,17 @@
         
         for(auto nbr:adj[node]){
             
-            if(color[nbr] == color[node]){ //no need to create visited array if nbr is not visited..
-            // then that time color will be -1..so that color will not match.
-            //but if color is same..that means..nbr is already visited..and color is same..that is the case not bipartite
-            
-                return false;
-            }
-            
             if(color[nbr] == -1){ //just check...color for nbr is -1 or not..if yes that means..first time we're visiting.
                 q.push(nbr);
                 
                 color[nbr] = !color[node]; //set opposite color.
             }
+            else if(color[nbr] == color[node]){ //no need to create visited array if nbr is not visited..
+            // then that time color will be -1..so that color will not match.
+            //but if color is same..that means..nbr is already visited..and color is same..that is the case not bipartite
             
+                return false;
+            }
         }
     }
     
@@ -63,15 +62,15 @@ bool isBipartite(vector<vector<int>>& adj) {
         
         for(auto nbr:adj[node]){
             
-            if(visited[nbr] && color[nbr] == color[node]){ //so if it's visited and have same color..then not bipertite
-                return false;
-            }
-            
+           
             if(!visited[nbr]){
                 q.push(nbr);
                 
                 color[nbr] = !color[node];
                 visited[nbr] = true;
+            }
+            else if(visited[nbr] && color[nbr] == color[node]){ //so if it's visited and have same color..then not bipertite
+                return false;
             }
         }
     }
@@ -81,22 +80,21 @@ bool isBipartite(vector<vector<int>>& adj) {
 
 
 //Approach 3: Using DFS algorithm.
-bool checkBipartite(int node, vector<vector<int>>& adj, vector<int>&color){       
+bool checkBipartite(int node, vector<vector<int>>& adj, vector<int>&color){  
+         
     for(auto nbr:adj[node]){
             
-        if( color[nbr] == color[node]){ //no need to create parent array..visited array...
-        //if nbr is parent...then color will not match..and if nbr is not visited..then that time color will be -1..so 
-        //that too will not match.
-        
-            return false;
-        }
-        
         if(color[nbr] == -1){ //just check...visited or not..if not visited..then color will be -1.
             color[nbr] = !color[node]; //set opposite color..and move to nbr.
             if( !checkBipartite(nbr,adj,color) ) //if it is not bipartite..then don't wait..return immediately false.
                 return false;
         }
+        else  if( color[nbr] == color[node]){ //no need to create parent array..visited array...
+        //if nbr is parent...then color will not match..and if nbr is not visited..then that time color will be -1..so 
+        //that too will not match.
         
+            return false;
+        }
     }
     
     return true; //if at the end..if we found that it's bipartite..then return true.

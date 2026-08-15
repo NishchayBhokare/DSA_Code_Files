@@ -170,7 +170,9 @@ bool isCycle(vector<vector<int>>& adj) {
         q.pop();
         
         for(auto neighbor:adj[node]){
-            if(visited[neighbor] && neighbor != parent[node]){ //this is additional condition. if neigbour is already true..and it's not parent..then return true..that cycle is present.
+            if(visited[neighbor] && neighbor != parent[node]){ 
+//this is additional condition. if neigbour is already true..and it's not parent..then return true..
+// that cycle is present.
                 return true;
             }
             

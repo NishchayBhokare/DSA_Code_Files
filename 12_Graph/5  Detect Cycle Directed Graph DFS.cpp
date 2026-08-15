@@ -1,5 +1,55 @@
 //GFG.
 
+//Simple one.
+class Solution {
+  public:
+    bool dfs(int node, vector<vector<int>>&adj, vector<int>&visited, vector<int>&dfsVisited){
+        
+        visited[node]=1;
+        dfsVisited[node]=1;
+        
+        for(auto neighbor: adj[node]){
+            
+            if(!visited[neighbor]){
+                if(dfs(neighbor, adj, visited, dfsVisited))
+                    return true;
+            }
+            else if(dfsVisited[neighbor]){
+                return true;
+            }
+        }
+        
+                
+        dfsVisited[node] = 0;
+        
+        return false;   
+    }
+  
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        // code here
+        vector<vector<int>>adj(V);
+        
+        for(auto m:edges){
+            int u=m[0], v=m[1];
+            adj[u].push_back(v);
+        }
+        
+        vector<int>visited(V,0);
+        vector<int>dfsVisited(V,0);
+        
+        for(int node = 0; node<V; node++){
+            
+            if(!visited[node]){
+                
+                if(dfs(node, adj, visited, dfsVisited))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+};
+
 //Approach 1: using DFS visited..we can track..all the active..parent calls. 
 bool solve(int node, vector<vector<int>> &adj, unordered_map<int,bool> &visited, 
 unordered_map<int,bool> &dfsVisited){

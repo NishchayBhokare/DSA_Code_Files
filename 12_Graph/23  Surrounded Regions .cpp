@@ -13,6 +13,20 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
         vector<vector<bool>>visited(n,vector<bool>(m,false));
         queue<pair<int,int>>q;
 
+        // for(int i=0; i<n; i++){ //we can use this way also to store boundry 'O', but
+        //still existing approach is optimised because it not traversing whole matrix.
+        //     for(int j=0; j<m; j++){
+                
+        //         if(i==0 or i==n-1 or j==0 or j==m-1){
+        //             if( grid[i][j]=='O'){
+        //                 q.push({i,j});
+        //                 visited[i][j]=1;
+        //             }
+        //         }
+              
+        //     }
+        // }
+
         //for top and bottom row.
         for(int row = 0,col=0; col<m; col++){
             //add top array row if O

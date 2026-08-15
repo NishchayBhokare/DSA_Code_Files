@@ -1,6 +1,63 @@
 //GFG 
 
 //I have solved this question by myselef..kudos to u nishu.
+//Approach usign DFS: On the fly just add safe node in answer vector. 
+class Solution {
+  public:
+    bool solve(int node, vector<vector<int>>&adj, vector<int>&visited,
+        vector<int>&dfsVisited, vector<int>&ans){
+        
+        
+        visited[node]=1;
+        dfsVisited[node]=1;
+        
+        for(auto neighbor:adj[node]){
+            
+            if(!visited[neighbor]){
+                
+                if( solve(neighbor, adj, visited, dfsVisited, ans) == false)
+                    return false;
+            }
+            else if(dfsVisited[neighbor])
+                return false;
+        }
+        
+        ans.push_back(node);
+        dfsVisited[node]=0;
+        return true;
+    }
+  
+    vector<int> safeNodes(int V, vector<vector<int>>& edges) {
+        // Code here
+    
+        vector<vector<int>>adj(V);
+        
+        for(auto m:edges){
+            int u=m[0], v=m[1];
+            
+            adj[u].push_back(v);
+        }
+        
+        vector<int>visited(V);
+        
+        vector<int>ans;
+        
+        vector<int>dfsVisited(V);
+        
+        for(int node=0; node<V; node++){
+            
+            if(!visited[node]){
+                solve(node,adj,visited,dfsVisited,ans);
+            }
+        }
+        
+        // sort(ans.begin(), ans.end()); //not required optional.
+        //we can return in any order.
+     
+        
+        return ans;
+    }
+};
 
 //Approach 2: using path array..we can solve it..we're using path array to check if cycle is prsent or not
 //if not..then it's safe like that..if cycle is present then it's not safe so return false..but make sure...you are NOT uncehcking or removing path values from true to false.
@@ -113,23 +170,38 @@ vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
 
 
 
-// //Approach 3: Using Topological Sort by reversing node links.
-//In short logic is reveres links..so terminal node will have indegree 0 and we can start checking from terminal node. if any node..connected to terminal node and not to any cycle
-//then there indegree will be 0..but if it's connected to any cycle..then indegree will be greater than 0 after decrementing indegree..
-//so just take..nodes which has indegree as 0 and push in the queue..and while popping out..just add in answer or mark as true.
+// //Approach 3: // Approach 3: Using Topological Sort by Reversing the Edges TC-O(V+E) 
+// Core idea:
+// Reverse all the edges of the graph.
+//
+// In the original graph:
+//     terminal node → has outdegree 0
+//
+// After reversing the edges:
+//     terminal node → has indegree 0
+//
+// Therefore, terminal nodes can be treated as starting nodes for
+// Kahn's Topological Sort.
+//
+// We put all nodes with indegree 0 into the queue.
+// While processing a node:
+//     1. Remove its outgoing edges in the reversed graph.
+//     2. Decrease the indegree of its neighbors.
+//     3. If any neighbor's indegree becomes 0, push it into the queue.
+//
+// Every node whose indegree eventually becomes 0 is an eventual safe node.
+//
+// Why?
+// If a node can eventually reach a terminal node and cannot reach a cycle,
+// then after reversing the edges, all of its incoming edges will eventually
+// be removed starting from the terminal nodes. Its indegree will therefore
+// become 0.
+//
+// But if a node can reach a cycle, at least one edge coming from the cycle
+// (or another unsafe node) will remain. Therefore, its indegree will never
 
-Why we need to reverse links. -> reason is below.
-// We wish to find a set of eventual safe nodes in the original graph G. Let T be the set of terminal nodes of G. A node 'p' in G is eventual safe if it's neither part of a cycle nor it can 'reach' any cycle. 
-// In other words, all the 'outgoing' paths from 'p' can only reach one of the terminal nodes T. Conversely, if 'q' is an unsafe node, then there exists at least one 'outgoing' path which leads to a cycle (or unsafe nodes). 
-// Now when we reverse G, in the reversed graph, all the outgoing paths become incoming paths and vice-versa. Let's call the reversed graph H. Note that the 'terminal' nodes T of G becomes the start nodes for the topological sort on H.
 
-// In the reversed graph H, all the 'incoming' paths to 'p' must start from some terminal node in T (and must contain no cycles). 
-// On the other hand, there exists at least one 'incoming' path to 'q' which originates from some unsafe node (connected to a cycle). 
-// Now when we perform Kahn's topological sort starting from the terminal nodes T, and repeatedly remove edges from terminal node set to its neighbors, 
-// at some point, all 'incoming' edges to 'p' will be removed and its indegree will become 0, and hence 'p' will be collected as a safe node. 
-// On the other hand, 'q' will be left with at least one edge (involving unsafe nodes connected to a cycle), 
-// and hence its indegree would never become zero, and hence it will not be collected as a safe node.
-
+// become 0, so it will not be added to the answer.
 vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
     vector<vector<int>>adjList(V);
     
@@ -186,3 +258,62 @@ vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
     
     // return ans;
 }
+
+
+//Approach usign DFS: On the fly just add safe node in answer vector. 
+class Solution {
+  public:
+    bool solve(int node, vector<vector<int>>&adj, vector<int>&visited,
+        vector<int>&dfsVisited, vector<int>&ans){
+        
+        
+        visited[node]=1;
+            dfsVisited[node]=1;
+        
+        for(auto neighbor:adj[node]){
+            
+            if(!visited[neighbor]){
+                
+                if( solve(neighbor, adj, visited, dfsVisited, ans) == false)
+                    return false;
+            }
+            else if(dfsVisited[neighbor])
+                return false;
+        }
+        
+        ans.push_back(node);
+        dfsVisited[node]=0;
+        return true;
+    }
+  
+    vector<int> safeNodes(int V, vector<vector<int>>& edges) {
+        // Code here
+    
+        vector<vector<int>>adj(V);
+        
+        for(auto m:edges){
+            int u=m[0], v=m[1];
+            
+            adj[u].push_back(v);
+        }
+        
+        vector<int>visited(V);
+        
+        vector<int>ans;
+        
+        vector<int>dfsVisited(V);
+        
+        for(int node=0; node<V; node++){
+            
+            if(!visited[node]){
+                solve(node,adj,visited,dfsVisited,ans);
+            }
+        }
+        
+        // sort(ans.begin(), ans.end()); //not required optional.
+        //we can return in any order.
+     
+        
+        return ans;
+    }
+};

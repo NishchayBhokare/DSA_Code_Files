@@ -1,5 +1,6 @@
 //GFG
-
+#include<bits/stdc++.h>
+using namespace std;
 
 //Updated BFS. TC-O(N2) SC-O(N2)
 // we have to find..number adjacent nodes of given src and dest which can be colored with given color.
@@ -139,10 +140,9 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc,
     int n = image.size();
     int m = image[0].size();
     
-    queue<pair<int,int>>q;
     vector<vector<bool>> visited(n,vector<bool>(m,false));
     
-    q.push({sr,sc});
+
     visited[sr][sc] = true;
     int currColor = image[sr][sc];
     image[sr][sc] = newColor;

@@ -20,7 +20,7 @@ int countDistinctIslands(vector<vector<int>>& grid) {
             
             if(grid[i][j]==1 && !visited[i][j]){ //as we deal with finding connections of 1..so grid should have 1 and not visited.
                 
-                pair<int,int>base = {i,j}; //this will be the values of base node's row and col. this is starting node this connected links.
+                // pair<int,int>base = {i,j}; //this will be the values of base node's row and col. this is starting node this connected links.
                 q.push({i,j}); //now push their ith and jth values.
                 visited[i][j] = true;
 
@@ -32,9 +32,10 @@ int countDistinctIslands(vector<vector<int>>& grid) {
                     q.pop();
                     
                     int row = node.first , col = node.second; //getting current row and col values.
-                    int row0 = base.first, col0 = base.second; //getting base node's row and col values.
-                    temp.push_back( {row-row0, col-col0} ); //substracting current node row's,col's values from base values.
-            
+                    // int row0 = base.first, col0 = base.second; //getting base node's row and col values.
+                    // temp.push_back( {row-row0, col-col0} ); //substracting current node row's,col's values from base values.
+                    temp.push_back({row-i, col-j}); //we can simply write this too.
+
                     for(int i = 0; i<4; i++){ //looping to insert adjacent in all four directions.
                         int nRow = row + rowArr[i];
                         int nCol = col + colArr[i];

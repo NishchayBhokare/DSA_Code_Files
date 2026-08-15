@@ -1,5 +1,6 @@
 //GFG -> Rotten Oranges.
-
+#include<bits/stdc++.h>
+using namespace std;
 //Approach 1: optimised approach using elminate for loop to return -1 and also..elminating pushing
 // -1 delimeter in queue...as we're doing in approach 2.
 //TC-O(N*M) SC-O(N*M).
@@ -7,16 +8,18 @@ int orangesRotting(vector<vector<int>>& mat) {
     int n = mat.size();
     int m = mat[0].size();
     
-    vector<vector<bool>>visited(n,vector<bool>(m,false));
+    vector<vector<bool>>visited(n,vector<bool>(m,false)); //not required
     
     queue< vector<int> >q; //creating queue of vector..to store three fields. {row,col,time}.
     
     int freshCnt = 0; //this variable we're using for eliminating uses of for loop to return -1.
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
-            if(mat[i][j] == 2) //if index have value 2..then push row,col and time with zero in queue.
+            if(mat[i][j] == 2){
+                //if index have value 2..then push row,col and time with zero in queue.
                 q.push({i,j,0});
-            
+                visited[i][j]=true;
+            } 
             if(mat[i][j] == 1) //counting count for 1.
                 freshCnt++;
         }

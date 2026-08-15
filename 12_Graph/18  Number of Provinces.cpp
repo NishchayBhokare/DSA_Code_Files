@@ -1,6 +1,81 @@
 //GFG
 //Number of provinces is nothing but number of components we have to return.
 
+//both dfs and bfs added.
+class Solution {
+  public:
+    void solve(int node, vector<vector<int>>&adj, vector<int>&visited){
+        
+        
+        visited[node]=1;
+        
+        for(auto neighbor:adj[node]){
+            
+            if(!visited[neighbor]){
+                solve(neighbor,adj,visited);
+            }
+        }
+    }
+  
+  
+    int countConnected(int V, vector<vector<int>>& edges) {
+
+        vector<vector<int>>adj(V);
+        
+        
+        for(auto m:edges){
+            int u=m[0], v=m[1];
+            
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        
+        int cnt = 0;
+        vector<int>visited(V);
+        // for(int i=0; i<V; i++){
+            
+        //     if(!visited[i]){
+        //         cnt++;
+        //         solve(i,adj,visited);
+        //     }
+        // }
+        
+        for(int node=0; node<V; node++){
+            
+            if(!visited[node]){
+                
+                cnt++;
+                
+                queue<int>q;
+                q.push(node);
+                visited[node]=1;
+                
+                while(!q.empty()){
+                    
+                    int front = q.front();
+                    q.pop();
+                    
+                    for(auto neighbor:adj[front]){
+                        
+                        if(!visited[neighbor]){
+                            
+                            q.push(neighbor);
+                            visited[neighbor]=1;
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        return cnt;
+    }
+};
+
+
+
+
+
 //Approach 1: using dfs.
 //Logic is..when we call dfs function for main..then increment count..because..that will be start node
 //of dfs call..so if..there are two components..then two times..solve function will call from main.
@@ -37,7 +112,7 @@ int numProvinces(vector<vector<int>> adj, int V) {
 
 //we can solve this function using disjoint..so look into that too.
 
-//Approach 2: using dfs.
+//Approach 2: using bfs.
 int numProvinces(vector<vector<int>> adj, int V) {
     int count = 0;
     unordered_map<int,bool>visited;

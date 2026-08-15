@@ -156,3 +156,61 @@ int numberOfEnclaves(vector<vector<int>> &grid) {
     
 return count;
 }
+
+//check below solution. instead of looping for count seperately, we can count the 1 on the fly
+//and will decrement it when we are popping. so basically total 1cnt - visited 1cnt = unreacable 1cnt.
+class Solution {
+  public:
+    int cntOnes(vector<vector<int>>& grid) {
+        // code here
+        int n=grid.size(), m=grid[0].size();
+        
+        vector<vector<int>>visited(n,vector<int>(m,0));
+        queue<pair<int,int>>q;
+        
+        int cnt=0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                
+                if(grid[i][j]==1)cnt++;
+                
+                if(i==0 or i==n-1 or j==0 or j==m-1){
+                    
+                    if(grid[i][j] == 1){
+                        q.push({i,j});
+                        visited[i][j]=1;
+                    }
+                }
+            }
+        }
+        
+        
+        int rowArr[]={-1,1,0,0};
+        int colArr[]={0,0,-1,1};
+        
+        while(!q.empty()){
+            
+            int row = q.front().first;
+            int col = q.front().second;
+            cnt--;
+            
+            q.pop();
+            
+            for(int i=0; i<4; i++){
+                int newR = row+rowArr[i];
+                int newC = col+colArr[i];
+                
+                if(newR>=0 and newR<n and newC>=0 and newC<m and !visited[newR][newC]
+                    and grid[newR][newC]==1){
+                    
+                    q.push({newR,newC});
+                    visited[newR][newC]=1;
+                    
+                }
+            }
+        }
+        
+        
+        return cnt;
+    }
+};
