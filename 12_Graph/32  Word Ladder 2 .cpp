@@ -24,12 +24,12 @@ vector<vector<string>> findSequences(string word, string end, vector<string>& wo
         vector<string>curr = q.front(); //get front element.
         q.pop();
         word = curr.back(); //store last word present in curr..because that will be lastly added..and we have to continue from that word.
-        
+
         if(curr.size() > level){ //if level is increased..then this is time to erase used string of previos levels and update the level to current level.
             level++; //increment level.
             
             for(auto str:usedLvlStr){
-                s.erase(str); //erase all string used in previous levels.
+                s.erase(str); //erase all string used in previous levels. because now, old string no longer required.
             }
             
             usedLvlStr.clear(); //also clear this vector.
@@ -43,7 +43,8 @@ vector<vector<string>> findSequences(string word, string end, vector<string>& wo
                 ans.push_back(curr);
             }
             
-            else if(ans[0].size() == curr.size()){ //else for next onwards..check already present vector size from answer and compare with current..if it's same..then only insert.
+            else if(ans[0].size() == curr.size()){ //else for next onwards..check already present vector 
+                // size from answer and compare with current..if it's same..then only insert.
                 ans.push_back(curr);
             }
         }

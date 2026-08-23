@@ -15,11 +15,44 @@ for which the sum of the edge weights is minimum.
 // take TC-O(V*(ElogV)) which is still better than floyd warshal algo..but remember dijkstra will fail in -ve weight cycle.
 //floyd will not fail.
 
+
+//Solution: when in matrix already 1e8 as initial position given.
+class Solution {
+  public:
+    void floydWarshall(vector<vector<int>> &mat) {
+        // Code here
+        int n=mat.size();
+        for(int via = 0; via < n; via++){
+            for(int row = 0; row<n; row++){
+                for(int col = 0; col<n; col++){
+                    
+                    if(mat[row][via] == 1e8 or mat[via][col] == 1e8)
+                        continue;
+                        
+                    int viaSum = mat[row][via] + mat[via][col]; 
+                    mat[row][col] = min(mat[row][col],viaSum); //now no need to add if conditions
+                }
+            }
+        }
+    }
+
+
+    //To detect -ve cycles. -> check node's distance. mat[0][0] , mat[1][1], It should be equal to 0,
+    // if it's less than 0 that means cycle is presnet.
+    for(int i = 0; i < n; i++){
+        if(mat[i][i] < 0){
+            cout << "Negative cycle exists";
+            // return;
+        }
+    }
+};
+
 //Appraoch 1: algo in single loop.
  void shortestDistance(vector<vector<int>>& mat) {
     // Code here
     int n = mat.size();
     
+    //For understaind. 0->1. is mat[0][0], mat[0][1], 1->0 is mat[1][0], mat[0][0] via 0. first row.
     for(int via = 0; via < n; via++){ //as we have to find shortest distance from every node to every other node.
     //so we're traversing via every node..and updating distance. suppose, to go from i to j,
     //even if there is direct path i to j. we will go by i to via and then via to j.
@@ -33,7 +66,7 @@ for which the sum of the edge weights is minimum.
                     
                     int viaSum = mat[row][via] + mat[via][col]; //calculating from distance (row to via and via to col)
                     
-                    if(mat[row][col] == -1) 
+                    if(mat[row][col] == -1)//first time updating values. 
                     //if row col having value -1 then it means..there is not direct path from row to col.
                     //but there is path from row to via and then via to col. so store viasum distance as it is.
                         mat[row][col] = viaSum;
@@ -44,6 +77,12 @@ for which the sum of the edge weights is minimum.
                     
             }
         }
+
+
+        // for(int i=0; i<n; i++){ //condition to check, -ve cycle is presnt or not.
+        //     if(mat[i][i] < 0)
+        //         return true;
+        // }
     }
     
 }

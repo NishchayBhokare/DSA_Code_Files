@@ -53,7 +53,7 @@ int kosaraju(int V, vector<vector<int>>& adj)
     }
     
     
-    
+    // fill(visited.begin(), visited.end(), 0);// we can use fill method to reset values of vector to 0.
     // transpose adjacency list.
     for(int i = 0; i<V; i++){
         visited[i] = false; //updating visited map to false for all nodes.

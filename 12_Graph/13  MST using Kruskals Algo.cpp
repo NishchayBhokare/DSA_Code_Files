@@ -7,7 +7,8 @@
 //Disjoint set are the set..in which we can get ulitmate parent and makeunion by rank..
 //basically this disjoint set can be used to  find MST. 
 
-//TC- O(E * (4 * alpha)) i.e constant.
+//TC- O(E * (4 * alpha)). there is huge mathematics for it. But yes alpha value is very 
+// less so overall TC is constant O(1).
 class disJointSet{
 	public:
 	vector<int>parent;
@@ -78,7 +79,8 @@ int spanningTree(int V, vector<vector<int>> adj[])
 		int uP = ds.findParent(u);
 		int vP = ds.findParent(v);
 		
-		if(uP != vP){
+		if(uP != vP){ //if they are not belong to same component or parent, then simply add into mst
+			// and call for union to add in same component.
 			sum+= w;
 			ds.makeUnionByRank(u,v);
 		}

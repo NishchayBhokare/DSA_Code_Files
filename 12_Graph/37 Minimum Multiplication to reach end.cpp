@@ -6,15 +6,16 @@
 //and will push those newly generated values in queue by updating their steps.
 //we can use visited array also..no need to create steps array.
 //TC-O(100000 * N) -> N is for inner loop of traversing over array elements.
+//SCO(100000)
 int minimumMultiplications(vector<int>& arr, int start, int end) {
     if(start == end)
         return 0;
     
     queue<vector<int>>q;
     q.push({start,0}); //first pushing start value with it's current step count.
-    vector<int>stepsArr(100000,INT_MAX); //creation of steps array.
+    vector<int>stepsArr(10000,INT_MAX); //creation of steps array.
     
-    int mod = 100000; //by this mod we're going to modulus.
+    int mod = 10000; //by this mod we're going to modulus.
     while(!q.empty()){
         auto node = q.front();
         q.pop();

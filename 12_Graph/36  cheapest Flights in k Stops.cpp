@@ -8,6 +8,7 @@
 //then that time..dijkstra with priority queue will fail..because it will neglect distance which are greater but stops are less.
 
 //so for that we are using queue..with dijkstra which will work as bfs..we will reach to destination with shortest k stops with smaller distance.
+//TC-O(E+V(no.of nodes in flights))
  int CheapestFLight(int n, vector<vector<int>>& flights, int src, int dst, int K)  {
     vector<vector<pair<int,int> >>adj(n);
     
@@ -20,21 +21,22 @@
     }
 
     vector<int>priceArr(n,INT_MAX); //price array is nothing but distance array.
-    queue<vector<int>>pq;
+    queue<vector<int>>q;
     
-    pq.push({0,src,0}); //{stopNo,nodeVal,price}.
+    q.push({0,src,0}); //{stopNo,nodeVal,price}.
     priceArr[src] = 0;
-    while(!pq.empty()){
+    while(!q.empty()){
         
-        auto node = pq.front();
-        pq.pop();
+        auto node = q.front();
+        q.pop();
         
         int nodeStop = node[0];
         int nodeVal = node[1];
         int nodePrice = node[2];
 
-        //we are not adding condition as we reached to destination or not..because there might be other shorter ways also..within k stops.
-        //to reach destination..so not adding any condtion.
+        //we are not adding condition as we reached to destination or not..
+        // because there might be other shorter ways also..within k stops to reach destination..
+        // so not adding any condtion.
         
         for(auto nbr:adj[nodeVal]){
             int nbrNode = nbr.first;
@@ -42,13 +44,18 @@
             int nbrStop = nodeStop + 1;
             
             int totalPrice = nodePrice + nbrPrice;
+            
+            // if(nbrStop >= k) continue; 
+            //here also we can add this condition. if stop is greater than or
+            // // equal to k then just stop and move to next iteration. no need to check further for this seq.
+            // //as stop will going to increase
 
             if((nbrStop-1) <= K && totalPrice < priceArr[nbrNode]){ 
                 //as we added source node also..so source node to first dest will be consider as 0 stops.
                 //becasue we reached..so that's why checking condition like..nbrStop-1 is lesser than k then push.
                 //and if stop is lesser and price too..then only update price array and push in queue.
                 
-                pq.push({nbrStop, nbrNode, totalPrice});
+                q.push({nbrStop, nbrNode, totalPrice});
                 priceArr[nbrNode] = totalPrice;
             }
         }

@@ -36,7 +36,9 @@ void solve(int node,int parent, vector<int>adj[], vector<int>&low, vector<int>&d
         }
         else{
             low[node] = min(low[node],disco[nbr]); 
-            //if already visited..then take minimum of it's disco's nbr...
+            //if already visited..then take minimum of it's disco's nbr. cause, if we take low of nbr
+            //then if that low value exist somewhere before nbr then, if we delete nbr..we can't reach
+            //there, so take disco of nbr, it it's already visited.
 
         }
     }

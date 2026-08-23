@@ -54,6 +54,8 @@ class DisjointSet{
 //so for that..use flag varaible..which will be initially true..and if any cell value has 0, then it will be false.
 //so at the end..if flag is true..then return n*n. because that will be the total maximum size.
 //else return our answer.
+
+//TC-O(N*M)
 class Solution {
   public:
     int MaxConnection(vector<vector<int>>& grid) {
@@ -81,7 +83,7 @@ class Solution {
                         int u = row * n + col;
                         int v = r * n + c;
                             
-                        ds.makeUnion(u,v);
+                        ds.makeUnion(u,v)
                     }
                     
                 } 
@@ -91,6 +93,9 @@ class Solution {
         
         //initialisng largeCnt and flag.
         int largeCnt = 0;
+        // or simply instad of all this flag. we can directly assign initial maxcnt from size array.
+        // int largeCnt = *max_element(ds.size.begin(), ds.size().end());
+
         int flag = 1;
         
         //now check..where we can place 1 in matrix.
@@ -102,7 +107,7 @@ class Solution {
                 //if we enter here..that menas cell has value 0. so make flag as 0. i.e false.
                 flag = 0;
                 
-                int currCnt = 1;
+                
                 set<int>st;
                 
                 //go into all four directions to connect with neighbors.
@@ -118,7 +123,8 @@ class Solution {
                         st.insert(adjParent); //and push it into the set.
                     }  
                 }
-                
+
+                int currCnt = 1;
                 for(auto node:st){ //before moving ahead for next cell..add size of every parent in current count.
                     currCnt += ds.size[node];
                 }
@@ -130,5 +136,81 @@ class Solution {
         if(flag) return n*n; //if all cell already has value 1 then return n*n.
         
         return largeCnt; //else large count.
+    }
+};
+
+
+//checkout below beautiful solution. 
+class Solution {
+  public:
+    int maxConnection(vector<vector<int>>& grid) {
+        // code here
+        int n = grid.size(), m = grid[0].size();
+        DisjointSet ds(n*m);
+        
+        int rowArr[] = {-1,1,0,0};
+        int colArr[] = {0,0,1,-1};
+        
+        //create disjoint set.
+        for(int r=0; r<n; r++){
+            for(int c=0; c<m; c++){
+                
+                if(grid[r][c] == 1){
+                    
+                    for(int i=0; i<4; i++){
+                        int newR = r+rowArr[i];
+                        int newC = c+colArr[i];
+                        
+                        if(newR >=0 and newR<n and newC>=0 and newC<m and grid[newR][newC]==1){
+                            
+                            int node = (r*m) + c;
+                            int adjNode = (newR*m) + newC;
+                            
+                            if(ds.findParent(node) != ds.findParent(adjNode)){
+                                ds.makeUnion(node,adjNode);
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        int maxConnected = *max_element(ds.size.begin(), ds.size.end());
+        
+        for(int r=0; r<n; r++){
+            
+            for(int c=0; c<m; c++){
+                
+                if(grid[r][c] == 0){
+                    
+                    //now check on all four directions.
+                    unordered_set<int>uniqueUltPar;
+                    
+                    for(int i=0; i<4; i++){
+                        int newR = r+rowArr[i];
+                        int newC = c+colArr[i];
+                        
+                        if(newR >=0 and newR<n and newC>=0 and newC<m and grid[newR][newC]==1){
+                            
+                            int adjNode = (newR*m) + newC;
+                            int ultPar = ds.findParent(adjNode);
+                            
+                            uniqueUltPar.insert(ultPar);
+                        }
+                    }
+                    
+                    int currConnected = 1;
+                    for(auto ult:uniqueUltPar){
+                        currConnected += ds.size[ult];
+                    }
+                    
+                    maxConnected = max(maxConnected, currConnected);
+                }
+            }
+        }
+        
+        return maxConnected;
     }
 };

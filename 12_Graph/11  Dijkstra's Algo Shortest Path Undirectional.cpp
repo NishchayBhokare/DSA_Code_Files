@@ -2,7 +2,7 @@
 //Dijkstra's algorithm on undirected weighted graph.
 
 //Dijkstra's algorithm will work in only with positive values on both directed and undirected graph.
-//if it has negative weight..then we will fall in infinite loop..because every time from u to v distance will get reduce..
+//if it has negative weight..then we will fall in infinite loop..because every time from u to v distance will get reduce.
 //and we will keep traversing from u to v.  
 
 //actually approach 2 is very optimised..because we have used set..and we can erase pair..which has 
@@ -62,7 +62,7 @@ vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int sour
 
 
 
-
+//Approximately: TC-o(ElogV) SC-O(E+V)
 Approach 2: Using set//logic is..first do bfs and pop out node from set..then check adjacent of these nodes...if adjacent node's 
 // distance + node distance is less than current distance present in distance vector for that node..then delete more distance pair 
 //from set. and update distance in distance vector..and push this new distance in set.
@@ -70,7 +70,7 @@ Approach 2: Using set//logic is..first do bfs and pop out node from set..then ch
 vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int source) {
     unordered_map<int,list<pair<int,int>> >adj;
     
-    for(int i = 0; i<edges; i++){ //creation of adjacency list.
+    for(int i = 0; i<edges.size(); i++){ //creation of adjacency list.
         int u = vec[i][0];
         int v = vec[i][1];
         int w = vec[i][2];
@@ -123,7 +123,7 @@ vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int sour
 }
 
 
-//Approach 3: normal approach using queue.. GFG.
+//Approach 3: normal approach using queue.. GFG. TC-O(N)
 vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
     // code here
     vector<vector<int> >adj(N);

@@ -54,3 +54,51 @@ int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
     
     return -1; //if we reached till here then return -1.
 }
+
+
+
+//We can use visited array to instead of distnace array. 
+int shortestPath(vector<vector<int>> &mat, vector<int> &src, vector<int> &dest) {
+        // code here
+        
+        int sr = src[0], sc = src[1];
+        int dr = dest[0], dc = dest[1];
+        
+        if(mat[sr][sc] == 0 or mat[dr][dc]==0)  
+            return -1;
+    
+        int rowArr[]={-1,1,0,0};
+        int colArr[]={0,0,-1,1};
+        
+        vector<vector<int>>visited(mat.size(), vector<int>(mat[0].size(),0));
+        queue<vector<int>>q;
+        q.push({sr,sc,0});
+        visited[sr][sc]=1;
+        
+        while(!q.empty()){
+            
+            int nr = q.front()[0];
+            int nc = q.front()[1];
+            int dist = q.front()[2];
+            
+            q.pop();
+            
+            if(nr==dr and nc==dc){ //checking here.
+                return dist;
+            }
+            
+            for(int i=0; i<4; i++){
+                int newR = nr+rowArr[i];
+                int newC = nc+colArr[i];
+                
+                if(newR>=0 and newR<mat.size() and newC>=0 and newC<mat[0].size()
+                    and mat[newR][newC]==1 and !visited[newR][newC]){
+                        
+                       visited[newR][newC]=1;
+                       q.push({newR,newC, dist+1});
+                }
+            }
+        }
+        
+        return -1;
+    }

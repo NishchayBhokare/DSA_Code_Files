@@ -3,9 +3,17 @@
 What is Spanning Tree -> A graph in which we have n nodes and n-1 edges.
 and all nodes are reachable from each other
 
-//What is Minimum Spanning tree -> The minimum sum spaning tree among all spanning tree known as MST.
+//What is Minimum Spanning tree -> It defined as a spanning tree that has the minimum weight among all the 
+// possible spanning trees.
 
-//Approach 1: TC-O(ElogE) SC-O(E)
+The number of vertices (V) in the graph and the spanning tree is the same.
+There is a fixed number of edges in the spanning tree which is equal to one less than the total number of vertices ( E = V-1 ).
+The spanning tree should not be disconnected, as in there should only be a single source of component, not more than that.
+The spanning tree should be acyclic, which means there would not be any cycle in the tree.
+The total cost (or weight) of the spanning tree is defined as the sum of the edge weights of all the edges of the spanning tree.
+There can be many possible spanning trees for a graph. 
+
+//Approach 1: TC-O(ElogV) SC-O(E)
 //using (PRIM's algorithm) priority queue min heap we can solve this problem.
 //logic is we are taking minmum node distance edge to create spanning tree.
 //in short..first insert soruce node in queue...then..mark it as visited and 
@@ -23,7 +31,7 @@ int spanningTree(int V, vector<vector<int>> adj[])
         vector<bool>visited(V,false);
         
     //storing {weight,node}..currently no need to store parent for this question.
-        pq.push( {0,0} );
+        pq.push( {0,0} );//{cost, node}
         
         while(!pq.empty()){
             auto node = pq.top();

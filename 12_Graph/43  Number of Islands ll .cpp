@@ -13,7 +13,7 @@ class DisjointSet{
         vector<int>size;
         
         DisjointSet(int n){
-            size.resize(n,0);
+            size.resize(n,1);
             
             parent.resize(n);
             

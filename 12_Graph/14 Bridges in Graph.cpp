@@ -14,6 +14,7 @@ into the two parts.
 
 //Discovery array stores initial timer value..when we reached that node first time.
 
+//TC-O(V+2E) SC-O(V+2E) + O(3V) + O(V-1 i.e V) for answer.
 void solve(int node,int parent, unordered_map<int,list<int>> &adj, vector<int>&low, vector<int>&disco, 
     unordered_map<int,bool> &visited, vector<vector<int>> &result, int &timer){
 
@@ -77,57 +78,9 @@ vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
 
 
 
-//GFG question need to check..bridge is present between given two nodes or not.
-//if we break connection between them and point c to c and d to d. then after when we do dfs from 
-//node c..we should able to reach node d..if node d is not visited that means..bridge is present.
- bool solve(int &first, int &second, vector<int> adj[], unordered_map<int,bool> &visited){
-        
-        visited[first] = true;
-        
-        if(visited[second]) //if it's reacheable then just return false.
-            return false;
-        
-        for(auto nbr:adj[first]){
-        
-          if(!visited[nbr]){
-             bool ans = solve(nbr, second, adj, visited);
-             
-             if(ans == false) //if at any point answer is false..then return false.
-                return false;
-          }
-            
-        }
-        
-        
-        return true;
-    }
-  
-    
-    int isBridge(int V, vector<int> adj[], int c, int d) 
-    {
-        //here remvoing links.
-        for(int i = 0; i<adj[d].size(); i++){
-            if(adj[d][i] == c)
-                adj[d][i] = d; //pointing thier links to itself.
-        }
-        
-        for(int i = 0; i<adj[c].size(); i++){
-            if(adj[c][i] == d)
-                adj[c][i] = c; //pointing to itself.
-        }
-        
-        
-        unordered_map<int,bool> visited;
-        
-        //now check..d node is reachable or not.
-       return solve(c,d,adj,visited);
- 
-    }
-
-
-//without doing changes in links..we can solve this problem ..by simpley skipping iteration
-//when c is parent and d is neihbor.
+//Approach 2:logic is if there is another path to reach d, that means its not bridge edge.
 //note we're passing c to solve function..so that..we will traverse graph from c.
+
 void solve(int &node,int&c, int &d, vector<int> adj[], unordered_map<int,bool> &visited){
     
     visited[node] = true;
@@ -156,3 +109,64 @@ int isBridge(int V, vector<int> adj[], int c, int d)
         
     return true; //else true.
 }
+
+
+//Approach 3: first check component count without adding edge in adjacency list.
+//then again check by adding edge is adjacency list. if both count doesn't matches then it is bridge.
+void dfs(vector<vector<int>>&adj, vector<int>&visited, int node){
+        
+        visited[node] = 1;
+        
+        
+        for(auto nbr:adj[node]){
+            
+            if(!visited[nbr])
+                dfs(adj,visited,nbr);
+        }
+    }
+  
+  
+    bool isBridge(int V, vector<vector<int>> &edges, int c, int d) {
+        // Code here
+        vector<vector<int>>adj(V);
+        
+        for(auto m:edges){
+            int u = m[0];
+            int v = m[1];
+            
+            if(u == c and v == d) continue;
+            
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        
+        int comp1 = 0;
+        
+        vector<int>visited(V,0);
+        
+        for(int i=0; i<V; i++){
+            
+            if(!visited[i]){
+                comp1++;
+                dfs(adj,visited,i);
+            }
+        }
+        
+        adj[c].push_back(d);
+        adj[d].push_back(c);
+        
+        fill(visited.begin(), visited.end(),0);
+        
+        int comp2 = 0;
+        for(int i=0; i<V; i++){
+            
+            if(!visited[i]){
+                comp2++;
+                dfs(adj,visited,i);
+            }
+        }
+        
+        return comp1 != comp2; //if both comp count is not same that menas there is change in component
+        // count. which is nothing but by removing given edge, component count will get increase.
+    }
+

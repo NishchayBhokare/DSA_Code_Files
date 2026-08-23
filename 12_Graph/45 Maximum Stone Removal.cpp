@@ -74,24 +74,17 @@ class Solution {
         }
         
         int components = 0;
-
-        //we can check number of components by updating size in disjoint set and checking if size for any node is greater
-        //than 1. that means this is one component. so increment count.
-        for(auto i:ds.size){
-            
-            if(i > 1)
-                components++;
-        }
         
-        for(auto node:st){ //else we can do like this also. we can insert all nodes in stack.
+        for(auto node:st){//we can insert all nodes in stack.
             if(ds.findParent(node) == node) //and check their parents. ultimatix parent..
             //the count unique nodes who is poiting itself as ultimate parent.
                 components++;
         }
-    
-        int deleteComp = n - components; //these are the number of components which we can delete..means
-        //n - uniqueu components which we cannot delete so, n - uniqueu components..and remaing component can be delete.
-        return (deleteComp); //at the end..we can remove n - components because
+        
+        //from every components, we can delete compSize - 1 stones. so deleting count of components
+        // from n means subtracting that 1 stones as we cant delete it.
+        int deleteComp = n - components; // N means total stones.
+        return (deleteComp); 
     }
 };
 

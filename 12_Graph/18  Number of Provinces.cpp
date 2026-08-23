@@ -207,13 +207,22 @@ class Solution {
         
 
         int count = 0;
-        for(int i = 0; i<ds.parent.size(); i++){ //at the end logic is..if node is ultimate parent..then 
+        for(int i = 0; i<V; i++){ //at the end logic is..if node is ultimate parent..then 
         //it will be parent of itself..so count those ultimate parent.
-            if(ds.parent[i] == i) //this is conditon.
+            if(ds.findParent(i) == i) //this is conditon.
                 count++;
         }
         
         return count; //return count.
+
+        // or we can use set ds.
+        // unordered_set<int>st;
+        // for(int i=0; i<V; i++){
+        //     int up = ds.findParent(i);
+        //     st.insert(up);
+        // }
+        
+        // return st.size();
     }
     
 

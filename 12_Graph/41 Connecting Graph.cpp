@@ -58,10 +58,10 @@ class DisjointSet{
         vector<int>rank;
         vector<int>parent;
         DisjointSet(int v){
-            rank.resize(v,0);
-            parent.resize(v);
+            rank.resize(v+1,0);
+            parent.resize(v+1);
             
-            for(int i = 0; i<v; i++)    
+            for(int i = 0; i<=v; i++)    
                 parent[i]=i;
         }
         
@@ -105,13 +105,13 @@ class Solution {
        }
        
        int components = 0;
-       for(int i = 0; i<ds.parent.size(); i++){
+       for(int i = 0; i<=v; i++){
            if(ds.parent[i]==i){ //increment count if node points to itself.
                components++;
            }
        }
        
-       int requiredEdges = components - 1; //required eges will be components -1.f
+       int requiredEdges = components - 1; //required eges will be components -1.
        
        if(requiredEdges <= extraEdges){ //if required edges less than extra edges then return required edges.
            return requiredEdges;

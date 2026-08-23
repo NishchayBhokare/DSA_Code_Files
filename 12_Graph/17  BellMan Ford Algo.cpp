@@ -1,7 +1,6 @@
 //GFG
 
 //we can find shortest path by bellman ford algo..dijkstra fails..when -ve weights are there..but bellman
-//can be used for this..condition is..there should not be negative weightage cycle..else u will find in infinite loop.
 //also..with bellman ford algo..u can find..-ve weightage cycle is present or not.
 
 //We required (vertext-1)times iteration to fill and reach every node for shortest distance.
@@ -11,7 +10,9 @@
 //for any node..is distance getting updated or not..if it's getting updating..then -ve cycle present in graph..so can't find
 //answer..return -1.
 //else return vector which stores shortest parth.
-//TC(V*E)
+
+
+//TC(V*E) SC-O(V)-> Most Important. it is higher than dijktra.
 vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
          vector<int> dist(V,1e8);
             dist[src] = 0;
@@ -36,6 +37,7 @@ vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
     
                 if(dist[u]!= 1e8 && (dist[u] + w < dist[v])){
                     flag = true;
+                    // return {-1}; or simply return -1 from here.
                 }
             }
             

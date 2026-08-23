@@ -60,11 +60,12 @@ public:
             for(int j = 1; j<details[i].size(); j++){
                 string str = details[i][j];
                 
-                if(mapping.find(str) == mapping.end()){ //first time inserting.
+                if(mapping.find(str) == mapping.end()){ //checking whther this email already camer or not
+                    // if not then assign index to it and if yes..then go for union. 
                     mapping[str] = i;
                 }
                 
-                else{ //if already this string is present..then existing string index is parent for this new string index.
+                else{ //if already this string is present..th   en existing string index is parent for this new string index.
                     
                     int u = mapping[str];
                     int v = i;
@@ -87,8 +88,9 @@ public:
         //step 3: creation of answer.
         vector<vector<string>>ans;
 
-        for(int i = 0; i<n; i++){
-            if(mergedMails[i].size() == 0) continue; //if ith student get's merged then skip for this student.
+        for(int i = 0; i<n; i++){   
+            if(mergedMails[i].size() == 0) continue; 
+            //if ith student get's merged then skip for this student.
 
             sort(mergedMails[i].begin(), mergedMails[i].end()); //first sort all mails for particualr student.
 
@@ -107,3 +109,60 @@ public:
         return ans; //and return final answer.
     }
 };
+
+
+//slight chagnes in below solution. 
+class Solution {
+  public:
+    vector<vector<string>> accMerge(vector<vector<string>>& arr) {
+        // code here
+        
+        int n = arr.size();
+        DisjointSet ds(n);
+        
+        unordered_map<string,int>mapping;
+        
+        //creation of mapping is done.
+        for(int i=0; i<n; i++){
+            for(int j=1; j<arr[i].size(); j++){
+                
+                if(mapping.find(arr[i][j]) == mapping.end())
+                    mapping[arr[i][j]] = i;
+                
+                else{
+                    
+                    int u = mapping[arr[i][j]];
+                    int v = i;
+                    
+                    ds.makeUnion(u,v);
+                }
+            }
+        }
+        
+        unordered_map<int,vector<string> > mergeString;
+        
+        for(auto [email,index]:mapping){
+            
+            int ind = ds.findParent(index);
+            
+            mergeString[ind].push_back(email);
+            sort(mergeString[ind].begin(), mergeString[ind].end());
+        }
+        
+        vector<vector<string>>ans;
+        
+        for(auto [index,strVec]:mergeString){
+            
+            vector<string>temp;
+            temp.push_back(arr[index][0]);
+            
+            for(auto str:strVec)
+                temp.push_back(str);
+            
+            ans.push_back(temp);
+        }
+        
+        return ans;
+    }
+};
+

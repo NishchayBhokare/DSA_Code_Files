@@ -63,7 +63,7 @@ public:
             
             int level = ump[word];
             
-            if(word == end) //if reached to last word.then break.
+            if(word == end) //if reached to last level where word is equal to end then just break,.
                 break;
             
             for(int i = 0; i<word.length(); i++){
@@ -74,7 +74,8 @@ public:
                     
                     if(s.count(word)){ //it will return 1 if present else 0.
                         q.push(word);
-                        s.erase(word);
+                        s.erase(word); //we're pushing current word in queue, so we can delete it.
+                        //no need to worry about second sequence. it will take this word from queue. and create sequence.
                         
                         ump[word] = level+1; //if new word is found..then increase it's level by current level plus 1.
                     }

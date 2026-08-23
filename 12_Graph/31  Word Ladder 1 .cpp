@@ -17,7 +17,7 @@ int wordLadderLength(string start, string target, vector<string>& wordList) {
     
     queue<pair<string,int> >q;
     q.push({start,1});
-    s.erase(start); //erase starting word from set if present.
+    s.erase(start); //erase starting word from set if present so that we can not come again on startin word.
     
     while(!q.empty()){
         
@@ -106,3 +106,63 @@ int wordLadderLength(string start, string target, vector<string>& wordList) {
     
     return 0;
 }
+
+
+//Approach 3: Brute Force Approach.
+class Solution {
+  public:
+    int wordLadder(vector<string> &words, string &s, string &e) {
+      
+        words.push_back(s);
+        
+        unordered_map<string,vector<string>>adj;
+        for(int i=0; i<words.size(); i++){
+            
+            string wordU = words[i];
+            
+            for(int j=0; j<words.size(); j++){
+                if(i==j) continue;
+                
+                string wordV = words[j];
+                
+                int k=0, cnt=0;
+                for(int k=0; k<wordU.size(); k++){
+                   
+                  if(wordU[k] != wordV[k]) 
+                        cnt++;
+                }
+                
+                if(cnt == 1)
+                    adj[wordU].push_back(wordV);
+            }
+        }
+        
+        words.pop_back();
+        
+        queue<pair<string,int>>q;
+        unordered_map<string,bool>visited;
+        q.push({s,1});
+        visited[s]=true;
+        
+        while(!q.empty()){
+            string word = q.front().first;
+            int dist = q.front().second;
+            
+            q.pop();
+            
+            if(word == e)
+                return dist;
+                
+            for(auto nbr:adj[word]){
+                
+                if(!visited[nbr]){
+                    q.push({nbr,dist+1});
+                    visited[nbr]=true;
+                }
+               
+            }
+        }
+        
+        return 0;
+    }
+};

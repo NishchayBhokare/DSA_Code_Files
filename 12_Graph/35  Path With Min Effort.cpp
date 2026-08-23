@@ -12,6 +12,8 @@
 // we're doing this because, for particular path..we have to check..what will be the maximum
 //absolute difference between the two nodes..so maximum absolute diff we're passing to next node till destination node.
 
+
+TC-O(N*M*Log(N*M)); i.e similar to . O(E*LogV)
 int MinimumEffort(int rows, int columns, vector<vector<int>> &heights) {
     
     int n = rows, m = columns;
@@ -56,5 +58,7 @@ int MinimumEffort(int rows, int columns, vector<vector<int>> &heights) {
                 }
             }
         }
+
+        return mat[n-1][m-1];
     }
 }
