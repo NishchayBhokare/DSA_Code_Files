@@ -153,3 +153,18 @@ long long int houseRobber(vector<int>& arr)
 
     return max(firstAns,secondAns);
 }
+
+//Another way.
+int houseRobber(vector<int>& arr) {
+     
+    int n = arr.size();
+    
+    vector<int>temp(arr.begin(),arr.end()-1); //inclding first and excluding last.
+    
+    int includeFirst = solve(temp);
+    
+    temp.assign(arr.begin()+1, arr.end()); //excluding first and including last.
+    int includeLast = solve(temp);
+    
+    return max(includeFirst , includeLast);
+}

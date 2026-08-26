@@ -3,15 +3,18 @@
 
 //Approach 1: using recursion. Gives u TLE.
 int solve(vector<vector<int>>&arr, int n, int lastTask){
-    if(n == 0){  //this is base case..for base case..check..take maximum from all elements except index lastTask.
-        int maxi = INT_MIN;
-        for(int i = 0; i<3; i++){
-            if(i != lastTask){
-                maxi = max(maxi, arr[n][i]);
-            }
-        }
-        return maxi; //and return it.
-    }
+    // if(n == 0){  //this is base case..for base case..check..take maximum from all elements except index lastTask.
+    //     int maxi = INT_MIN;
+    //     for(int i = 0; i<3; i++){
+    //         if(i != lastTask){
+    //             maxi = max(maxi, arr[n][i]);
+    //         }
+    //     }
+    //     return maxi; //and return it.
+    // }
+
+    if(n==-1) //instead of above big condition at n equals to 0. we can write simply this condition.
+        return 0;
     
     
     //now similar like base case..check for current row elements.
@@ -36,20 +39,23 @@ int maximumPoints(vector<vector<int>>& arr, int n) {
 //Approach 2: Using Memorization. TC-O(N*4*3). SC-O(N)
 int solve(vector<vector<int>>&arr, vector<vector<int>>&dp, int n, int lastTask){
     
+    if(n<0)
+        return 0;
+
     //checking whether previously we're calculated or not. for this f(n,lastTask).   
     if(dp[n][lastTask] != -1)
         return dp[n][lastTask];
     
-    if(n == 0){   
-        int maxi = INT_MIN;
-        for(int task = 0; task<3; task++){
-            if(task != lastTask){
-                maxi = max(maxi,arr[n][task]);
-            }
-        }
+    // if(n == 0){   
+    //     int maxi = INT_MIN;
+    //     for(int task = 0; task<3; task++){
+    //         if(task != lastTask){
+    //             maxi = max(maxi,arr[n][task]);
+    //         }
+    //     }
         
-        return dp[0][lastTask] = maxi; //store this maximum value in dp array.
-    }
+    //     return dp[0][lastTask] = maxi; //store this maximum value in dp array.
+    // }
     
     
     //now similar like base case..check for current row elements.

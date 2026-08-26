@@ -8,6 +8,9 @@ int solve(int n, vector<int>&dp, vector<int>&arr){
     
     if(n == 0)
         return arr[0];
+
+    // if(n<0) //or you can add this condiiton if you want don't want to add below condition.
+    //     return 0;
         
     if(n == 1)
         return max(arr[0],arr[1]); //this is catch..if n is 1..then return max of value from 0 or 1.
