@@ -6,7 +6,7 @@
 //all 26 letters of alphabets..whether we can keep it or not. if yes then push that newly created word in queue.
 //At one point..we will get target node..before queue get's empty. if queue get's empty..then return 0. that is no transformation is possible.
 
-//also make sure..at a time..we can replace only one character from word.
+//also make sure, at a time..we can replace only one character from word.
 //we're using unordered set here so that we can find word present in set or not in big oh 1 time.
 int wordLadderLength(string start, string target, vector<string>& wordList) {
     unordered_set<string>s;
@@ -39,7 +39,7 @@ int wordLadderLength(string start, string target, vector<string>& wordList) {
                 word[i] = ch;
                 if(s.find(word) != s.end()){ //if the newly created word is present in set..that means..we have found one possible transformation.
                 //so push this word into the queue by incrementing seqlen.
-                    
+
                     q.push({word, seqLen+1});
                     s.erase(word); //also erase from set..so that we will not select this word in near future.
                 }

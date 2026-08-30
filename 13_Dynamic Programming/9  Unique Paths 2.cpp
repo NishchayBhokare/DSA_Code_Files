@@ -66,3 +66,84 @@ int mazeObstacles(int n, int m, vector< vector< int> > &mat) {
     return solve(n-1,m-1,mat,dp);
 }
 
+
+//Approach 3: Using Tabulation. TC-O(N*M) SC-O(N*M)
+class Solution {
+  public:
+  
+    int uniquePaths(vector<vector<int>> &grid) {
+      
+        
+        int n=grid.size(), m=grid[0].size();
+        
+        if(n==1 and m==1 and grid[0][0]==1)
+            return 0;
+            
+        vector<vector<int>>dp(n,vector<int>(m,0)); //dp array.
+        
+        
+        for(int row=0; row<n; row++){
+            for(int col=0; col<m; col++){
+                
+                if(grid[row][col] == 1) dp[row][col]=0;
+                
+                else if(row==0 and col==0) dp[row][col] = 1;
+                
+                else{
+                
+                    if(row>0) dp[row][col] += dp[row-1][col];
+                    if(col>0) dp[row][col] += dp[row][col-1];
+                
+                }
+            }
+        }
+        
+        
+        return dp[n-1][m-1];
+    }
+};
+
+
+//Approach 4: Using tabulation without memeory space.
+class Solution {
+  public:
+  
+
+    int uniquePaths(vector<vector<int>> &grid) {
+      
+        
+        int n=grid.size(), m=grid[0].size();
+        
+        if(n==1 and m==1 and grid[0][0]==1)
+            return 0;
+            
+        vector<int>prev(m,0);
+        
+        prev[0] = 1;
+        
+        for(int row=0; row<n; row++){
+            vector<int>curr(m,0);
+            for(int col=0; col<m; col++){
+                
+                if(grid[row][col] == 1) curr[col]=0; //or continue
+                
+                else if(row==0 and col==0) curr[col] = 1;
+                
+                else{
+                    
+                    int up = 0, left = 0;
+                    if(row>0) up = prev[col];
+                    if(col>0) left = curr[col-1];
+                    
+                    curr[col] += up + left;
+                }
+                
+            }
+            
+            prev = curr;
+        }
+        
+        
+        return prev[m-1];
+    }
+};

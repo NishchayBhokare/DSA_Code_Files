@@ -39,7 +39,7 @@ vector<vector<string>> findSequences(string word, string end, vector<string>& wo
         
         if(word == end){ //if we reach till last word.
             
-            if(ans.size() == 0){ //if first time we're pusing current answer in ans then push it directly.
+            if(ans.size() == 0){ //if first time we're processing current answer in ans then push it directly.
                 ans.push_back(curr);
             }
             

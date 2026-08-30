@@ -1,4 +1,4 @@
-//GFG. 
+ //GFG. 
 //for memorization..just start from destination to source...and store number of paths can be possible for every row and col.
 //if already this path is calculated for current row and col..then return that path count.
 //In question they told us to move right and down..but as we moving from destination to source..so we're moving
@@ -43,7 +43,7 @@ int uniquePaths(int m, int n) {
 	for(int row = 0; row<m; row++){
 		for(int col=0; col<n; col++){
 
-			if(row==0 && col==0) dp[row][col]=1	;
+			if(row==0 && col==0) dp[row][col]=1 ;
 			else{
 				int up = 0, left = 0;
 				if(row>0)up = dp[row-1][col];
@@ -57,8 +57,40 @@ int uniquePaths(int m, int n) {
 	return dp[m-1][n-1];
 }
 
+//Approach 3: Using space optimization.
+//If you dry run, you will understand we're rquired only previous row.
+//TC-O(N*M) SC-O(n+n i.e 2n = n).
+class Solution {
+  public:
+    int numberOfPaths(int m, int n) {
+    
+        vector<int>prev(n,0);
+    
+        for(int i=0; i<m; i++){
+            vector<int>curr(n,0);
+            
+            for(int j=0; j<n; j++){
+                
+                if(i==0 and j==0) curr[j]=1;
+                else{
+                    int up = 0, left = 0;
+                  
+                    if(i > 0)
+                        up = prev[j];
+             
+                    if(j > 0)
+                        left = curr[j-1];
+                        
+                    curr[j] = up + left;
+                }    
+            } 
+            prev = curr;
+        }
+        return prev[n-1];
+    }
+};
 
-//Approach 3:Using Recursion.
+//Approach 4:Using Recursion.
 int solve(int row, int col, int m, int n){
 
 	if(row == 0 && col == 0){

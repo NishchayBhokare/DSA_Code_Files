@@ -33,13 +33,12 @@ class DisjointSet{
                 
                 parent[vP] = uP;
                 size[uP] += size[vP];
-                size[vP]= 0; //updating size to 0 as now vp is connected to up so size of vp is no longer needed.
-            }
+             }
             else{
                 
                 parent[uP] = vP;
                 size[vP] += size[uP]; 
-                size[uP] = 0; //similarly for size up.
+              
             }
         }
 };
