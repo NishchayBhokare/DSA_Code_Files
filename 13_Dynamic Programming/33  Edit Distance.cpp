@@ -119,3 +119,39 @@ int editDistance(string& s1, string& s2) {
     
     return dp[n][m]; //return final answer.
 }
+
+
+//Approach 4: Space optimization. TC-O(N*M) SC-O(N*M)
+int editDistance(string& s1, string& s2) {
+       
+        int n = s1.size(), m = s2.size();
+    
+        vector<int>prev(m+1, 0);
+        
+        for(int ind2=0; ind2<=m; ind2++)
+            prev[ind2] = ind2;
+            
+        for(int ind1=1; ind1<=n; ind1++){
+            vector<int>curr(m+1, 0);
+            curr[0]=ind1;
+            for(int ind2=1; ind2<=m; ind2++){
+                
+                if(s1[ind1-1] == s2[ind2-1]){
+                    curr[ind2] = prev[ind2-1];
+                }
+                else{
+                    
+                    int insertion = 1+curr[ind2-1];
+                    int deletion = 1+prev[ind2];
+                    int replace = 1+prev[ind2-1];
+                    
+                    curr[ind2] = min({deletion,replace, insertion});
+                }
+                
+            }
+            
+            prev = curr;
+        }
+        
+        return prev[m];
+    }

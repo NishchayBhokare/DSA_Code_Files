@@ -178,3 +178,41 @@ int maxProfit(vector<int>&price){
     return prev[1][2];
 }
 
+
+
+//Approach 5: TC-O(N*4) SC-O(N*4)
+class Solution {
+  public:
+    int solve(int ind, int transNo, vector<vector<int>>&dp, vector<int>&prices){
+        
+        if(ind==prices.size() or transNo>3)
+            return 0;
+            
+        if(dp[ind][transNo] != -1)
+            return dp[ind][transNo];
+            
+        if(transNo % 2 == 0){
+            
+            int takeBuy = -prices[ind] + solve(ind+1, transNo+1, dp, prices);
+            int notTakeBuy = solve(ind+1, transNo, dp, prices);
+            
+            return dp[ind][transNo] = max(takeBuy,notTakeBuy);
+        }
+        else{
+            int takeSell = prices[ind] + solve(ind+1, transNo+1, dp, prices);
+            int notTakeSell = solve(ind+1, transNo, dp, prices);
+            return dp[ind][transNo] = max(takeSell,notTakeSell);
+        }
+    }
+    
+    
+    int maxProfit(vector<int> &prices) {
+        // code here
+        int n = prices.size();
+        vector<vector<int>>dp(n,vector<int>(4,-1));
+        
+        
+        int transNo=0;
+        return solve(0,transNo, dp, prices);
+    }
+};

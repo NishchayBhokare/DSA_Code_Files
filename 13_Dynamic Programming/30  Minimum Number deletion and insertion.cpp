@@ -28,6 +28,9 @@ int canYouMake(string &s1, string &s2){
     int numberOfDeletion = n-lcsCnt;
     int numberOfInsertion = m-lcsCnt;
     return (numberOfDeletion + numberOfInsertion);
+
+    //or simply u can use this formula
+    // return (n+m - (2*len));
 }
 
 

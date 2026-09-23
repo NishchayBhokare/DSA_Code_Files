@@ -36,3 +36,65 @@ int stockBuySell(vector<int> &arr) {
     }
     return ans;
 }
+
+
+
+//Above problem solution is for when multiple transactions allowed.
+// below is for max one transaction allowed. 
+// If on every index we know smallest stock price in left part
+// then we're good to go.
+int maxProfit(vector<int> &prices) {
+    // code here
+    int mini = prices[0], profit=0;
+    
+    for(int i=1; i<prices.size(); i++){
+        profit = max(profit,prices[i]-mini);
+        mini = min(mini,prices[i]);
+    }
+    
+    return profit;
+}
+
+class Solution {
+  public:
+    int maxProfit(vector<int> &prices) {
+        // code here
+        int profit = 0, buyP=prices[0];
+        for(int i=1; i<prices.size(); i++){
+            
+            if(prices[i]<prices[i-1]){ //ifcurrent price is lesser than previous
+            //then calculate just profit, but don't update buyPrice as we don't
+            //buyP is lesser or greater than current price.
+                
+                profit = max(profit,prices[i-1] - buyP);
+            }
+            
+            if(prices[i] < buyP) //here check for buying price. If it is greater then 
+            //update buying price.
+                buyP = prices[i];
+        }
+        
+        //check for last element, whether we can make big profit or not.
+        return profit = max(profit, prices[prices.size()-1]-buyP);
+    }
+};
+
+
+class Solution {
+  public:
+    int maxProfit(vector<int> &prices) {
+        // code here
+        int profit = 0, buyP=prices[0];
+        for(int i=1; i<prices.size(); i++){
+            
+            profit = max(profit, prices[i-1] - buyP); //calcualte profit on every index.
+            
+            if(prices[i] < buyP) //here check for buying price. If it is greater then 
+            //update buying price.
+                buyP = prices[i];
+        }
+        
+        //check for last element, whether we can make big profit or not.
+        return profit = max(profit, prices[prices.size()-1]-buyP);
+    }
+};

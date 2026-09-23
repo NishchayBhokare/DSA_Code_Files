@@ -67,10 +67,45 @@ int minFallingPathSum(vector<vector<int>> &vec, int n) {
 }
 
 
+//Apporhac 3: Using space optimization. 
+//TC-O(N*M) SC-O(N)
+int minFallingPathSum(vector<vector<int>> &vec, int n) {
+    int minSum = INT_MAX;
+    vector<int>prev(n,0);
+
+    for(int i=0; i<n; i++)
+        prev[i]=vec[0][i];
+
+    for(int row=1; row<n; row++){
+
+        vector<int>curr(n,0);
+
+        for(int col=0; col<n; col++){ //very simple via tabulatiom.
+
+            int up=INT_MAX, leftD=INT_MAX, rightD=INT_MAX;
+
+            up=prev[col];
+            
+            if(col-1>=0) leftD=prev[col-1];
+
+            if(col+1<n) rightD=prev[col+1];
+
+            curr[col] = vec[row][col] + min({up,leftD,rightD});
+        }
+        prev = curr;
+    }
+
+    for(auto i:prev)
+        minSum = min(i,minSum);
+
+    return minSum;
+}
+
+
 
 //This belowe approaches are from start row to end row..
 
-// //Using Recursion.
+// //Using Recursion. TC-O(3^(n*m)) SC-O(N*M)
 bool isSafe(int row, int col, vector< vector< int> > &mat){
 
     if(row>=0 && col>=0 && mat[row][col] != -1)

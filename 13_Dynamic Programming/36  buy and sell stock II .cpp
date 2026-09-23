@@ -21,7 +21,7 @@ int maximumProfit(vector<int> &prices) {
 }
     
 
-//Approach 2: recursive approach.
+//Approach 2: recursive approach. TC-O(2^n) SC-O(N)
 //logic is we will maintain two variables one is index and another is status of buy. it will be either 0, 1.
 int solve(int i, int buy, vector<int> &prices, int &n){
     
@@ -98,11 +98,11 @@ int maximumProfit(vector<int> &prices) {
     
 
 
-//Approach 4: using space optimization. Tc-O(N*2);
+//Approach 4: using tabulation optimization. TC-O(N*2) SC-O(N*2);
 int maximumProfit(vector<int> &prices) {
     
     int buy=1, n = prices.size();
-    vector<vector<int>>dp(n+1, vector<int>(2,-1)); //create n+1 array size.
+    vector<vector<int>>dp(n+1, vector<int>(2,0)); //create n+1 array size.
     
     
     dp[n][1]=dp[n][0]=0; //base condition.
@@ -139,7 +139,7 @@ int maximumProfit(vector<int> &prices) {
 }
 
 
-//Approach 5: Using space optimization.
+//Approach 5: Using space optimization. TC-O(N*2) SC-O(1)
 int maximumProfit(vector<int> &prices) {
 
 int buy=1, n = prices.size();

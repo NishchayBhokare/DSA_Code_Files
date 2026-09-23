@@ -3,6 +3,7 @@
 //Knapsack problem in short is..we have to collect maximum value within given capacity.
 
 //Approach 1: using recursion.
+//TC-O(2^NW)
  int solve(int ind, int capacity, vector<int>&val, vector<int>&wt){
         
         if(ind == 0){
@@ -33,6 +34,8 @@
     
 
     //Approach 2: using memorization.
+    // TC-O(N*W) SC-O(N*W) + 0(N)
+
     int solve(int ind, int capacity, vector<int>&val, vector<int>&wt, vector<vector<int>>&dp){
         
         if(ind == 0){
@@ -42,7 +45,15 @@
             //not take
             return 0;
         }
-        
+
+        // or 
+        // if(ind == 0){
+            
+        //     if(wt[ind] <= W)
+        //         return val[ind];
+        //     return 0;    
+        // }
+
         if(dp[ind][capacity] != -1) return dp[ind][capacity]; //if already calculate answer for 
         //dp of index with capacity then return that value.
         

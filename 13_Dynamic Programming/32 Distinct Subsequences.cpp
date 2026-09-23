@@ -1,4 +1,37 @@
-//Code studio.
+//Leetcode: Simplest one. but for better understanding refer actual solution.
+//TC-O(N*M) SC-O(N*M) + O(N+M)
+class Solution {
+public:
+    int solve(int ind1, int ind2, string &s, string &t, vector<vector<int>>&dp){
+
+        if(ind2<0) return 1;
+        if(ind1<0) return 0;
+
+        if(dp[ind1][ind2] != -1)
+            return dp[ind1][ind2];
+        
+        int take = 0;
+        if(s[ind1] == t[ind2]){
+            take = solve(ind1-1, ind2-1, s, t, dp);
+        }
+        
+        int notTake = solve(ind1-1, ind2, s, t, dp);
+
+        return dp[ind1][ind2] = take + notTake;
+    }
+
+    int numDistinct(string s, string t) {
+        
+        int n = s.size(), m=t.size();
+
+        vector<vector<int>>dp(n,vector<int>(m,-1));
+
+        return solve(n-1,m-1,s,t,dp);
+    }
+};
+
+
+
 //Basically we have to find..number of instances of string t present in string s.
 //so return that count.
 

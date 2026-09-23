@@ -1,7 +1,7 @@
 //Code studio.
 
 //We have to find number of elements required to form x.
-//Approach 1: using Recursion. TC- O(exponential) can't calculate SC-O(Target);
+//Approach 1: using Recursion. TC- O(exponential) it's greater than 2pown. can't calculate SC-O(Target);
 int solve(int ind, int x, vector<int>&num){
 
     // if(x==0) return 0 //optional..because..this will get's handle at index equals to 0.

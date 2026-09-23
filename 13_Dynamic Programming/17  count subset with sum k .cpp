@@ -10,13 +10,22 @@ int solve(int ind,int k, vector<int>&arr){
     }
 
 
-//or we can right like this also because..array elements are from 0.
-    // if(ind == 0){ //if we reach till last ind. i.e 0
-	// 	if(k == 0 && arr[0] == 0) return 2;  //now check...if k is already 0 and this base case index in arr equals to 0.
-    //     //then there are two susbsets of k.
-	// 	if(arr[0] == k || k==0  ) return 1; //else check...if last element equals to k or..if k is 0 already zero then return 1.
-	// 	return 0;
-	// }
+// or we can right like this also because..array elements are from 0.
+    if(ind == 0){ //if we reach till last ind. i.e 0
+		if(k == 0 && arr[0] == 0) return 2;  //now check...if k is already 0 and this base case index in arr equals to 0.
+        //then there are two susbsets of k.
+		if(arr[0] == k || k==0  ) return 1; //else check...if last element equals to k or..if k is 0 already zero then return 1.
+		return 0;
+	}
+
+	//OR
+	if(ind == 0){
+		int cnt = 0;
+		if(k == 0) cnt++; //if k is zero then increment count.
+		
+		if(k == arr[0]) cnt++; //and if k=arr[0] k equals to arr[0] then increment cnt.
+		return cnt;
+	}
 
 
 	int notTake = solve(ind-1,k,arr);

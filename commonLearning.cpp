@@ -512,7 +512,7 @@ int main()
     
     // int N;
     // cin>>N;
-    // vector<pair<string,int>>vpr;
+    // vector<pair<string,int>>vpr; 
 
     // while(N--){
     //     string str;

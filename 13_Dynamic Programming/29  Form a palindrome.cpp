@@ -1,6 +1,44 @@
 //GFG.
 //Form a palindrome or minimum insertion to make string palindrome.
 
+
+//new another approach. instead of finding palindroming subsequences. directly find, how many characters need to add.
+//use single string to find.
+    int solve(int ind1, int ind2, string &s, vector<vector<int>>&dp){
+        
+        if(ind1>=ind2)
+            return 0;
+        
+        if(dp[ind1][ind2] != -1)
+            return dp[ind1][ind2];
+            
+        if(s[ind1] == s[ind2]){
+            
+            return dp[ind1][ind2] = solve(ind1+1, ind2-1, s, dp);
+        }
+        else{ //if character is not same then check both possiblities by imaginary adding ind1th char
+            //and ind2th char.
+            
+            int left = 1 + solve(ind1+1, ind2, s, dp);
+            int right = 1 + solve(ind1, ind2-1, s, dp);
+            
+            return dp[ind1][ind2] = min(left, right);
+        }
+    }
+  
+  
+    int findMinInsertions(string &s) {
+        // code here
+        
+        int n = s.size();
+        vector<vector<int>>dp(n, vector<int>(n,-1));
+        
+        int ind1=0, ind2=n-1;
+        return solve(ind1, ind2, s, dp);
+    }
+
+
+
 //we will find longest palindromic string. and the size of remaning characters will be the
 //minimum insertion required. Dry run on multiple examples..u will get.
 

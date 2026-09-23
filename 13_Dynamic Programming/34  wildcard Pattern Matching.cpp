@@ -18,15 +18,15 @@ bool solve(int i, int j, string &txt, string &pat){
     
     if(j < 0) return false; //if pattern array is empty but txt array is not..then return false.
     
-    if(i<0 && j>=0){ //these is the condition..if special character having characters remaning. 
-    //so those characters should be * only. if it's not..then return true.
-        
-        while(j>=0){ //loop till 0. and check.
-            if(pat[j--] != '*') return false;
+        if(i<0 && j>=0){ //these is the condition..if special character having characters remaning. 
+        //so those characters should be * only. if it's not..then return true.
+            
+            while(j>=0){ //loop till 0. and check.
+                if(pat[j--] != '*') return false;
+            }
+            
+            return true;
         }
-        
-        return true;
-    }
     
     //check if characters are matching.
     if(i>=0 && j>=0 && txt[i] == pat[j] || pat[j] == '?'){
@@ -38,7 +38,7 @@ bool solve(int i, int j, string &txt, string &pat){
         if(pat[j] == '*'){
             
             //for first function call, consider as * means nothing..and move on to check remaining elements..so decrement index j but not i.
-            return solve(i, j-1, txt, pat, dp) || solve(i-1, j, txt, pat, dp);
+            return solve(i  , j-1, txt, pat, dp) || solve(i-1, j, txt, pat, dp);
             //for second functin call, consider as current character matches with * so decrement i but not j.
         }
     }

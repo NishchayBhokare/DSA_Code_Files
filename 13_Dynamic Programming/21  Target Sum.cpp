@@ -2,6 +2,9 @@
 //we can solve this question by just calling 18th question function.
 //if you observe carefully we can divide subsets in s1 and s2 here in s1 is all addition and 
 //s2 is all substraction values so we can simply call that function too.
+//we can call that function ways to acheive target value in given array.
+
+//but below approach is different. 
 
 
 

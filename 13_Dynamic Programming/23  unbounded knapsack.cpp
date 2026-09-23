@@ -17,6 +17,13 @@ int solve(int ind, int w, vector<int> &profit, vector<int> &weight){
     if(ind==0)
         return (w/weight[0])*profit[0];
 
+    //or just right
+    if(w == 0)
+            return 0;
+        
+    if(ind<0)
+        return -1e8;
+
 
     //not take.
     int notTake = 0 + solve(ind-1,w,profit,weight);

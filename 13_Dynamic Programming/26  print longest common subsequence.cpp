@@ -1,6 +1,7 @@
 //Code studio 
 
 //Approach 1: using tabulation..using grid.
+//TC-O(N*M) SC-O(N*M)
 string findLCS(int n, int m,string &s1, string &s2){
 
 	vector<vector<int>>dp(n+1, vector<int>(m+1,0)); //create dp array with n+1 and m+1 size..
