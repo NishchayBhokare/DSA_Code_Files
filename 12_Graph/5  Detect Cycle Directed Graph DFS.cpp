@@ -100,7 +100,7 @@ bool isCyclic(int V, vector<vector<int>> adj) {
 
 
 //Approach 2: using DFS..but tracking current active parent.
-//logic is mainting parent vector..which shows active parent.
+//logic is mainting  vector..which shows active parent.
 //if new node is active parent...then cycle is present
  bool solve(int node, vector<vector<int>> &adj, vector<int>&parentVec,
     unordered_map<int,bool> &visited){

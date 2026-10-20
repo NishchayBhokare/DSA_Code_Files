@@ -54,7 +54,55 @@ class Solution {
 };
 
 
+//Simple one by adding one more row and column in dp so that, we don't need to handle base case seperately.
+int minSumPath(vector<vector<int>>& triangle) {
+	// Code here
+	
+	int n = triangle.size();
+	vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+	
+	for(int r=n-1; r>=0; r--){
+		for(int c=r; c>=0; c--){
+			
+			int down = dp[r+1][c];
+			int rightDig = dp[r+1][c+1];
+	
+			dp[r][c] = triangle[r][c] + min(down,rightDig);
+		}
+	}
+	
+	return dp[0][0];
+}
+
+
 //Approach 3: Tabulation, space optimization. TC-O(N*M) SC-O(N)
+//instead of going traditionally, just add one more row and col, it will solve very big problem. 
+//no need to handle base cse.
+int minSumPath(vector<vector<int>>& triangle) {
+        // Code here
+        
+        int n = triangle.size();
+        vector<int>next(n+1,0);
+        
+        for(int r=n-1; r>=0; r--){
+            vector<int>curr(n+1,0);
+            
+            for(int c=r; c>=0; c--){
+                
+                int down = next[c];
+                int rightDig = next[c+1];
+        
+                curr[c] = triangle[r][c] + min(down,rightDig);
+            }
+            
+            next=curr;
+        }
+        
+        return next[0];
+    }
+
+
+//Traditional way.	
 class Solution {
   public:
     int minPathSum(vector<vector<int>>& triangle) {

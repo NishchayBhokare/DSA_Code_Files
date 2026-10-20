@@ -34,7 +34,7 @@ int maxCoins(vector<int> &arr) {
 
 
 
-//Using Memorization.
+//Using Memorization. TC-O(N*N*N) SC-O(N2+N)
 int solve(int i, int j, vector<int>&arr, vector<vector<int>>&dp){
     
     if(i > j) return 0;
@@ -64,7 +64,7 @@ int maxCoins(vector<int> &arr) {
 }
 
 
-//Using tabulation.
+//Using tabulation. TC-O(N*N*N) SC-O(N2)
     int maxCoins(vector<int> &arr) {
     int n=arr.size();
     vector<vector<int>>dp(n+2, vector<int>(n+2, 0));

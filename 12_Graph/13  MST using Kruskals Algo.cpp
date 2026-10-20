@@ -58,7 +58,7 @@ int spanningTree(int V, vector<vector<int>> adj[])
 	vector<pair<int, pair<int,int> > > adjList;
 	
 	for(int i = 0; i<V; i++){
-		for(auto j:adj[i]){
+		for(auto j:adjList[i]){
 			int u = i;
 			int v = j[0];
 			int w = j[1];

@@ -10,7 +10,7 @@ int solve(Node *root){
     
     int right = max(0,solve(root->right)); //same for right.
     
-    maxi = max(maxi, root->data+left+right); //now on every node..store maximum sum. this max sum will be node's data+left's sum and right sum.
+    maxi = max(ma   xi, root->data+left+right); //now on every node..store maximum sum. this max sum will be node's data+left's sum and right sum.
     
     return (root->data + max(left,right)); //return max sum from left part or right part.
     //returning this to caller function becaseu..
@@ -20,8 +20,7 @@ int solve(Node *root){
 int findMaxSum(Node* root)
 {
     solve(root);
-    return maxi;
-
+    return maxi;    
 }
 
 //More easy to understand

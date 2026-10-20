@@ -1,6 +1,54 @@
 //GFG
 //This question is extentsion of previous prerequisite question.
 
+
+//Using Topological sort, BFS. Algo. TC-O(V+E) SC-O(V+E)
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& pre) {
+        
+        vector<vector<int>>adj(numCourses);
+        vector<int>indeg(numCourses,0);
+        for(auto m:pre){
+
+            int u = m[0];
+            int v = m[1];
+            adj[u].push_back(v);
+            indeg[v]++;
+        }
+
+        queue<int>q;
+
+        for(int i=0; i<indeg.size(); i++){
+            if(indeg[i] == 0){
+                q.push(i);
+            }
+        }
+    
+        vector<int>ans;
+        while(!q.empty()){
+            int node = q.front();
+            ans.push_back(node);
+            q.pop();
+
+            for(auto nbr:adj[node]){
+
+                indeg[nbr]--;
+
+                if(indeg[nbr]==0){
+                    q.push(nbr);
+                }
+            }
+        }
+
+        if(ans.size() != numCourses)
+            return {};
+
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+}
+
 //we're using logic of detecting cycle & topolical sort in directed graph using dfs.
 //To store answer..we're using topoligcal sort and to dected cycle..we're using cycle dectectin algo. dfs visited.
 //Approach 1: using dfs visited we're solving this question..if current node is not visited and also not present in
@@ -105,3 +153,5 @@ vector<int> findOrder(int N, int m, vector<vector<int>> pre)
 
     return ansArr; //return answer.
 }
+
+

@@ -17,12 +17,15 @@ struct Node
 
 
 //Approach 1: TC-O(N) SC-O(Height).
+//Simply we can just add this if conditions to handle null cases.
+if(r1==NULL and r2==NULL) return true;
+if(r1==NULL or r2==NULL) return false;
 bool isIdentical(Node *r1, Node *r2)
 {
     // Your Code here
     if (r1 == NULL && r2 == NULL)
     { // checking initially NULL or not. and also after moving to end checking both ends to null or not.
-        return true;
+        return true; 
     }
 
     if (r1 == NULL && r2 != NULL)

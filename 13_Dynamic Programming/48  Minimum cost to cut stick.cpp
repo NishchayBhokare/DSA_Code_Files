@@ -11,8 +11,7 @@ int solve(int i, int j,vector<int>&cuts){
 
     for(int ind=i; ind<=j; ind++){
 
-        int cost = cuts[j+1] - cuts[i-1] + solve(i, ind-1, cuts) + 
-            solve(ind+1,j,cuts);
+        int cost = cuts[j+1] - cuts[i-1] + solve(i, ind-1, cuts) +  solve(ind+1,j,cuts);
 
         mini = min(cost, mini);
     }

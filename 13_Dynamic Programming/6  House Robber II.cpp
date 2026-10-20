@@ -43,11 +43,67 @@ long long int houseRobber(vector<int>& arr)
     return max(firstAns,secondAns); //take max of it.
 }
 
+//simple to understand.
+class Solution {
+  public:
+    
+    int solve(int ind, int n, vector<int>&arr, vector<int>&dp){
+        
+        if(ind>n){
+            return 0;
+        }
+        
+        if(dp[ind] != -1)
+            return dp[ind];
+        
+        //not take 
+        int notTake = solve(ind+1,n,arr,dp);
+        
+        //take
+        int take = arr[ind] + solve(ind+2,n,arr,dp);
+        
+        return dp[ind] = max(take,notTake);
+    }
+  
+    int maxValue(vector<int>& arr) {
+        // code here
+        
+        int n = arr.size();
+        vector<int>dp1(n, -1);
+        vector<int>dp2(n,-1);
+        return max(solve(0,n-2,arr,dp1), solve(1,n-1,arr,dp2));
+    }
+};
+
 
 
 
 
                                          //Tabulation.
+
+//Simple one like above
+int solve(int ind, int n, vector<int>&arr, vector<int>&dp){
+    
+    for(int i=n; i>=ind; i--){
+        
+        int notTake = dp[i+1];
+        
+        int take = arr[i] + dp[i+2];
+        
+        dp[i] = max(take,notTake);
+    }
+    
+    return dp[ind];
+}
+
+int maxValue(vector<int>& arr) {
+
+    int n = arr.size();
+    vector<int>dp1(n+1, 0);
+    vector<int>dp2(n+2, 0);
+    return max(solve(0,n-2,arr,dp1), solve(1,n-1,arr,dp2));
+}
+
 
 long long int solve(int n, vector<int>&temp, vector<long long int>&dp){
 
@@ -94,6 +150,34 @@ long long int houseRobber(vector<int>& arr)
 
 
                                         //Space Optimization.
+
+//simple one.
+
+    int solve(int ind, int n, vector<int>&arr){
+        
+        int next=0, nextToNext=0,curr=0;
+        
+        for(int i=n; i>=ind; i--){
+            
+            int notTake = next;
+            
+            int take = arr[i] + nextToNext;
+            
+            curr = max(take,notTake);
+            
+            nextToNext = next;
+            next = curr;
+        }
+        
+        return curr;
+    }
+  
+    int maxValue(vector<int>& arr) {
+   
+        int n = arr.size();
+        return max(solve(0,n-2,arr), solve(1,n-1,arr));
+    }                                        
+
 long long int excludeFirst(vector<int>&arr){
     int n = arr.size();
 

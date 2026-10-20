@@ -94,3 +94,64 @@ int getLCSLength(string & str1, string & str2) {
     
     return dp[n][m];
 }
+
+//Simple one, just add one more row and column.
+class Solution {
+  public:
+  
+    int lcs(string &s1, string &s2) {
+        // code here
+        int n = s1.size(), m=s2.size();
+        int i=n-1, j=m-1;
+        
+        vector<vector<int>>dp(n+1,vector<int>(m+1,0));
+        
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=m; j++){
+                
+                int both=0;
+                if(s1[i-1] == s2[j-1]){
+                    both = 1 + dp[i-1][j-1];
+                }
+                
+                int left = dp[i-1][j];
+                int right = dp[i][j-1];
+                
+                dp[i][j] = max({both,left,right});
+            }
+        }
+        
+        return dp[n][m];
+    }
+};
+
+
+//Space optimization.
+int lcs(string &s1, string &s2) {
+    // code here
+    int n = s1.size(), m=s2.size();
+    int i=n-1, j=m-1;
+    
+    vector<int>prev(m+1,0);
+    
+    for(int i=1; i<=n; i++){
+        vector<int>curr(m+1,0);
+        
+        for(int j=1; j<=m; j++){
+            
+            int both=0;
+            if(s1[i-1] == s2[j-1]){
+                both = 1 + prev[j-1];
+            }
+            
+            int left = prev[j];
+            int right = curr[j-1];
+            
+            curr[j] = max({both,left,right});
+        }
+        
+        prev = curr;
+    }
+    
+    return prev[m];
+}
