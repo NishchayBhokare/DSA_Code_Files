@@ -56,11 +56,11 @@ string minWindow(string s1, string s2) {
 
 
 
-//Approach 2: brute force approach TC-O(N2) SC-O(1)
+//Approach 2: brute force approach TC-O(N2) SC-O(1). basically, Generate all valid substrings and check minLength.
 string minWindow(string s1, string s2) {
     int n=s1.length(), m=s2.length(), minLen=INT_MAX, startInd=-1;
     
-    for(int i=0; i<n; i++){
+    for(int i=0; i<n; i++){     
         
         int len=0;
         unordered_map<char,int>charFreq;

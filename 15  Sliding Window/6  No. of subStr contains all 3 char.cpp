@@ -59,3 +59,27 @@ int countSubstring(string s) {
     
     return cnt;
 }
+
+
+//Approach 3: TC-O(N^2) SC-O(3)
+class Solution {
+  public:
+    int countSubstring(string &s) {
+        // Code here
+        
+        int ans = 0;
+        for(int i=0; i<s.length(); i++){
+            unordered_set<int>st;
+            
+            for(int j=i; j<s.length(); j++){
+                
+                st.insert(s[j]);
+                
+                if(st.size() == 3)
+                    ans++;
+            }
+        }
+        
+        return ans;
+    }
+};

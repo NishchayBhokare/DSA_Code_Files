@@ -43,6 +43,8 @@ int solve(vector<int>&arr, int target){
 int numberOfSubarrays(vector<int>& arr, int target) {
     
     return solve(arr, target) - solve(arr, target-1); //substract from count of subarray with target - (target-1).
+    //suppose target is 3 then count the subarray for (0,1,2,3) - (0,1,2) = subarray of sum == 3.
+    //This is the main idea.
 }
 
 

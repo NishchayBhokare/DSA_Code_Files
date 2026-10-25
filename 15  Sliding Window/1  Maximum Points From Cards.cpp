@@ -3,7 +3,7 @@
 
 //basically we have to find the maximum points we can collect either from front or from back.
 
-//TC-O(N) SC-O(1).
+//TC-O(2*k) SC-O(1).
 int maxPoints(vector<int>&arr , int k){
     
     int n=arr.size();

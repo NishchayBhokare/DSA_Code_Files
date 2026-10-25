@@ -5,7 +5,7 @@
 //after decrement, if frequency is zero then delete that fruit from map.
 //and also move left to next.
 
-//Appraoch 1: TC-O(N) SC-O(3)
+//Appraoch 1: TC-O(N) SC-O(N/2: in worst case) eg. 3 3 3 3 3 1 2 4 5 6
 int totalFruits(vector<int> &arr) {
     
     int maxLen = 0, left=0, right=0, n=arr.size();

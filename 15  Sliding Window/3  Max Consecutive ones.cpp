@@ -56,6 +56,37 @@ int longestOnes(vector<int>& nums, int k) {
 }
 
 
+//TC-O(2N)
+int longestOnes(vector<int>& nums, int k) {
+        int n = nums.size();
+        int l=0,r=0,maxLen=0;
+        while(r<n){
+
+            if(nums[r] == 1){
+                maxLen = max(maxLen,r-l+1);
+                r++;
+            }
+            else{
+
+                if(k>0){
+                    maxLen = max(maxLen,r-l+1);
+                    k--;
+                    r++;
+                }
+                else{
+
+                    if(nums[l] == 0)
+                        k++;
+                    
+                    l++;
+                }
+            }
+        }
+
+        return maxLen;
+    }
+
+
 
 //Approach 3: TC-O(N2) SC-O(1)
 int longestOnes(vector<int>& nums, int k) {
