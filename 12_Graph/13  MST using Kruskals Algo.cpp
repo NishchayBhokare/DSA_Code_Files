@@ -8,7 +8,7 @@
 //basically this disjoint set can be used to  find MST. 
 
 //TC- O(E * (4 * alpha)). there is huge mathematics for it. But yes alpha value is very 
-// less so overall TC is constant O(1).
+// less so overall TC is O(E).
 class disJointSet{
 	public:
 	vector<int>parent;

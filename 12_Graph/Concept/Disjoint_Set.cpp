@@ -1,3 +1,10 @@
+//Disjoint set are the set..in which we can get ulitmate parent and makeunion by rank..
+//basically this disjoint set can be used to  find MST. 
+
+//TC- O(E * (4 * alpha)). there is huge mathematics for it. But yes alpha value is very 
+// less so overall TC is O(E). E is number of edges, if we traverse over the edges. 
+//otherwise TC will be O(1) if we are calling just one or two times for make union.
+
 #include<bits/stdc++.h>
 using namespace std;
 
