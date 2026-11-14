@@ -29,7 +29,7 @@ using namespace std;
         
         int x=0, y=0;
         for(int i=0; i<nums.size(); i++){ //in this for loop we're creating two groups. 
-            if(rightMost & nums[i]) x = x ^ nums[i]; //first group is, nums'i & rightMost is not equal to 0. i.e it might be 1 or any positive number.
+            if(rightMost & nums[i] != 0) x = x ^ nums[i]; //first group is, nums'i & rightMost is not equal to 0. i.e it might be 1 or any positive number.
         
             else y = y ^ nums[i]; // second group is nums'i & rightMost is not 1 i.e 0.
         } //At the end of for loop, out of two distinct elements, one will be in x and another in y.
