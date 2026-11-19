@@ -3,6 +3,7 @@
 ///so we have to exclude it and calcuate answer. so first calculate answer by excluding first and then 
 //calculate by excluding last.
 
+//TC- O(N) SC-O(N)
 // Using Memorization
 long long int solve(int n, vector<int>&temp, vector<long long int>&dp){
 
