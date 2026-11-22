@@ -1,6 +1,6 @@
 //Leetcode easy question. 
 
-//TC-O(N)
+//TC-O
 class Solution {
 public:
     bool checkString(string s) {
